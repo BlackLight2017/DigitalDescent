@@ -17,17 +17,21 @@ public class PlayerCon : MonoBehaviour
     public Image healthBar;
 	public int dealthHealth;
 
+	public GameObject deathEffect;
+
     [Header("Shooting")]
     public float bulletSpeed;
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
     public GameObject charact;
+	public bool grounded;
 
 	// Use this for initialization
 	void Start ()
     {
         health = startHealth;
         canMove = true;
+		grounded = true;
 	}
 	
 	// Update is called once per frame
@@ -40,6 +44,7 @@ public class PlayerCon : MonoBehaviour
             character.transform.Translate(h * Time.deltaTime, 0, 0);
         }
 
+		//do the jump thing with grounded bool
         if (Input.GetButtonDown("Jump"))
         {
             this.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpHeight);
@@ -65,6 +70,7 @@ public class PlayerCon : MonoBehaviour
         }
     }
 
+	// re work in update method - with bool
 	public void DamageOTime (int damageOverTime)
 	{
 		health -= damageOverTime * 0.5f /Time.time;
@@ -80,6 +86,8 @@ public class PlayerCon : MonoBehaviour
 
     public void Die()
     {
+		Instantiate(deathEffect, transform.position, transform.rotation);
+		gameObject.SetActive (false);
         Debug.Log("YOU DIED!");
     }
 }
