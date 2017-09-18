@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114161911520804712}
   - component: {fileID: 64740831855392718}
   m_Layer: 0
-  m_Name: Ceiling 4x10
+  m_Name: Ceiling 4x10_Windowed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
