@@ -1,15 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 
 public class PlayerController : MonoBehaviour {
+  // public GameObject Bullet_prefab;
+  // public GameObject Bullet_Spawn;
 
     public float VerticalJumpForce;
     public float MovementSpeed;// = 10;
     private Rigidbody rb;
     public bool isGrounded = false;
-    
+    private float spawn_timer;
+    public float spawn_radius;
+    public float spawn_time = 1;
+
+
+
+
     float DashTimer = 0.4f;
     bool Grounded = true;
     public bool Dashing = false;
@@ -18,12 +27,15 @@ public class PlayerController : MonoBehaviour {
     public float DashCooldown = 5;
     // int for CurrentDashCount
     public float CurrentDashCount = 0;
-  
+
+    bool CanFire = false;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+     
+
     }
     void FixedUpdate()
     {
@@ -125,6 +137,22 @@ public class PlayerController : MonoBehaviour {
 
     }
 
+//   public void Fire()
+//   {
+//       if (CanFire == true)
+//       {
+//           spawn_timer = spawn_time;
+//           CanFire = false;
+//           // Instanciate a new Bullet Prefab
+//           float spawn_angle = Random.Range(0, 2 * Mathf.PI);
+//           Vector3 spawn_direction = new Vector3(Mathf.Sin(spawn_angle), 0, Mathf.Cos(spawn_angle));
+//           spawn_direction *= spawn_radius;
+//           Instantiate(Bullet_prefab, Bullet_Spawn.transform.position, Quaternion.identity);
+//
+//
+//
+//       }
+//   }
     //when the player collides with an object with the tag "Ground"
     //The player can jump
     private void OnCollisionStay(Collision collision)

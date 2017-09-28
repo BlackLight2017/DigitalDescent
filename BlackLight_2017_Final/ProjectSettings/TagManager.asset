@@ -8,6 +8,8 @@ TagManager:
   - Trigger
   - Enemy
   - Ground
+  - StunGun
+  - Sword
   layers:
   - Default
   - TransparentFX
