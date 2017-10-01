@@ -9,12 +9,12 @@ public class EnemyTEST : MonoBehaviour
     // speed of enemy 
     public float f_Speed;
     // Renderer that changes the color of the enemy stunned 
-    private Renderer Render; 
+ //   private Renderer Render; 
     //Stun Timer 
     public float f_Stunned = 3.0f;
 
-    Rigidbody rb; 
-    public float fHealth = 100; 
+ //   Rigidbody rb; 
+    public static float fHealth = 100.0f; 
     bool IsStunned = false;
     // Use this for initialization
     void Start()
@@ -46,7 +46,10 @@ public class EnemyTEST : MonoBehaviour
 
             f_Stunned += 3.0f;
         }
-
+        if (fHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     // when the enemy collides with a bullet isStunned is equal true stunning the enemy 
    
@@ -58,10 +61,12 @@ public class EnemyTEST : MonoBehaviour
             IsStunned = true;
 
         }
-    
-    }
-   
-     
 
-    
+      if (other.gameObject.tag == "Sword")
+      {
+            //hardcoded damage (Last resort) 
+         //   fHealth -= 10; 
+      }
+    }
+
 }
