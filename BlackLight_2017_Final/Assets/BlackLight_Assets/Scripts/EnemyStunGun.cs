@@ -13,13 +13,20 @@ public class EnemyStunGun : MonoBehaviour {
     // Timer for bullets being shot 
     private float spawn_timer;
     bool CanFire = false;
+    bool IsStunned;
+    float f_Stunned;
     float m_fDist;
     private Transform Target;
+    RangedEnemy RangedEnemy;
+    GameObject rangedEnemy;
 
     // Use this for initialization
     void Start () {
+        IsStunned = false;
         rb = GetComponent<Rigidbody>();
         Target = GameObject.FindGameObjectWithTag("Player").transform;
+        rangedEnemy = GameObject.FindGameObjectWithTag("RangedEnemy");
+        RangedEnemy = rangedEnemy.GetComponent<RangedEnemy>();
     }
 
     // Update is called once per frame
@@ -38,8 +45,29 @@ public class EnemyStunGun : MonoBehaviour {
         {
             if (m_fDist < 5)
             {
-                Fire();
+                if(!IsStunned)
+                {
+                    Fire();
+                }       
             }
+        }
+        if (IsStunned == true)
+        {
+            f_Stunned -= Time.deltaTime;
+        }
+        // once the timer hits 0 speed is restored 
+        if (f_Stunned <= 0)
+        {
+            IsStunned = false;
+            f_Stunned += 3.0f;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Bullet")
+        {
+            IsStunned = true;
         }
     }
     public void Fire()

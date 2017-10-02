@@ -11,6 +11,8 @@ TagManager:
   - StunGun
   - Sword
   - RangedEnemy
+  - EnemyBullet
+  - EnemyStunGun
   layers:
   - Default
   - TransparentFX

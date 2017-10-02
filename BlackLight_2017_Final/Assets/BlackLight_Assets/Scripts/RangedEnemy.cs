@@ -8,13 +8,12 @@ public class RangedEnemy : MonoBehaviour {
 	public float m_fHealth;
 	public float m_fDamage;
     public float f_Speed;
-
-    public float f_Stunned = 3.0f;
+    public float f_Stunned;
+    public bool IsStunned;
 
     private Transform Target;
 	private NavMeshAgent nav;
 	private bool m_bIsDead;
-    bool IsStunned = false;
 
 
     PlayerHealth PlayerHealth;
@@ -30,8 +29,10 @@ public class RangedEnemy : MonoBehaviour {
 		m_fHealth = 50;
 		m_fDamage = 30;
 		m_fTimer = 0;
+        f_Stunned = 3.0f;
+        IsStunned = false;
 
-		Target = GameObject.FindGameObjectWithTag("Player").transform;
+        Target = GameObject.FindGameObjectWithTag("Player").transform;
 		nav = GetComponent<NavMeshAgent>();
 		Player = GameObject.FindGameObjectWithTag("Player");
 		PlayerHealth = Player.GetComponent<PlayerHealth>();
@@ -53,7 +54,22 @@ public class RangedEnemy : MonoBehaviour {
 				nav.SetDestination(Target.position);
 			}		
 		}
-		if (dist < 5)
+        if (IsStunned == true)
+        {
+            nav.enabled = false;
+            GetComponent<Renderer>().material.color = Color.yellow;
+            f_Stunned -= Time.deltaTime;
+        }
+        // once the timer hits 0 speed is restored 
+        if (f_Stunned <= 0)
+        {
+            IsStunned = false;
+            nav.enabled = true;
+            GetComponent<Renderer>().material.color = Color.red;
+
+            f_Stunned += 3.0f;
+        }
+        if (dist < 5 || dist > 15)
 		{
 			//DoDamage();
 			nav.enabled = false;
@@ -82,10 +98,13 @@ public class RangedEnemy : MonoBehaviour {
         }
         else
         {
-            nav.SetDestination(Target.position);
+            if(nav.isOnNavMesh)
+                nav.SetDestination(Target.position);
         }
 
     }
+	//public void DoDamage()
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Bullet")
@@ -93,6 +112,7 @@ public class RangedEnemy : MonoBehaviour {
             IsStunned = true;
         }
     }
+
     public void DoDamage()
 	{
 		Debug.Log("HitPlayer");

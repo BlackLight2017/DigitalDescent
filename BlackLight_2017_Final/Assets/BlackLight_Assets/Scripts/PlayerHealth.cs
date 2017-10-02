@@ -7,8 +7,8 @@ public class PlayerHealth : MonoBehaviour {
     public float m_fHealth;
     public float m_fDamage;
     public bool m_bIsDead = false;
-    //GameObject RangedEnemy;
-    //RangedEnemy RangedEnemyScript;
+    GameObject RangedEnemy;
+    RangedEnemy RangedEnemyScript;
 
 
     // Use this for initialization
@@ -17,8 +17,8 @@ public class PlayerHealth : MonoBehaviour {
         m_fHealth = 100;
         m_fDamage = 25;
 
-        //RangedEnemy = GameObject.FindGameObjectWithTag("RangedEnemy");
-        //RangedEnemyScript = RangedEnemy.GetComponent<RangedEnemy>();
+        RangedEnemy = GameObject.FindGameObjectWithTag("RangedEnemy");
+        RangedEnemyScript = RangedEnemy.GetComponent<RangedEnemy>();
         //Enemy = GameObject.FindGameObjectWithTag("Enemy");
         //EnemyScript = Enemy.GetComponent<Enemy>();
     }
@@ -44,10 +44,10 @@ public class PlayerHealth : MonoBehaviour {
 
     private void OnTriggerEnter(Collider col)
     {
-      //  if (col.gameObject.tag == "Bullet")
-      //  {
-      //      RangedEnemyScript.DoDamage();
-      //  }
+        if (col.gameObject.tag == "EnemyBullet")
+        {
+            RangedEnemyScript.DoDamage();
+        }
     }
 	
     public void TakeDamage(float fDamage)
@@ -65,6 +65,7 @@ public class PlayerHealth : MonoBehaviour {
     {
 		m_bIsDead = true;
 		Debug.Log("PlayerDead");
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 }
