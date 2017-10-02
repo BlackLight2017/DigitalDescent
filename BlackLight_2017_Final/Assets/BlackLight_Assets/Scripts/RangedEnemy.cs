@@ -71,7 +71,7 @@ public class RangedEnemy : MonoBehaviour {
         }
         if (dist < 5 || dist > 15)
 		{
-			//DoDamage();
+            transform.LookAt(Target);
 			nav.enabled = false;
 		}
 		else
