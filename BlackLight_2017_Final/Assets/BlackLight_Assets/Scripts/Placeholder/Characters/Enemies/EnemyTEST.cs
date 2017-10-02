@@ -14,7 +14,7 @@ public class EnemyTEST : MonoBehaviour
     public float f_Stunned = 3.0f;
 
  //   Rigidbody rb; 
-    public static float fHealth = 100.0f; 
+    public float fHealth = 100.0f; 
     bool IsStunned = false;
     // Use this for initialization
     void Start()
@@ -36,13 +36,15 @@ public class EnemyTEST : MonoBehaviour
         if (IsStunned == true)
         {
             f_Speed = 0;
+            GetComponent<Renderer>().material.color = Color.yellow;
             f_Stunned -= Time.deltaTime;
         }
         // once the timer hits 0 speed is restored 
         if (f_Stunned <= 0)
         {
             IsStunned = false;
-            f_Speed = 5; 
+            f_Speed = 5;
+            GetComponent<Renderer>().material.color = Color.red;
 
             f_Stunned += 3.0f;
         }
@@ -57,7 +59,6 @@ public class EnemyTEST : MonoBehaviour
     {
         if (other.gameObject.tag == "Bullet")
         {
-
             IsStunned = true;
 
         }

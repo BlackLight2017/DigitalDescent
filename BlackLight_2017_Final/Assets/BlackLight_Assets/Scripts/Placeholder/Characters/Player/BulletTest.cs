@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletTest : MonoBehaviour {
-    public float spawn_time = 1;
+    private float spawn_time = 5;
     private float spawn_timer;
     public float Speed = 1.0f; 
 

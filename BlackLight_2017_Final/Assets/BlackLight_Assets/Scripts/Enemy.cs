@@ -7,10 +7,13 @@ public class Enemy : MonoBehaviour {
 
     public float m_fHealth;
     public float m_fDamage;
+    public float f_Stunned = 3.0f;
 
     private Transform Target;
     private NavMeshAgent nav;
     private bool m_bIsDead;
+    bool IsStunned = false;
+
     PlayerHealth PlayerHealth;
     GameObject Player;
 
@@ -30,13 +33,28 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if (PlayerHealth.m_bIsDead)
-		{
-		}
-		else
-		{
-			nav.SetDestination(Target.position);
-		}
+        if (IsStunned == true)
+        {
+            nav.enabled = false;
+            GetComponent<Renderer>().material.color = Color.yellow;
+            f_Stunned -= Time.deltaTime;
+        }
+        // once the timer hits 0 speed is restored 
+        if (f_Stunned <= 0)
+        {
+            IsStunned = false;
+            nav.enabled = true;
+            GetComponent<Renderer>().material.color = Color.red;
+
+            f_Stunned += 3.0f;
+        }
+    //   if (PlayerHealth.m_bIsDead)
+	//	{
+	//	}
+	//	else
+	//	{
+	//		nav.SetDestination(Target.position);
+	//	}
 	}
     
     void OnCollisionEnter(Collision col)
@@ -46,7 +64,13 @@ public class Enemy : MonoBehaviour {
 			DoDamage();
         }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Bullet")
+        {
+            IsStunned = true;
+        }
+    }
     private void DoDamage()
     {
 		Debug.Log("HitPlayer");

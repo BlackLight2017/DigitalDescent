@@ -7,12 +7,15 @@ public class RangedEnemy : MonoBehaviour {
 
 	public float m_fHealth;
 	public float m_fDamage;
+    public float f_Speed;
 
-	private Transform Target;
+
+    private Transform Target;
 	private NavMeshAgent nav;
 	private bool m_bIsDead;
-	PlayerHealth PlayerHealth;
-    EnemyStunGun EnemyStunGun;
+
+    PlayerHealth PlayerHealth;
+ //   EnemyStunGun EnemyStunGun;
 	GameObject Player;
 	float m_fTimer;
 
@@ -29,7 +32,7 @@ public class RangedEnemy : MonoBehaviour {
 		nav = GetComponent<NavMeshAgent>();
 		Player = GameObject.FindGameObjectWithTag("Player");
 		PlayerHealth = Player.GetComponent<PlayerHealth>();
-        EnemyStunGun = GetComponent<EnemyStunGun>();
+       // EnemyStunGun = GetComponent<EnemyStunGun>();
 
     }
 
@@ -56,7 +59,9 @@ public class RangedEnemy : MonoBehaviour {
 		{
 			nav.enabled = true;
 		}
-	}
+       
+        
+    }
 
 	public void DoDamage()
 	{
@@ -66,8 +71,9 @@ public class RangedEnemy : MonoBehaviour {
 			PlayerHealth.TakeDamage(m_fDamage);
 		}
 	}
+   
 
-	public void TakeDamage(float fDamage)
+    public void TakeDamage(float fDamage)
 	{
 		if (m_bIsDead)
 			return;
