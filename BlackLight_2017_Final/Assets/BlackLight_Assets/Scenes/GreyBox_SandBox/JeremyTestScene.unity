@@ -790,6 +790,7 @@ GameObject:
   - component: {fileID: 1712641789}
   - component: {fileID: 1712641788}
   - component: {fileID: 1712641794}
+  - component: {fileID: 1712641795}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Player
@@ -891,7 +892,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1802413051}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -909,6 +911,49 @@ MonoBehaviour:
   m_fHealth: 0
   m_fDamage: 0
   m_bIsDead: 0
+--- !u!114 &1712641795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1712641787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a5ac0c7a8f127428dea8e61935619c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet_prefab: {fileID: 1481966380004158, guid: b6060118e464c96419d85ba17a2bcd40,
+    type: 2}
+  Bullet_Spawn: {fileID: 0}
+  spawn_time: 1
+--- !u!1 &1802413050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1802413051}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1802413051
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1802413050}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.518, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1712641793}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1897677488
 GameObject:
   m_ObjectHideFlags: 0
