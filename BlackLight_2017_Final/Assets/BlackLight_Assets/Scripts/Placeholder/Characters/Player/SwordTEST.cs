@@ -23,12 +23,18 @@ public class SwordTEST : MonoBehaviour
     {
        
         // Enemy equals Gameobjects with the tag "Enemy" 
-        GameObject Enemy = GameObject.FindGameObjectWithTag("Enemy");
+        GameObject Enemy12 = GameObject.FindGameObjectWithTag("Enemy");
         // enemy test gets the variables from the EnemyTEST class
-        EnemyTEST enemytest = Enemy.GetComponent<EnemyTEST>();
+        Enemy enemytest = Enemy12.GetComponent<Enemy>();
         //Enemy health is taken away from the amount of damage done
-        enemytest.fHealth -= fDamage;
-       
+        // Enemy equals Gameobjects with the tag "Enemy" 
+      //  GameObject Enemy21 = GameObject.FindGameObjectWithTag("RangedEnemy");
+        // enemy test gets the variables from the EnemyTEST class
+        //RangedEnemy enemy = Enemy21.GetComponent<RangedEnemy>();
+        //Enemy health is taken away from the amount of damage done
+        enemytest.TakeDamage(fDamage);
+    //   enemy.TakeDamage(fDamage);
+
     }
 }
 //private void OnCollisionEnter(Collider other)

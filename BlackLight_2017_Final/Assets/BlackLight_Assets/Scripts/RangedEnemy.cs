@@ -9,10 +9,13 @@ public class RangedEnemy : MonoBehaviour {
 	public float m_fDamage;
     public float f_Speed;
 
+    public float f_Stunned = 3.0f;
 
     private Transform Target;
 	private NavMeshAgent nav;
 	private bool m_bIsDead;
+    bool IsStunned = false;
+
 
     PlayerHealth PlayerHealth;
  //   EnemyStunGun EnemyStunGun;
@@ -59,11 +62,38 @@ public class RangedEnemy : MonoBehaviour {
 		{
 			nav.enabled = true;
 		}
-       
-        
-    }
+        if (IsStunned == true)
+        {
+            nav.enabled = false;
+            GetComponent<Renderer>().material.color = Color.yellow;
+            f_Stunned -= Time.deltaTime;
+        }
+        // once the timer hits 0 speed is restored 
+        if (f_Stunned <= 0)
+        {
+            IsStunned = false;
+            nav.enabled = true;
+            GetComponent<Renderer>().material.color = Color.red;
 
-	public void DoDamage()
+            f_Stunned += 3.0f;
+        }
+        if (PlayerHealth.m_bIsDead)
+        {
+        }
+        else
+        {
+            nav.SetDestination(Target.position);
+        }
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Bullet")
+        {
+            IsStunned = true;
+        }
+    }
+    public void DoDamage()
 	{
 		Debug.Log("HitPlayer");
 		if (PlayerHealth.m_fHealth > 0)

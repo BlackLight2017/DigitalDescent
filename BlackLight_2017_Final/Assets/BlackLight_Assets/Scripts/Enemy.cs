@@ -48,13 +48,13 @@ public class Enemy : MonoBehaviour {
 
             f_Stunned += 3.0f;
         }
-    //   if (PlayerHealth.m_bIsDead)
-	//	{
-	//	}
-	//	else
-	//	{
-	//		nav.SetDestination(Target.position);
-	//	}
+       if (PlayerHealth.m_bIsDead)
+		{
+		}
+		else
+		{
+			nav.SetDestination(Target.position);
+		}
 	}
     
     void OnCollisionEnter(Collision col)

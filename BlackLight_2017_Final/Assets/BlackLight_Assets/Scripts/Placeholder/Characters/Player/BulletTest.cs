@@ -16,6 +16,7 @@ public class BulletTest : MonoBehaviour {
         spawn_timer = spawn_time;
         rb = GetComponent<Rigidbody>();
         StunGun = GameObject.FindGameObjectWithTag("StunGun");
+
         MoveDirection = StunGun.transform.right;
     }
 	

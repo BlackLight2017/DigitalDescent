@@ -82,8 +82,8 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetKey(KeyCode.D))
             {
-                
-                rb.AddForce(Vector3.right * 200);
+               
+                rb.AddForce(Vector3.right * 400);
                 //new Vector3(-100,rb.velocity.y,0)
                 // rb.velocity = new  Vector3();
                 if (DashTimer <= 0)
@@ -101,7 +101,8 @@ public class PlayerController : MonoBehaviour {
             {
 
                 // 200 force is added to the Players left side 
-                rb.AddForce(Vector3.left * 200);
+            
+                rb.AddForce(Vector3.left * 400);
                 if (DashTimer <= 0)
                 {
                     //KICK BACK//rb.velocity = Vector3.right * 30;

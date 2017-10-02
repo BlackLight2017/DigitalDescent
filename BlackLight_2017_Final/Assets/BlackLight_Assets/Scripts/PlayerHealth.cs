@@ -6,10 +6,9 @@ public class PlayerHealth : MonoBehaviour {
 
     public float m_fHealth;
     public float m_fDamage;
-    private Transform Target;
     public bool m_bIsDead = false;
-    GameObject RangedEnemy;
-    RangedEnemy RangedEnemyScript;
+    //GameObject RangedEnemy;
+    //RangedEnemy RangedEnemyScript;
 
 
     // Use this for initialization
@@ -18,8 +17,8 @@ public class PlayerHealth : MonoBehaviour {
         m_fHealth = 100;
         m_fDamage = 25;
 
-        RangedEnemy = GameObject.FindGameObjectWithTag("RangedEnemy");
-        RangedEnemyScript = RangedEnemy.GetComponent<RangedEnemy>();
+        //RangedEnemy = GameObject.FindGameObjectWithTag("RangedEnemy");
+        //RangedEnemyScript = RangedEnemy.GetComponent<RangedEnemy>();
         //Enemy = GameObject.FindGameObjectWithTag("Enemy");
         //EnemyScript = Enemy.GetComponent<Enemy>();
     }
@@ -32,23 +31,23 @@ public class PlayerHealth : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-		Enemy EnemyScript = col.collider.GetComponent<Enemy>();
-		if (EnemyScript != null)
-		{
-			Debug.Log("HitEnemy");
-			if (EnemyScript.m_fHealth > 0)
-			{
-				EnemyScript.TakeDamage(m_fDamage);
-			}
-		}
+		//Enemy EnemyScript = col.collider.GetComponent<Enemy>();
+		//if (EnemyScript != null)
+		//{
+		//	Debug.Log("HitEnemy");
+		//	if (EnemyScript.m_fHealth > 0)
+		//	{
+		//		EnemyScript.TakeDamage(m_fDamage);
+		//	}
+		//}
 	}
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Bullet")
-        {
-            RangedEnemyScript.DoDamage();
-        }
+      //  if (col.gameObject.tag == "Bullet")
+      //  {
+      //      RangedEnemyScript.DoDamage();
+      //  }
     }
 	
     public void TakeDamage(float fDamage)
