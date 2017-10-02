@@ -12,6 +12,7 @@ public class RangedEnemy : MonoBehaviour {
 	private NavMeshAgent nav;
 	private bool m_bIsDead;
 	PlayerHealth PlayerHealth;
+    EnemyStunGun EnemyStunGun;
 	GameObject Player;
 	float m_fTimer;
 
@@ -28,8 +29,9 @@ public class RangedEnemy : MonoBehaviour {
 		nav = GetComponent<NavMeshAgent>();
 		Player = GameObject.FindGameObjectWithTag("Player");
 		PlayerHealth = Player.GetComponent<PlayerHealth>();
-		
-	}
+        EnemyStunGun = GetComponent<EnemyStunGun>();
+
+    }
 
 	// Update is called once per frame
 	void Update()
@@ -47,7 +49,7 @@ public class RangedEnemy : MonoBehaviour {
 		}
 		if (dist < 5)
 		{
-			DoDamage();
+			//DoDamage();
 			nav.enabled = false;
 		}
 		else
@@ -56,14 +58,12 @@ public class RangedEnemy : MonoBehaviour {
 		}
 	}
 
-	private void DoDamage()
+	public void DoDamage()
 	{
-		m_fTimer += Time.deltaTime;
 		Debug.Log("HitPlayer");
-		if (PlayerHealth.m_fHealth > 0 && m_fTimer > 2)
+		if (PlayerHealth.m_fHealth > 0)
 		{
 			PlayerHealth.TakeDamage(m_fDamage);
-			m_fTimer = 0;
 		}
 	}
 

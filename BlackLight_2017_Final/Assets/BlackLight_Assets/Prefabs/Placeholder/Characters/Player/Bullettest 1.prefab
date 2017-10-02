@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23685181514422662}
   - component: {fileID: 54533080599475766}
   - component: {fileID: 114511390019908806}
+  - component: {fileID: 114252197261755192}
   m_Layer: 0
   m_Name: Bullettest 1
   m_TagString: Bullet
@@ -110,6 +111,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114252197261755192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481966380004158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012d3bd4f81174c44983e6821d02f393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn_time: 1
+  Speed: 10
+  StunGun: {fileID: 0}
 --- !u!114 &114511390019908806
 MonoBehaviour:
   m_ObjectHideFlags: 1

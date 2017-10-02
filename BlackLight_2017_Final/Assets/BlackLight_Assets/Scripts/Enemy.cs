@@ -44,10 +44,10 @@ public class Enemy : MonoBehaviour {
 		if (col.gameObject.tag == "Player")
         {
 			DoDamage();
-		}
+        }
     }
 
-	private void DoDamage()
+    private void DoDamage()
     {
 		Debug.Log("HitPlayer");
         if(PlayerHealth.m_fHealth > 0)

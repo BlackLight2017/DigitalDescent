@@ -8,8 +8,9 @@ public class PlayerHealth : MonoBehaviour {
     public float m_fDamage;
     private Transform Target;
     public bool m_bIsDead = false;
-    // Enemy EnemyScript;
-    //GameObject Enemy;
+    GameObject RangedEnemy;
+    RangedEnemy RangedEnemyScript;
+
 
     // Use this for initialization
     void Awake ()
@@ -17,6 +18,8 @@ public class PlayerHealth : MonoBehaviour {
         m_fHealth = 100;
         m_fDamage = 25;
 
+        RangedEnemy = GameObject.FindGameObjectWithTag("RangedEnemy");
+        RangedEnemyScript = RangedEnemy.GetComponent<RangedEnemy>();
         //Enemy = GameObject.FindGameObjectWithTag("Enemy");
         //EnemyScript = Enemy.GetComponent<Enemy>();
     }
@@ -24,7 +27,7 @@ public class PlayerHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		
+
 	}
 
     void OnCollisionEnter(Collision col)
@@ -40,6 +43,13 @@ public class PlayerHealth : MonoBehaviour {
 		}
 	}
 
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "Bullet")
+        {
+            RangedEnemyScript.DoDamage();
+        }
+    }
 	
     public void TakeDamage(float fDamage)
     {
