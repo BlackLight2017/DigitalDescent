@@ -66,7 +66,8 @@ public class Enemy : MonoBehaviour {
 		}
 		else
 		{
-			nav.SetDestination(Target.position);
+            if (nav.isOnNavMesh)
+                nav.SetDestination(Target.position);
 		}
 	}
     
@@ -119,7 +120,7 @@ public class Enemy : MonoBehaviour {
     private void Death()
     {
         m_bIsDead = true;
-
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 }

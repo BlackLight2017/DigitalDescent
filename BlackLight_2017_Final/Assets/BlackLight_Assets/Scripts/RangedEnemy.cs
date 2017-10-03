@@ -139,7 +139,7 @@ public class RangedEnemy : MonoBehaviour {
 	private void Death()
 	{
 		m_bIsDead = true;
-
-		Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
 	}
 }

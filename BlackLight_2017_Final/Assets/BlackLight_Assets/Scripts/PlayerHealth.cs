@@ -18,7 +18,8 @@ public class PlayerHealth : MonoBehaviour {
         m_fDamage = 25;
 
         RangedEnemy = GameObject.FindGameObjectWithTag("RangedEnemy");
-        RangedEnemyScript = RangedEnemy.GetComponent<RangedEnemy>();
+        if(RangedEnemy)
+            RangedEnemyScript = RangedEnemy.GetComponent<RangedEnemy>();
         //Enemy = GameObject.FindGameObjectWithTag("Enemy");
         //EnemyScript = Enemy.GetComponent<Enemy>();
     }
