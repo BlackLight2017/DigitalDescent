@@ -5,17 +5,23 @@ using UnityEngine;
 
 
 public class PlayerController : MonoBehaviour {
-  // public GameObject Bullet_prefab;
-  // public GameObject Bullet_Spawn;
+    // public GameObject Bullet_prefab;
+    // public GameObject Bullet_Spawn;
+    public Animation Idle;
+    public Animation Walk;
+    public Animation Run;
+    public Animation Jump;
+    public Animation Dash;
+    public Animation SwingWeapon;
+
 
     public float VerticalJumpForce;
     public float MovementSpeed;// = 10;
     private Rigidbody rb;
     public bool isGrounded = false;
-    private float spawn_timer;
-    public float spawn_radius;
-    public float spawn_time = 1;
-
+  //  private float spawn_timer;
+  //  public float spawn_radius;
+  //  public float spawn_time = 1;
 
 
 
@@ -28,13 +34,11 @@ public class PlayerController : MonoBehaviour {
     // int for CurrentDashCount
     public float CurrentDashCount = 0;
 
-    bool CanFire = false;
-
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-     
+        
 
     }
     void FixedUpdate()
@@ -64,6 +68,8 @@ public class PlayerController : MonoBehaviour {
         float moveHorizontal = Input.GetAxis("Horizontal");
        
         transform.position = new Vector3(transform.position.x + (moveHorizontal * MovementSpeed), transform.position.y, transform.position.z);
+        
+       
 
         //Vector3 movement = new Vector3(moveHorizontal, 0.0f, 0.0f);
         rb.AddForce(Vector3.down * 10);
@@ -72,6 +78,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.LeftShift) && Dashing == false && CurrentDashCount > 0)
         {
             Dashing = true;
+           
             CurrentDashCount -= 1;
         }
 
@@ -79,11 +86,17 @@ public class PlayerController : MonoBehaviour {
         {
            // takes 1 second per second from DashTimer 
             DashTimer -= Time.deltaTime;
+           gameObject.GetComponent<BoxCollider>().isTrigger = true;
+            // Freezes the players y position during the dash to prevent player falling through the ground 
+             rb.constraints =
+              RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ |
+              RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
+              RigidbodyConstraints.FreezeRotationZ;
 
             if (Input.GetKey(KeyCode.D))
             {
                
-                rb.AddForce(Vector3.right * 400);
+                rb.AddForce(Vector3.right * 300);
                 //new Vector3(-100,rb.velocity.y,0)
                 // rb.velocity = new  Vector3();
                 if (DashTimer <= 0)
@@ -94,15 +107,23 @@ public class PlayerController : MonoBehaviour {
                     // Adds seconds back to Timer 
                     DashTimer += 0.4f;
                     Dashing = false;
+                    gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                    // returns players constraints back to normal
+                    rb.constraints =  RigidbodyConstraints.FreezePositionZ |
+              RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
+              RigidbodyConstraints.FreezeRotationZ; ;
+                    transform.Rotate(0, 0, 0);
+
+
                 }
-               
+
             }
             if (Input.GetKey(KeyCode.A))
             {
 
                 // 200 force is added to the Players left side 
-            
-                rb.AddForce(Vector3.left * 400);
+
+                rb.AddForce(Vector3.left * 300);
                 if (DashTimer <= 0)
                 {
                     //KICK BACK//rb.velocity = Vector3.right * 30;
@@ -113,8 +134,16 @@ public class PlayerController : MonoBehaviour {
 
                     DashTimer += 0.4f;
                     Dashing = false;
+                    gameObject.GetComponent<BoxCollider>().isTrigger = false;
+                    // returns players constraints back to normal
+                    rb.constraints = RigidbodyConstraints.FreezePositionZ |
+              RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
+              RigidbodyConstraints.FreezeRotationZ;
+                    transform.Rotate(0, 180, 0);
+
                 }
             }
+            
         }
 
 
@@ -122,12 +151,13 @@ public class PlayerController : MonoBehaviour {
         {
             Dashing = false;
         }
+        
 
         //JUMPING
         if (Grounded == true)
         {
             //Then do jump code
-            if (Input.GetAxis("Jump") > 0.1f)
+            if (Input.GetAxis("Jump") > 0.1f) // Add jump test for control 
             {
                 //VerticalJumpForce = 5.0f;
                 Vector3 Jump = new Vector3(0, VerticalJumpForce, 0);
@@ -138,22 +168,6 @@ public class PlayerController : MonoBehaviour {
 
     }
 
-//   public void Fire()
-//   {
-//       if (CanFire == true)
-//       {
-//           spawn_timer = spawn_time;
-//           CanFire = false;
-//           // Instanciate a new Bullet Prefab
-//           float spawn_angle = Random.Range(0, 2 * Mathf.PI);
-//           Vector3 spawn_direction = new Vector3(Mathf.Sin(spawn_angle), 0, Mathf.Cos(spawn_angle));
-//           spawn_direction *= spawn_radius;
-//           Instantiate(Bullet_prefab, Bullet_Spawn.transform.position, Quaternion.identity);
-//
-//
-//
-//       }
-//   }
     //when the player collides with an object with the tag "Ground"
     //The player can jump
     private void OnCollisionStay(Collision collision)

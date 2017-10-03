@@ -57,7 +57,7 @@ public class EnemyTEST : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "Player")
         {
             IsStunned = true;
 
