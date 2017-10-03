@@ -44,19 +44,20 @@ public class RangedEnemy : MonoBehaviour {
 	void Update()
 	{
 		dist = Vector3.Distance(transform.position, Target.position);
-		if (PlayerHealth.m_bIsDead)
-		{
-		}
-		else
-		{
-			if (nav.enabled)
-			{
-				nav.SetDestination(Target.position);
-			}		
-		}
+		//if (PlayerHealth.m_bIsDead)
+		//{
+		//}
+		//else
+		//{
+		//	if (nav.enabled)
+		//	{
+		//		nav.SetDestination(Target.position);
+		//	}		
+		//}
         if (IsStunned == true)
         {
             nav.enabled = false;
+            m_fDamage = 0;
             GetComponent<Renderer>().material.color = Color.yellow;
             f_Stunned -= Time.deltaTime;
         }
@@ -64,6 +65,8 @@ public class RangedEnemy : MonoBehaviour {
         if (f_Stunned <= 0)
         {
             IsStunned = false;
+            m_fDamage = 15;
+
             nav.enabled = true;
             GetComponent<Renderer>().material.color = Color.red;
 
@@ -78,21 +81,21 @@ public class RangedEnemy : MonoBehaviour {
 		{
 			nav.enabled = true;
 		}
-        if (IsStunned == true)
-        {
-            nav.enabled = false;
-            GetComponent<Renderer>().material.color = Color.yellow;
-            f_Stunned -= Time.deltaTime;
-        }
-        // once the timer hits 0 speed is restored 
-        if (f_Stunned <= 0)
-        {
-            IsStunned = false;
-            nav.enabled = true;
-            GetComponent<Renderer>().material.color = Color.red;
+        //if (IsStunned == true)
+        //{
+        //    nav.enabled = false;
+        //    GetComponent<Renderer>().material.color = Color.yellow;
+        //    f_Stunned -= Time.deltaTime;
+        //}
+        //// once the timer hits 0 speed is restored 
+        //if (f_Stunned <= 0)
+        //{
+        //    IsStunned = false;
+        //    nav.enabled = true;
+        //    GetComponent<Renderer>().material.color = Color.red;
 
-            f_Stunned += 3.0f;
-        }
+        //    f_Stunned += 3.0f;
+        //}
         if (PlayerHealth.m_bIsDead)
         {
         }
@@ -107,7 +110,7 @@ public class RangedEnemy : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "Player")
         {
             IsStunned = true;
         }
