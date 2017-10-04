@@ -17,10 +17,11 @@ public class RangedEnemy : MonoBehaviour {
 
 
     PlayerHealth PlayerHealth;
- //   EnemyStunGun EnemyStunGun;
+    PlayerController PlayerCon;
+    // EnemyStunGun EnemyStunGun;
 	GameObject Player;
 	float m_fTimer;
-
+    float damping = 2;
 	float dist;
 
 	// Use this for initialization
@@ -36,6 +37,7 @@ public class RangedEnemy : MonoBehaviour {
 		nav = GetComponent<NavMeshAgent>();
 		Player = GameObject.FindGameObjectWithTag("Player");
 		PlayerHealth = Player.GetComponent<PlayerHealth>();
+        PlayerCon = Player.GetComponent<PlayerController>();
        // EnemyStunGun = GetComponent<EnemyStunGun>();
 
     }
@@ -44,16 +46,6 @@ public class RangedEnemy : MonoBehaviour {
 	void Update()
 	{
 		dist = Vector3.Distance(transform.position, Target.position);
-		//if (PlayerHealth.m_bIsDead)
-		//{
-		//}
-		//else
-		//{
-		//	if (nav.enabled)
-		//	{
-		//		nav.SetDestination(Target.position);
-		//	}		
-		//}
         if (IsStunned == true)
         {
             nav.enabled = false;
@@ -74,28 +66,16 @@ public class RangedEnemy : MonoBehaviour {
         }
         if (dist < 5 || dist > 15)
 		{
-            transform.LookAt(Target);
+            Vector3 LookPos = Target.position - transform.position;
+            LookPos.y = 0;
+            Quaternion Rotation = Quaternion.LookRotation(LookPos);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Rotation, Time.deltaTime * damping);
 			nav.enabled = false;
 		}
 		else
 		{
 			nav.enabled = true;
 		}
-        //if (IsStunned == true)
-        //{
-        //    nav.enabled = false;
-        //    GetComponent<Renderer>().material.color = Color.yellow;
-        //    f_Stunned -= Time.deltaTime;
-        //}
-        //// once the timer hits 0 speed is restored 
-        //if (f_Stunned <= 0)
-        //{
-        //    IsStunned = false;
-        //    nav.enabled = true;
-        //    GetComponent<Renderer>().material.color = Color.red;
-
-        //    f_Stunned += 3.0f;
-        //}
         if (PlayerHealth.m_bIsDead)
         {
         }
@@ -110,7 +90,7 @@ public class RangedEnemy : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && PlayerCon.Dashing == true)
         {
             IsStunned = true;
         }

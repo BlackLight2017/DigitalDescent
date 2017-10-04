@@ -6,8 +6,8 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour {
 
     [Header("Stats")]
-    public float m_fHealth;
-    public float m_fDamage;
+    public float m_fHealth = 50.0f;
+    public float m_fDamage = 15.0f;
     public float f_Stunned = 3.0f;
 
     [Header("Animations")]
@@ -20,20 +20,21 @@ public class Enemy : MonoBehaviour {
     private NavMeshAgent nav;
     private bool m_bIsDead;
     bool IsStunned = false;
+    private float m_fTimer;
 
+    PlayerController PlayerCon;
     PlayerHealth PlayerHealth;
     GameObject Player;
 
 	// Use this for initialization
 	void Awake ()
     {
-        m_fHealth = 50;
-        m_fDamage = 15;
-
 		Target = GameObject.FindGameObjectWithTag("Player").transform;
         nav = GetComponent<NavMeshAgent>();
         Player = GameObject.FindGameObjectWithTag("Player");
 		PlayerHealth = Player.GetComponent<PlayerHealth>();
+        PlayerCon = Player.GetComponent<PlayerController>();
+        m_fTimer = 0;
 		
 	}
 	
@@ -77,20 +78,24 @@ public class Enemy : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && PlayerCon.Dashing == true)
         {
             IsStunned = true;
         }
+        if (other.gameObject.tag == "Player")
+        {
+            DoDamage();
+        }
 
-   //  if (GetComponent<PlayerController>().Dashing == true)
-   //  {
-   //      gameObject.GetComponent<BoxCollider>().isTrigger = true; 
-   //  }
-   //  else
-   //  {
-   //      gameObject.GetComponent<BoxCollider>().isTrigger = false;
-   //
-   //  }
+        //  if (GetComponent<PlayerController>().Dashing == true)
+        //  {
+        //      gameObject.GetComponent<BoxCollider>().isTrigger = true; 
+        //  }
+        //  else
+        //  {
+        //      gameObject.GetComponent<BoxCollider>().isTrigger = false;
+        //
+        //  }
     }
     private void DoDamage()
     {
