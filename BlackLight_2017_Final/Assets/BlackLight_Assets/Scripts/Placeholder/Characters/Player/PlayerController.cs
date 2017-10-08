@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using XboxCtrlrInput; 
 
 using UnityEngine;
 
@@ -65,8 +66,9 @@ public class PlayerController : MonoBehaviour {
               // no dashing
           }
       }
-        float moveHorizontal = Input.GetAxis("Horizontal");
-       
+        
+        float moveHorizontal = XCI.GetAxis(XboxAxis.LeftStickX);
+
         transform.position = new Vector3(transform.position.x + (moveHorizontal * MovementSpeed), transform.position.y, transform.position.z);
         
        
@@ -75,13 +77,18 @@ public class PlayerController : MonoBehaviour {
         rb.AddForce(Vector3.down * 10);
         // If left shift is pressed Adds force for the cube to move right
         // If i have a dash avaliable 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && Dashing == false && CurrentDashCount > 0)
+        if (XCI.GetButton(XboxButton.LeftBumper) && Dashing == false && CurrentDashCount > 0)
         {
             Dashing = true;
            
             CurrentDashCount -= 1;
         }
+        if (XCI.GetButton(XboxButton.RightBumper) && Dashing == false && CurrentDashCount > 0)
+        {
+            Dashing = true;
 
+            CurrentDashCount -= 1;
+        }
         if (Dashing == true && DashTimer > 0)
         {
            // takes 1 second per second from DashTimer 
@@ -93,10 +100,11 @@ public class PlayerController : MonoBehaviour {
               RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
               RigidbodyConstraints.FreezeRotationZ;
 
-            if (Input.GetKey(KeyCode.D))
-            {
+            if (XCI.GetButton(XboxButton.RightBumper))
+            { 
+            
                
-                rb.AddForce(Vector3.right * 300);
+                rb.AddForce(Vector3.right * 250);
                 //new Vector3(-100,rb.velocity.y,0)
                 // rb.velocity = new  Vector3();
                 if (DashTimer <= 0)
@@ -118,12 +126,12 @@ public class PlayerController : MonoBehaviour {
                 }
 
             }
-            if (Input.GetKey(KeyCode.A))
+            if (XCI.GetButton(XboxButton.LeftBumper))
             {
 
                 // 200 force is added to the Players left side 
 
-                rb.AddForce(Vector3.left * 300);
+                rb.AddForce(Vector3.left * 250);
                 if (DashTimer <= 0)
                 {
                     //KICK BACK//rb.velocity = Vector3.right * 30;
@@ -147,17 +155,18 @@ public class PlayerController : MonoBehaviour {
         }
 
 
-        if(Input.GetKeyUp(KeyCode.LeftShift) && Dashing == true)
-        {
-            Dashing = false;
-        }
-        
+        //  if(XCI.GetButton(XboxButton.leftBumper) && Dashing == true)
+        //  {
+        //      Dashing = false;
+        //  }
+
 
         //JUMPING
         if (Grounded == true)
         {
             //Then do jump code
-            if (Input.GetAxis("Jump") > 0.1f) // Add jump test for control 
+            // if (Input.GetAxis("Jump") > 0.1f) // Add jump test for control 
+            if (XCI.GetButton(XboxButton.A))  
             {
                 //VerticalJumpForce = 5.0f;
                 Vector3 Jump = new Vector3(0, VerticalJumpForce, 0);

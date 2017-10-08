@@ -45,9 +45,14 @@ public class PlayerHealth : MonoBehaviour {
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "EnemyBullet")
+       // if (col.gameObject.tag == "EnemyBullet")
+       // {
+       //     RangedEnemyScript.DoDamage();
+       // }
+        if (col.gameObject.tag == "Regen")
         {
-            RangedEnemyScript.DoDamage();
+            m_fHealth += 10;
+            Destroy(col.gameObject); 
         }
     }
 	

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using XboxCtrlrInput; 
 public class SwordTEST : MonoBehaviour
 {
     //// Damage of the attack a
@@ -25,8 +25,9 @@ public class SwordTEST : MonoBehaviour
     {
         //   if (other.gameObject.tag == "Enemy" )//&& (Input.GetKey(KeyCode.F)))
         //   {
-      //  if (Input.GetKey(KeyCode.F) )
-      if (Input.GetAxis("Attack") > 0)
+        //  if (Input.GetKey(KeyCode.F) )
+        //    if (Input.GetAxis("Attack") > 0)
+        if (XCI.GetButton(XboxButton.X))
         {
 
             // Enemy equals Gameobjects with the tag "Enemy" 

@@ -13,6 +13,7 @@ TagManager:
   - RangedEnemy
   - EnemyBullet
   - EnemyStunGun
+  - Regen
   layers:
   - Default
   - TransparentFX
