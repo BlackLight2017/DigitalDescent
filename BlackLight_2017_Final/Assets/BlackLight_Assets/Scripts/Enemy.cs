@@ -19,8 +19,9 @@ public class Enemy : MonoBehaviour {
     private Transform Target;
     private NavMeshAgent nav;
     private bool m_bIsDead;
-    bool IsStunned = false;
+    private bool IsStunned = false;
     private float m_fTimer;
+    private bool Attacking;
 
     PlayerController PlayerCon;
     PlayerHealth PlayerHealth;
@@ -41,6 +42,7 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        m_fTimer += Time.deltaTime;
         if (IsStunned == true)
         {
             nav.enabled = false;
@@ -66,16 +68,24 @@ public class Enemy : MonoBehaviour {
 		{
             if (nav.isOnNavMesh)
                 nav.SetDestination(Target.position);
-		}
+            if(Attacking)
+            {
+                if (m_fTimer >= 1)
+                {
+                    DoDamage();
+                    m_fTimer = 0;
+                }
+            }            
+        }
 	}
     
-    void OnCollisionEnter(Collision col)
-    {
-		if (col.gameObject.tag == "Player")
-        {
-			DoDamage();
-        }
-    }
+  //  void OnCollisionEnter(Collision col)
+  //  {
+		//if (col.gameObject.tag == "Player")
+  //      {
+		//	DoDamage();
+  //      }
+  //  }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player" && PlayerCon.Dashing == true)
@@ -84,7 +94,7 @@ public class Enemy : MonoBehaviour {
         }
         if (other.gameObject.tag == "Player")
         {
-            DoDamage();
+            Attacking = true;
         }
 
         //  if (GetComponent<PlayerController>().Dashing == true)
@@ -97,6 +107,15 @@ public class Enemy : MonoBehaviour {
         //
         //  }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Attacking = false;
+        }
+    }
+
     private void DoDamage()
     {
 		Debug.Log("HitPlayer");
