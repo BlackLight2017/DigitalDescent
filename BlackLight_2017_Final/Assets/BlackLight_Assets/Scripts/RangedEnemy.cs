@@ -89,7 +89,7 @@ public class RangedEnemy : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && PlayerCon.Dashing == true)
+        if (other.gameObject.tag == "Player" && PlayerCon.m_bDashing == true)
         {
             IsStunned = true;
         }

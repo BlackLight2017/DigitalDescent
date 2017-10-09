@@ -16,24 +16,23 @@ public class PlayerController : MonoBehaviour {
     public Animation SwingWeapon;
 
 
-    public float VerticalJumpForce;
-    public float MovementSpeed;// = 10;
+    public float m_fVerticalJumpForce;
+    public float m_fMovementSpeed;// = 10;
     private Rigidbody rb;
-    public bool isGrounded = false;
   //  private float spawn_timer;
   //  public float spawn_radius;
   //  public float spawn_time = 1;
 
 
     // how long the dash lasts 
-    float DashTimer = 0.4f;
-    bool Grounded = true;
-    public bool Dashing = false;
+    float m_fDashTimer = 0.4f;
+    bool m_bGrounded = true;
+    public bool m_bDashing = false;
 
     //cooldown for dash 
-    public float DashCooldown = 5;
+    public float m_fDashCooldown = 5;
     // how many dashes the player has 
-    public float CurrentDashCount = 0;
+    public float m_fCurrentDashCount = 0;
 
 
     void Start()
@@ -44,30 +43,30 @@ public class PlayerController : MonoBehaviour {
     {
         //if the timer goes under 1 
         //Timer goes down 
-     DashCooldown -= Time.deltaTime;
-    ////  //DashCooldown
-      if (DashCooldown <= 1)
+     m_fDashCooldown -= Time.deltaTime;
+    ////  //m_fDashCooldown
+      if (m_fDashCooldown <= 1)
           {
     
-          CurrentDashCount += 1; 
+          m_fCurrentDashCount += 1; 
           {
               // if you have more than 1 dash count then you can dash
     
-              if (CurrentDashCount > 0)
+              if (m_fCurrentDashCount > 0)
               {
                   // Dash is gone 
                   //Adds 5 seconds to the timer 
-                  DashCooldown += 5.0f;
+                  m_fDashCooldown += 5.0f;
               }
     
               //else
-              // no dashing
+              // no m_bDashing
           }
       }
         
         float moveHorizontal = XCI.GetAxis(XboxAxis.LeftStickX);
 
-        transform.position = new Vector3(transform.position.x + (moveHorizontal * MovementSpeed), transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x + (moveHorizontal * m_fMovementSpeed), transform.position.y, transform.position.z);
         
        
 
@@ -75,24 +74,24 @@ public class PlayerController : MonoBehaviour {
         rb.AddForce(Vector3.down * 10);
         // If left shift is pressed Adds force for the cube to move right
         // If i have a dash avaliable 
-        if (XCI.GetButton(XboxButton.LeftBumper) && Dashing == false && CurrentDashCount > 0)
+        if (XCI.GetButton(XboxButton.LeftBumper) && m_bDashing == false && m_fCurrentDashCount > 0)
         {
-            Dashing = true;
+            m_bDashing = true;
             rb.AddForce(Vector3.left * 2700);
 
-            CurrentDashCount -= 1;
+            m_fCurrentDashCount -= 1;
         }
-        if (XCI.GetButton(XboxButton.RightBumper) && Dashing == false && CurrentDashCount > 0)
+        if (XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0)
         {
-            Dashing = true;
+            m_bDashing = true;
             rb.AddForce(Vector3.right * 2700);
 
-            CurrentDashCount -= 1;
+            m_fCurrentDashCount -= 1;
         }
-        if (Dashing == true && DashTimer > 0)
+        if (m_bDashing == true && m_fDashTimer > 0)
         {
-           // takes 1 second per second from DashTimer 
-            DashTimer -= Time.deltaTime;
+           // takes 1 second per second from m_fDashTimer 
+            m_fDashTimer -= Time.deltaTime;
            gameObject.GetComponent<BoxCollider>().isTrigger = true;
             // Freezes the players y position during the dash to prevent player falling through the ground 
              rb.constraints =
@@ -100,14 +99,14 @@ public class PlayerController : MonoBehaviour {
               RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
               RigidbodyConstraints.FreezeRotationZ;
 
-                if (DashTimer <= 0)
+                if (m_fDashTimer <= 0)
                 {
                     //KICK BACK//rb.velocity = Vector3.left * 30;
                     //rb.AddForce(Vector3.right * 0);
-                  //CurrentDashCount -= 1;
+                  //m_fCurrentDashCount -= 1;
                     // Adds seconds back to Timer 
-                    DashTimer += 0.4f;
-                    Dashing = false;
+                    m_fDashTimer += 0.4f;
+                    m_bDashing = false;
                     gameObject.GetComponent<BoxCollider>().isTrigger = false;
                     // returns players constraints back to normal
                     rb.constraints =  RigidbodyConstraints.FreezePositionZ |
@@ -121,16 +120,16 @@ public class PlayerController : MonoBehaviour {
             }
    
         //JUMPING
-        if (Grounded == true)
+        if (m_bGrounded == true)
         {
             //Then do jump code
             // if (Input.GetAxis("Jump") > 0.1f) // Add jump test for control 
             if (XCI.GetButton(XboxButton.A))
             {
-                //VerticalJumpForce = 5.0f;
-                Vector3 Jump = new Vector3(0, VerticalJumpForce, 0);
+                //m_fVerticalJumpForce = 5.0f;
+                Vector3 Jump = new Vector3(0, m_fVerticalJumpForce, 0);
                 transform.GetComponent<Rigidbody>().AddForce(Jump, ForceMode.Impulse);
-                Grounded = false;
+                m_bGrounded = false;
             }
         }
 
@@ -142,9 +141,9 @@ public class PlayerController : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Ground")
         {
-            Grounded = true;
+            m_bGrounded = true;
         }
-        //turn on grounded   
+        //turn on m_bGrounded   
     }
 }
             
