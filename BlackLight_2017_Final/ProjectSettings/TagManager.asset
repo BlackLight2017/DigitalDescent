@@ -13,7 +13,12 @@ TagManager:
   - RangedEnemy
   - EnemyBullet
   - EnemyStunGun
+<<<<<<< .mine
+  - Collider
+||||||| .r31
+=======
   - Regen
+>>>>>>> .r38
   layers:
   - Default
   - TransparentFX
@@ -24,7 +29,7 @@ TagManager:
   - 
   - 
   - Trigger
-  - 
+  - Collider
   - 
   - 
   - 
