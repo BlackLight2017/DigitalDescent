@@ -25,22 +25,20 @@ public class PlayerController : MonoBehaviour {
   //  public float spawn_time = 1;
 
 
-
+    // how long the dash lasts 
     float DashTimer = 0.4f;
     bool Grounded = true;
     public bool Dashing = false;
 
-    //Timer for dash count
+    //cooldown for dash 
     public float DashCooldown = 5;
-    // int for CurrentDashCount
+    // how many dashes the player has 
     public float CurrentDashCount = 0;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
-
     }
     void FixedUpdate()
     {
@@ -80,12 +78,14 @@ public class PlayerController : MonoBehaviour {
         if (XCI.GetButton(XboxButton.LeftBumper) && Dashing == false && CurrentDashCount > 0)
         {
             Dashing = true;
-           
+            rb.AddForce(Vector3.left * 2700);
+
             CurrentDashCount -= 1;
         }
         if (XCI.GetButton(XboxButton.RightBumper) && Dashing == false && CurrentDashCount > 0)
         {
             Dashing = true;
+            rb.AddForce(Vector3.right * 2700);
 
             CurrentDashCount -= 1;
         }
@@ -100,13 +100,6 @@ public class PlayerController : MonoBehaviour {
               RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
               RigidbodyConstraints.FreezeRotationZ;
 
-            if (XCI.GetButton(XboxButton.RightBumper))
-            { 
-            
-               
-                rb.AddForce(Vector3.right * 250);
-                //new Vector3(-100,rb.velocity.y,0)
-                // rb.velocity = new  Vector3();
                 if (DashTimer <= 0)
                 {
                     //KICK BACK//rb.velocity = Vector3.left * 30;
@@ -126,47 +119,13 @@ public class PlayerController : MonoBehaviour {
                 }
 
             }
-            if (XCI.GetButton(XboxButton.LeftBumper))
-            {
-
-                // 200 force is added to the Players left side 
-
-                rb.AddForce(Vector3.left * 250);
-                if (DashTimer <= 0)
-                {
-                    //KICK BACK//rb.velocity = Vector3.right * 30;
-                    // rb.velocity = new Vector3();
-
-                    // Adds one second back to Timer 
-                   //CurrentDashCount -= 1;
-
-                    DashTimer += 0.4f;
-                    Dashing = false;
-                    gameObject.GetComponent<BoxCollider>().isTrigger = false;
-                    // returns players constraints back to normal
-                    rb.constraints = RigidbodyConstraints.FreezePositionZ |
-              RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
-              RigidbodyConstraints.FreezeRotationZ;
-                    transform.Rotate(0, 180, 0);
-
-                }
-            }
-            
-        }
-
-
-        //  if(XCI.GetButton(XboxButton.leftBumper) && Dashing == true)
-        //  {
-        //      Dashing = false;
-        //  }
-
-
+   
         //JUMPING
         if (Grounded == true)
         {
             //Then do jump code
             // if (Input.GetAxis("Jump") > 0.1f) // Add jump test for control 
-            if (XCI.GetButton(XboxButton.A))  
+            if (XCI.GetButton(XboxButton.A))
             {
                 //VerticalJumpForce = 5.0f;
                 Vector3 Jump = new Vector3(0, VerticalJumpForce, 0);
@@ -188,6 +147,11 @@ public class PlayerController : MonoBehaviour {
         //turn on grounded   
     }
 }
+            
+        
+
+
+
 
    
 
