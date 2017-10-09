@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour {
     public float m_fHealth = 50.0f;
     public float m_fDamage = 15.0f;
     public float f_Stunned = 3.0f;
+    private float dist;
+    float damping = 2;
 
     [Header("Animations")]
     public Animation Idle;
@@ -42,6 +44,7 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        dist = Vector3.Distance(transform.position, Target.position);
         m_fTimer += Time.deltaTime;
         if (IsStunned == true)
         {
@@ -61,7 +64,19 @@ public class Enemy : MonoBehaviour {
 
             f_Stunned += 3.0f;
         }
-       if (PlayerHealth.m_bIsDead)
+        if (dist > 15)
+        {
+            Vector3 LookPos = Target.position - transform.position;
+            LookPos.y = 0;
+            Quaternion Rotation = Quaternion.LookRotation(LookPos);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Rotation, Time.deltaTime * damping);
+            nav.enabled = false;
+        }
+        else
+        {
+            nav.enabled = true;
+        }
+        if (PlayerHealth.m_bIsDead)
 		{
 		}
 		else
