@@ -35,16 +35,15 @@ public class SwordTEST : MonoBehaviour
                 m_fAttackTime = 1;
             }
             
+
+
         }
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        //   if (other.gameObject.tag == "Enemy" )//&& (Input.GetKey(KeyCode.F)))
-        //   {
-        //  if (Input.GetKey(KeyCode.F) )
-        //    if (Input.GetAxis("Attack") > 0)
+
         
 
         EnemyScript = other.GetComponent<Enemy>();
@@ -75,33 +74,8 @@ public class SwordTEST : MonoBehaviour
         else
             RangedAttacking = false;
 
-            //// Enemy equals Gameobjects with the tag "Enemy" 
-            //GameObject Enemy12 = GameObject.FindGameObjectWithTag("Enemy");
-            //// enemy test gets the variables from the EnemyTEST class
-            //Enemy enemytest = Enemy12.GetComponent<Enemy>();
-
-            //enemytest.TakeDamage(fDamage);
         
     
-    ///   // Enemy equals Gameobjects with the tag "Enemy" 
-    ///   GameObject Enemy12 = GameObject.FindGameObjectWithTag("Enemy");
-    ///  // enemy test gets the variables from the EnemyTEST class
-    ///  Enemy enemytest = Enemy12.GetComponent<Enemy>();
-    ///
-    ///  enemytest.TakeDamage(fDamage);
-    ///  //   enemy.TakeDamage(fDamage);
-
-    // }
+  
     }
 }
-////    if (Input.GetKey(KeyCode.F) )
-////        {
-////
-////            // Enemy equals Gameobjects with the tag "Enemy" 
-////            GameObject Enemy12 = GameObject.FindGameObjectWithTag("Enemy");
-////// enemy test gets the variables from the EnemyTEST class
-////Enemy enemytest = Enemy12.GetComponent<Enemy>();
-////
-////enemytest.TakeDamage(fDamage);
-////            //   enemy.TakeDamage(fDamage);
-        
