@@ -6,8 +6,7 @@ using UnityEngine;
 
 
 public class PlayerController : MonoBehaviour {
-    // public GameObject Bullet_prefab;
-    // public GameObject Bullet_Spawn;
+   // animations for the player that will be added later
     public Animation Idle;
     public Animation Walk;
     public Animation Run;
@@ -15,14 +14,11 @@ public class PlayerController : MonoBehaviour {
     public Animation Dash;
     public Animation SwingWeapon;
 
-
+    // how high the player can jump 
     public float m_fVerticalJumpForce;
+    // how fast the player can move 
     public float m_fMovementSpeed;// = 10;
     private Rigidbody rb;
-  //  private float spawn_timer;
-  //  public float spawn_radius;
-  //  public float spawn_time = 1;
-
 
     // how long the dash lasts 
     float m_fDashTimer = 0.4f;
@@ -64,23 +60,25 @@ public class PlayerController : MonoBehaviour {
           }
       }
         
+        // Movement is controled by the xbox360 controller 
+        // This input is for the left stick 
         float moveHorizontal = XCI.GetAxis(XboxAxis.LeftStickX);
-
+        // movement of the player 
         transform.position = new Vector3(transform.position.x + (moveHorizontal * m_fMovementSpeed), transform.position.y, transform.position.z);
-        
-       
-
-        //Vector3 movement = new Vector3(moveHorizontal, 0.0f, 0.0f);
+        // adds gravity to the player to avoid the player being floaty 
         rb.AddForce(Vector3.down * 10);
-        // If left shift is pressed Adds force for the cube to move right
-        // If i have a dash avaliable 
+      
+        // if the left bumper of the xbox360 control is pressed and m_bDashing is false and there are more than one available dash         
         if (XCI.GetButton(XboxButton.LeftBumper) && m_bDashing == false && m_fCurrentDashCount > 0)
         {
+            // dashing is true 
             m_bDashing = true;
+            // force is added to the left of the player 
             rb.AddForce(Vector3.left * 2700);
-
+            // currentdashcount is deducted by one giving the player no more dashes 
             m_fCurrentDashCount -= 1;
         }
+        // if the right bumper of the xbox360 control is pressed and m_bDashing is false and there are more than one available dash         
         if (XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0)
         {
             m_bDashing = true;
@@ -92,6 +90,7 @@ public class PlayerController : MonoBehaviour {
         {
            // takes 1 second per second from m_fDashTimer 
             m_fDashTimer -= Time.deltaTime;
+            // turns the players boxcollider into a trigger 
            gameObject.GetComponent<BoxCollider>().isTrigger = true;
             // Freezes the players y position during the dash to prevent player falling through the ground 
              rb.constraints =
@@ -101,12 +100,11 @@ public class PlayerController : MonoBehaviour {
 
                 if (m_fDashTimer <= 0)
                 {
-                    //KICK BACK//rb.velocity = Vector3.left * 30;
-                    //rb.AddForce(Vector3.right * 0);
-                  //m_fCurrentDashCount -= 1;
                     // Adds seconds back to Timer 
                     m_fDashTimer += 0.4f;
+                    // dashing is false ending the dash 
                     m_bDashing = false;
+                    // boxcollider is no longer a trigger
                     gameObject.GetComponent<BoxCollider>().isTrigger = false;
                     // returns players constraints back to normal
                     rb.constraints =  RigidbodyConstraints.FreezePositionZ |

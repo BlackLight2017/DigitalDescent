@@ -3498,6 +3498,21 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 114944015404338510, guid: 88ef1596cf5a9144a800d8afb73c1531,
+        type: 2}
+      propertyPath: fDamage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 65957356175000510, guid: 88ef1596cf5a9144a800d8afb73c1531,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65957356175000510, guid: 88ef1596cf5a9144a800d8afb73c1531,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88ef1596cf5a9144a800d8afb73c1531, type: 2}
   m_IsPrefabParent: 0
