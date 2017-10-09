@@ -4,21 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bullet
-  - Trigger
-  - Enemy
   - Ground
-  - StunGun
-  - Sword
-  - RangedEnemy
-  - EnemyBullet
-  - EnemyStunGun
-<<<<<<< .mine
   - Collider
-||||||| .r31
-=======
-  - Regen
->>>>>>> .r38
   layers:
   - Default
   - TransparentFX
@@ -28,8 +15,8 @@ TagManager:
   - UI
   - 
   - 
-  - Trigger
-  - Collider
+  - 
+  - 
   - 
   - 
   - 
