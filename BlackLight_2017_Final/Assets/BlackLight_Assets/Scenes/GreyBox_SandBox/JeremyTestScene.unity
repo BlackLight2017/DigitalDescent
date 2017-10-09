@@ -386,7 +386,7 @@ Prefab:
     - target: {fileID: 114214807026632070, guid: ad2664d2832d4014189f1064b4f58693,
         type: 2}
       propertyPath: fDamage
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1060714833495744, guid: ad2664d2832d4014189f1064b4f58693, type: 2}
       propertyPath: m_IsActive
