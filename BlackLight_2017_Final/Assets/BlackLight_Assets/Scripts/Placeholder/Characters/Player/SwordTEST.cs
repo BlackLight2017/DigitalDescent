@@ -30,12 +30,32 @@ public class SwordTEST : MonoBehaviour
         if (XCI.GetButton(XboxButton.X))
         {
 
-            // Enemy equals Gameobjects with the tag "Enemy" 
-            GameObject Enemy12 = GameObject.FindGameObjectWithTag("Enemy");
-            // enemy test gets the variables from the EnemyTEST class
-            Enemy enemytest = Enemy12.GetComponent<Enemy>();
+            Enemy EnemyScript = other.GetComponent<Enemy>();
+            if (EnemyScript != null)
+            {
+                Debug.Log("HitEnemy");
+                if (EnemyScript.m_fHealth > 0)
+                {
+                    EnemyScript.TakeDamage(fDamage);
+                }
+            }
 
-            enemytest.TakeDamage(fDamage);
+            RangedEnemy RangedEnemyScript = other.GetComponent<RangedEnemy>();
+            if (EnemyScript != null)
+            {
+                Debug.Log("HitEnemy");
+                if (RangedEnemyScript.m_fHealth > 0)
+                {
+                    RangedEnemyScript.TakeDamage(fDamage);
+                }
+            }
+
+            //// Enemy equals Gameobjects with the tag "Enemy" 
+            //GameObject Enemy12 = GameObject.FindGameObjectWithTag("Enemy");
+            //// enemy test gets the variables from the EnemyTEST class
+            //Enemy enemytest = Enemy12.GetComponent<Enemy>();
+
+            //enemytest.TakeDamage(fDamage);
         }
     
     ///   // Enemy equals Gameobjects with the tag "Enemy" 

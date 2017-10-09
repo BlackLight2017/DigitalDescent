@@ -216,7 +216,7 @@ Prefab:
     - target: {fileID: 114429293964533576, guid: cf0a470238dc79e448e60b45831ad5c7,
         type: 2}
       propertyPath: m_fHealth
-      value: 0
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 114429293964533576, guid: cf0a470238dc79e448e60b45831ad5c7,
         type: 2}
@@ -382,6 +382,15 @@ Prefab:
     - target: {fileID: 4874023624822766, guid: ad2664d2832d4014189f1064b4f58693, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114214807026632070, guid: ad2664d2832d4014189f1064b4f58693,
+        type: 2}
+      propertyPath: fDamage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1060714833495744, guid: ad2664d2832d4014189f1064b4f58693, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad2664d2832d4014189f1064b4f58693, type: 2}
