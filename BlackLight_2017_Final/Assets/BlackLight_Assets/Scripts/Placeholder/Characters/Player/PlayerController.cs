@@ -65,6 +65,22 @@ public class PlayerController : MonoBehaviour {
         float moveHorizontal = XCI.GetAxis(XboxAxis.LeftStickX);
         // movement of the player 
         transform.position = new Vector3(transform.position.x + (moveHorizontal * m_fMovementSpeed), transform.position.y, transform.position.z);
+      
+        if (XCI.GetAxis(XboxAxis.LeftStickX) < 0)
+        {
+            if (transform.rotation.y == 0)
+            {
+                transform.eulerAngles = new Vector3 (0, 180,0);
+            }
+        }
+        if (XCI.GetAxis(XboxAxis.LeftStickX) > 0)
+        {
+            if (transform.rotation.y == 1)
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+        }
+
         // adds gravity to the player to avoid the player being floaty 
         rb.AddForce(Vector3.down * 10);
       
