@@ -65,7 +65,7 @@ public class EnemyStunGun : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "Player")
         {
             IsStunned = true;
         }

@@ -18,7 +18,6 @@ public class RangedEnemy : MonoBehaviour {
 
     PlayerHealth PlayerHealth;
     PlayerController PlayerCon;
-    // EnemyStunGun EnemyStunGun;
 	GameObject Player;
 	float m_fTimer;
     float damping = 2;
@@ -38,7 +37,6 @@ public class RangedEnemy : MonoBehaviour {
 		Player = GameObject.FindGameObjectWithTag("Player");
 		PlayerHealth = Player.GetComponent<PlayerHealth>();
         PlayerCon = Player.GetComponent<PlayerController>();
-       // EnemyStunGun = GetComponent<EnemyStunGun>();
 
     }
 
@@ -48,6 +46,7 @@ public class RangedEnemy : MonoBehaviour {
 		dist = Vector3.Distance(transform.position, Target.position);
         if (IsStunned == true)
         {
+
             nav.enabled = false;
             m_fDamage = 0;
             GetComponent<Renderer>().material.color = Color.yellow;
