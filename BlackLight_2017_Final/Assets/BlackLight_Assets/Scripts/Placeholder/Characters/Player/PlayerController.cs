@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     bool m_bGrounded = true;
     public bool m_bDashing = false;
 
+    public bool timer = true; 
     //cooldown for dash 
     public float m_fDashCooldown = 5;
     // how many dashes the player has 
@@ -39,13 +40,15 @@ public class PlayerController : MonoBehaviour {
     {
         //if the timer goes under 1 
         //Timer goes down 
-     m_fDashCooldown -= Time.deltaTime;
+        if (timer == true)
+        {
+            m_fDashCooldown -= Time.deltaTime;
+        }
     ////  //m_fDashCooldown
-      if (m_fDashCooldown <= 1)
-          {
+      if (m_fDashCooldown <= 0)
+      {
     
-          m_fCurrentDashCount += 1; 
-          {
+          m_fCurrentDashCount = 1;          
               // if you have more than 1 dash count then you can dash
     
               if (m_fCurrentDashCount > 0)
@@ -53,12 +56,16 @@ public class PlayerController : MonoBehaviour {
                   // Dash is gone 
                   //Adds 5 seconds to the timer 
                   m_fDashCooldown += 5.0f;
+                   timer = false; 
               }
-    
-              //else
-              // no m_bDashing
-          }
+            
+                //else
+                // no m_bDashing         
       }
+      else if (m_fCurrentDashCount == 0)
+        {
+            timer = true; 
+        }
         
         // Movement is controled by the xbox360 controller 
         // This input is for the left stick 

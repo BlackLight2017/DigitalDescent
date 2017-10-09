@@ -6,9 +6,15 @@ using UnityEngine.UI;
 
 public class GameTimerScript : MonoBehaviour {
     public Text gameTimerText;
+    public Canvas gameOver;
     // timer is set for 30 minutes
-    float gameTimer = 1800; 
+    float gameTimer = 30; 
 	
+    void Start()
+    {
+        gameOver.enabled = false;
+    }
+
 	// Update is called once per frame
 	void Update () {
         // counts down the timer 
@@ -20,5 +26,11 @@ public class GameTimerScript : MonoBehaviour {
         string timerString = string.Format("{0:00:}{1:00}", minutes, seconds);
         // Gametimertext is going to display the timer
         gameTimerText.text = timerString; 
+
+        if (gameTimer <= 0 )
+        {
+            gameOver.enabled = true; 
+        }
+
 	}
 }
