@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4193528618901104}
   m_Layer: 9
   m_Name: MidRamp_Collider
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
