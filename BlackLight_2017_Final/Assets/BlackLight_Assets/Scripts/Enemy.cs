@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour {
                 nav.SetDestination(Target.position);
             if(Attacking)
             {
-                if (m_fTimer >= 1)
+                if (m_fTimer >= 1 && PlayerCon.m_bDashing == false)
                 {
                     DoDamage();
                     m_fTimer = 0;

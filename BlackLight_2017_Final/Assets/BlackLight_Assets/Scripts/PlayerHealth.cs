@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
 
@@ -9,7 +11,8 @@ public class PlayerHealth : MonoBehaviour {
     public bool m_bIsDead = false;
     GameObject RangedEnemy;
     RangedEnemy RangedEnemyScript;
-
+	public Image HealthBar;
+	private PlayerController playercon;
 
     // Use this for initialization
     void Awake ()
@@ -20,6 +23,7 @@ public class PlayerHealth : MonoBehaviour {
         RangedEnemy = GameObject.FindGameObjectWithTag("RangedEnemy");
         if(RangedEnemy)
             RangedEnemyScript = RangedEnemy.GetComponent<RangedEnemy>();
+		playercon = GetComponent<PlayerController> ();		
         //Enemy = GameObject.FindGameObjectWithTag("Enemy");
         //EnemyScript = Enemy.GetComponent<Enemy>();
     }
@@ -27,7 +31,9 @@ public class PlayerHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-
+		float fHealth = m_fHealth;
+		 fHealth = fHealth / 100.0f;
+		HealthBar.fillAmount = fHealth;
 	}
 
     void OnCollisionEnter(Collision col)
@@ -45,7 +51,7 @@ public class PlayerHealth : MonoBehaviour {
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "EnemyBullet")
+        if (col.gameObject.tag == "EnemyBullet" && playercon.m_bDashing == false)
         {
             RangedEnemyScript.DoDamage();
         }
@@ -81,6 +87,7 @@ public class PlayerHealth : MonoBehaviour {
 		m_bIsDead = true;
 		Debug.Log("PlayerDead");
         gameObject.SetActive(false);
+		SceneManager.LoadScene(1);
         //Destroy(gameObject);
     }
 }
