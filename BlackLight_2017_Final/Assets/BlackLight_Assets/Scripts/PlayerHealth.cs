@@ -58,7 +58,7 @@ public class PlayerHealth : MonoBehaviour {
         //		EnemyScript.TakeDamage(m_fDamage);
         //	}
         //}
-        if (col.gameObject.tag == "Regen")
+        if (col.gameObject.tag == "Regen" && m_fHealth < 90)
         {
             m_fHealth += 10;
             Destroy(col.gameObject); 

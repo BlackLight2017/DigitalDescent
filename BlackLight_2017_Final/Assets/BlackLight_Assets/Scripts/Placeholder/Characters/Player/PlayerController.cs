@@ -114,10 +114,11 @@ public class PlayerController : MonoBehaviour {
            // takes 1 second per second from m_fDashTimer 
             m_fDashTimer -= Time.deltaTime;
             // turns the players boxcollider into a trigger 
-           gameObject.GetComponent<BoxCollider>().isTrigger = true;
+         //  gameObject.GetComponent<BoxCollider>().isTrigger = true;
             // Freezes the players y position during the dash to prevent player falling through the ground 
              rb.constraints =
-              RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ |
+                // change constraints on demo version 
+             RigidbodyConstraints.FreezePositionZ |
               RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
               RigidbodyConstraints.FreezeRotationZ;
 
@@ -128,7 +129,8 @@ public class PlayerController : MonoBehaviour {
                     // dashing is false ending the dash 
                     m_bDashing = false;
                     // boxcollider is no longer a trigger
-                    gameObject.GetComponent<BoxCollider>().isTrigger = false;
+
+            //        gameObject.GetComponent<BoxCollider>().isTrigger = false;
                     // returns players constraints back to normal
                     rb.constraints =  RigidbodyConstraints.FreezePositionZ |
               RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
