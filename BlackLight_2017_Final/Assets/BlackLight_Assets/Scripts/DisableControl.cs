@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class DisableControl : MonoBehaviour {
 
-    public bool m_fEnd = false;
+    public Canvas End;
+    public GameObject Endtrigger;
+    private bool m_fEnd = false;
     private SelectOnInput Select;
+    private EndLevelTrigger endlevel;
 
     // Use this for initialization
     void Start()
     {
-        enabled = false;
-        Select = GetComponent<SelectOnInput>();
+        End.enabled = false;
+        Endtrigger = GameObject.Find("End");
+        endlevel = Endtrigger.GetComponent<EndLevelTrigger>();
+        Select = End.GetComponent<SelectOnInput>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (m_fEnd)
+        if (endlevel.m_fEnd)
         {
             Select.enabled = true;
         }
