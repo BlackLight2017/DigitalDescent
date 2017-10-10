@@ -61,7 +61,7 @@ public class SwordTEST : MonoBehaviour
             Attacking = false;
 
         RangedEnemyScript = other.GetComponent<RangedEnemy>();
-        if (EnemyScript != null)
+        if (RangedEnemyScript != null)
         {
             Debug.Log("HitEnemy");
             if (RangedEnemyScript.m_fHealth > 0)

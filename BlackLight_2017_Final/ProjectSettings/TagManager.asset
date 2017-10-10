@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Ground
   - Collider
+  - Enemy
+  - Bullet
+  - RangedEnemy
+  - EnemyBullet
+  - Regen
+  - EnemyStunGun
   layers:
   - Default
   - TransparentFX
