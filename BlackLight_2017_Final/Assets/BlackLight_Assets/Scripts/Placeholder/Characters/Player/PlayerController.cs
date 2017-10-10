@@ -75,16 +75,16 @@ public class PlayerController : MonoBehaviour {
       
         if (XCI.GetAxis(XboxAxis.LeftStickX) < 0)
         {
-            if (transform.rotation.y == 0)
+            if (transform.eulerAngles.y == 270)
             {
-                transform.eulerAngles = new Vector3 (0, 180,0);
+                transform.eulerAngles = new Vector3 (0, 90,0);
             }
         }
         if (XCI.GetAxis(XboxAxis.LeftStickX) > 0)
         {
-            if (transform.rotation.y == 1)
+            if (transform.eulerAngles.y == 90)
             {
-                transform.eulerAngles = new Vector3(0, 0, 0);
+                transform.eulerAngles = new Vector3(0, -90, 0);
             }
         }
 
