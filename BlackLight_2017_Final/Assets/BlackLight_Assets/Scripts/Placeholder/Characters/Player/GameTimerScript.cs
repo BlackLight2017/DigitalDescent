@@ -8,7 +8,7 @@ public class GameTimerScript : MonoBehaviour {
     public Text gameTimerText;
     public Canvas gameOver;
     // timer is set for 30 minutes
-    float gameTimer = 1800; 
+    public float gameTimer = 10; 
 	
     void Start()
     {
