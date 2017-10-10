@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class DisableControl : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public bool m_fEnd = false;
+    private SelectOnInput Select;
+
+    // Use this for initialization
+    void Start()
+    {
+        enabled = false;
+        Select = GetComponent<SelectOnInput>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (m_fEnd)
+        {
+            Select.enabled = true;
+        }
+        else
+        {
+            Select.enabled = false;
+        }
+    }
 }
