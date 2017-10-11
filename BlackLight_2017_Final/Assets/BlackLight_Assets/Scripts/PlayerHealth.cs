@@ -11,8 +11,9 @@ public class PlayerHealth : MonoBehaviour {
     public bool m_bIsDead = false;
     GameObject RangedEnemy;
     RangedEnemy RangedEnemyScript;
-	public Image HealthBar;
-	private PlayerController playercon;
+	public Image LeftHealthBar;
+    public Image RightHealthBar;
+    private PlayerController playercon;
 
     // Use this for initialization
     void Awake ()
@@ -33,8 +34,9 @@ public class PlayerHealth : MonoBehaviour {
     {
 		float fHealth = m_fHealth;
 		 fHealth = fHealth / 100.0f;
-		HealthBar.fillAmount = fHealth;
-	}
+		LeftHealthBar.fillAmount = fHealth;
+        RightHealthBar.fillAmount = fHealth;
+    }
 
     void OnCollisionEnter(Collision col)
     {
