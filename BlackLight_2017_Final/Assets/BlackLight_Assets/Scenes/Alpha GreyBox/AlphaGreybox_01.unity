@@ -45917,8 +45917,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1718642560}
-  smoothSpeed: 0.125
+  smoothSpeed: 0.02
   offset: {x: 4.5, y: 4.8, z: -11}
+  SpeedChangeTime: 1
 --- !u!43 &2138660165
 Mesh:
   m_ObjectHideFlags: 0
