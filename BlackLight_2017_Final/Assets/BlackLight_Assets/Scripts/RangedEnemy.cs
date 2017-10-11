@@ -26,8 +26,6 @@ public class RangedEnemy : MonoBehaviour {
 	// Use this for initialization
 	void Awake()
 	{
-		m_fHealth = 50;
-		m_fDamage = 30;
 		m_fTimer = 0;
         f_Stunned = 3.0f;
         IsStunned = false;
@@ -56,7 +54,7 @@ public class RangedEnemy : MonoBehaviour {
         if (f_Stunned <= 0)
         {
             IsStunned = false;
-            m_fDamage = 15;
+            m_fDamage = 30;
 
             nav.enabled = true;
             GetComponent<Renderer>().material.color = Color.red;

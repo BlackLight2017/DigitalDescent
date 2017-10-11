@@ -6,8 +6,8 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour {
 
     [Header("Stats")]
-    public float m_fHealth = 50.0f;
-    public float m_fDamage = 15.0f;
+    public float m_fHealth;
+    public float m_fDamage;
     public float f_Stunned = 3.0f;
     private float dist;
     float damping = 2;

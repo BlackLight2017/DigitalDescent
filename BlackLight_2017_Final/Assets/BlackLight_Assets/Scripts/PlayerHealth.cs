@@ -18,8 +18,6 @@ public class PlayerHealth : MonoBehaviour {
     // Use this for initialization
     void Awake ()
     {
-        m_fHealth = 100;
-        m_fDamage = 25;
 
         RangedEnemy = GameObject.FindGameObjectWithTag("RangedEnemy");
         if(RangedEnemy)
@@ -55,7 +53,8 @@ public class PlayerHealth : MonoBehaviour {
     {
         if (col.gameObject.tag == "EnemyBullet" && playercon.m_bDashing == false)
         {
-            RangedEnemyScript.DoDamage();
+            //RangedEnemyScript.DoDamage();
+            TakeDamage(RangedEnemyScript.m_fDamage);
         }
         //Enemy EnemyScript = col.GetComponent<Enemy>();
         //if (EnemyScript != null)
