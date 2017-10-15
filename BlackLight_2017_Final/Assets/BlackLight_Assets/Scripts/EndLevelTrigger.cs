@@ -6,25 +6,16 @@ using UnityEngine.SceneManagement;
 public class EndLevelTrigger : MonoBehaviour {
 
     public Canvas End;
-    public bool m_fEnd = false;
-    //private SelectOnInput Select;
+    public bool m_bEnd = false;
 
     // Use this for initialization
     void Start () {
         End.enabled = false;
-        //Select = End.GetComponent<SelectOnInput>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if(m_fEnd)
-        {
-            //Select.enabled = true;
-        }
-        else
-        {
-            //Select.enabled = false;
-        }
+	void Update ()
+    {
 	}
 
     private void OnTriggerEnter(Collider other)
@@ -32,12 +23,12 @@ public class EndLevelTrigger : MonoBehaviour {
         if(other.gameObject.tag == ("Player"))
         {
             End.enabled = true;
-            m_fEnd = true;
+            m_bEnd = true;
         }
         else
         {
             End.enabled = false;
-            m_fEnd = false;
+            m_bEnd = false;
         }
     }
 }

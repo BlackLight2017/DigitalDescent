@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1163461124}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
 --- !u!4 &969073355
@@ -759,7 +759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71b1b727a251e1449664fffdf637c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ES: {fileID: 0}
+  ES: {fileID: 969073354}
 --- !u!1 &1225359165
 GameObject:
   m_ObjectHideFlags: 0
