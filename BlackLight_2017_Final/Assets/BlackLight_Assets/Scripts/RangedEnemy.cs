@@ -73,7 +73,7 @@ public class RangedEnemy : MonoBehaviour {
 			// Sets stunned to false.
 			IsStunned = false;
 			// Sets damage to 15.
-			m_fDamage = 30;
+			m_fDamage = 10;
 			// Starts moving.
 			nav.enabled = true;
 			// Changes colour again.

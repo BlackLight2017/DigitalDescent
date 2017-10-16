@@ -38295,10 +38295,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1474159468773194, guid: d2c213bf44f3b5541bb0149786533741, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 23513972892130980, guid: d2c213bf44f3b5541bb0149786533741,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bfae1bc719cd86f41b42b1a6d4d67bec, type: 2}
+    - target: {fileID: 23781449450302770, guid: d2c213bf44f3b5541bb0149786533741,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bfae1bc719cd86f41b42b1a6d4d67bec, type: 2}
     - target: {fileID: 1474159468773194, guid: d2c213bf44f3b5541bb0149786533741, type: 2}
       propertyPath: m_TagString
       value: Enemy

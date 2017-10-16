@@ -30,11 +30,14 @@ public class Enemy : MonoBehaviour {
     PlayerController PlayerCon;
     PlayerHealth PlayerHealth;
     GameObject Player;
+	public GameObject Body;
+	public GameObject LeftArm;
+	public GameObject RightArm;
 
-    //----------------------------------------------------------------------------------------------------
-    // Use this for initialization
-    //----------------------------------------------------------------------------------------------------
-    void Awake ()
+	//----------------------------------------------------------------------------------------------------
+	// Use this for initialization
+	//----------------------------------------------------------------------------------------------------
+	void Awake ()
     {
         // Sets the target position to the players position.
 		Target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -69,9 +72,11 @@ public class Enemy : MonoBehaviour {
             // Sets damage to 0.
             m_fDamage = 0; 
             // Changes colour to it being stunned.
-            GetComponent<Renderer>().material.color = Color.yellow;
-            // Counts down the stun timer.
-            f_Stunned -= Time.deltaTime;
+            Body.GetComponent<Renderer>().material.color = Color.yellow;
+			LeftArm.GetComponent<Renderer>().material.color = Color.yellow;
+			RightArm.GetComponent<Renderer>().material.color = Color.yellow;
+			// Counts down the stun timer.
+			f_Stunned -= Time.deltaTime;
         }
         // once the timer hits 0 speed is restored 
         if (f_Stunned <= 0)
@@ -83,9 +88,11 @@ public class Enemy : MonoBehaviour {
             // Starts moving.
             nav.enabled = true;
             // Changes colour again.
-            GetComponent<Renderer>().material.color = Color.red;
-            // Resets stun timer.
-            f_Stunned += 3.0f;
+            Body.GetComponent<Renderer>().material.color = Color.black;
+			LeftArm.GetComponent<Renderer>().material.color = Color.black;
+			RightArm.GetComponent<Renderer>().material.color = Color.black;
+			// Resets stun timer.
+			f_Stunned += 3.0f;
         }
         // If to far from player then stops moving and looks towards the player.
         if (dist > 15)
