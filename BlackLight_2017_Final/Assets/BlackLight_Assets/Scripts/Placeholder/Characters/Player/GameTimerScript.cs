@@ -10,8 +10,8 @@ public class GameTimerScript : MonoBehaviour
     //----------------------------------------------------------------------------------------------------
     public Text gameTimerText;
     PlayerController Dashcount; 
-    public Canvas gameOver;
-    private SelectOnInput Select;
+    //public Canvas gameOver;
+    //private SelectOnInput Select;
 
     // timer is set for 30 minutes
     public float gameTimer = 1800;
@@ -22,9 +22,9 @@ public class GameTimerScript : MonoBehaviour
     //----------------------------------------------------------------------------------------------------
     void Start()
     {
-        gameOver.enabled = false;
-        //m_bGameOver = false;
-        Select = gameOver.GetComponent<SelectOnInput>();
+        //gameOver.enabled = false;
+        m_bGameOver = false;
+        //Select = gameOver.GetComponent<SelectOnInput>();
     }
     //----------------------------------------------------------------------------------------------------
     // Update is called once per frame, while the game is playing the timer will count down from the desired time.
@@ -44,14 +44,14 @@ public class GameTimerScript : MonoBehaviour
 
         if (gameTimer <= 0)
         {
-            //m_bGameOver = true;
-            Select.enabled = true;
-            gameOver.enabled = true;
+            m_bGameOver = true;
+            //Select.enabled = true;
+            //gameOver.enabled = true;
         }
         else
         {
-            Select.enabled = false;
-            //m_bGameOver = false;
+            //Select.enabled = false;
+            m_bGameOver = false;
         }
     }
 }
