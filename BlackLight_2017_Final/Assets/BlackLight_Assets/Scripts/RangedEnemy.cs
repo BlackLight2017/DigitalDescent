@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class RangedEnemy : MonoBehaviour {
-
+	//----------------------------------------------------------------------------------------------------
+	// Sets up references to other objects and creates variables
+	//----------------------------------------------------------------------------------------------------
 	public float m_fHealth;
 	public float m_fDamage;
     public float f_Speed;
@@ -23,45 +25,64 @@ public class RangedEnemy : MonoBehaviour {
     float damping = 2;
 	float dist;
 
+	//----------------------------------------------------------------------------------------------------
 	// Use this for initialization
+	//----------------------------------------------------------------------------------------------------
 	void Awake()
 	{
 		m_fTimer = 0;
         f_Stunned = 3.0f;
         IsStunned = false;
 
-        Target = GameObject.FindGameObjectWithTag("Player").transform;
+		// Sets the target position to the players position.
+		Target = GameObject.FindGameObjectWithTag("Player").transform;
+		// Sets nav to NavMeshAgent.
 		nav = GetComponent<NavMeshAgent>();
+		// Sets the Player to Player.
 		Player = GameObject.FindGameObjectWithTag("Player");
+		// Sets PlayerHealth script.
 		PlayerHealth = Player.GetComponent<PlayerHealth>();
-        PlayerCon = Player.GetComponent<PlayerController>();
+		// Sets PlayerController script.
+		PlayerCon = Player.GetComponent<PlayerController>();
 
     }
 
-	// Update is called once per frame
+	//----------------------------------------------------------------------------------------------------
+	// Update is called once per frame, Makes the enemy move to the players position. If they become 
+	// stunned then they stop moving and do no damage. If they are to far from the player they wont move.
+	// Enemy does damage to the player if they are in range to attack and if the player is not dashing.
+	//----------------------------------------------------------------------------------------------------
 	void Update()
 	{
+		// Dist equals the distance from the enemy to player.
 		dist = Vector3.Distance(transform.position, Target.position);
         if (IsStunned == true)
         {
-
-            nav.enabled = false;
-            m_fDamage = 0;
-            GetComponent<Renderer>().material.color = Color.yellow;
-            f_Stunned -= Time.deltaTime;
+			// Stops moving.
+			nav.enabled = false;
+			// Sets damage to 0.
+			m_fDamage = 0;
+			// Changes colour to it being stunned.
+			GetComponent<Renderer>().material.color = Color.yellow;
+			// Counts down the stun timer.
+			f_Stunned -= Time.deltaTime;
         }
         // once the timer hits 0 speed is restored 
         if (f_Stunned <= 0)
         {
-            IsStunned = false;
-            m_fDamage = 30;
-
-            nav.enabled = true;
-            GetComponent<Renderer>().material.color = Color.red;
-
-            f_Stunned += 3.0f;
+			// Sets stunned to false.
+			IsStunned = false;
+			// Sets damage to 15.
+			m_fDamage = 30;
+			// Starts moving.
+			nav.enabled = true;
+			// Changes colour again.
+			GetComponent<Renderer>().material.color = Color.red;
+			// Resets stun timer.
+			f_Stunned += 3.0f;
         }
-        if (dist < 5 || dist > 15)
+		// If to far from player or close then stops moving and looks towards the player.
+		if (dist < 5 || dist > 15)
 		{
             Vector3 LookPos = Target.position - transform.position;
             LookPos.y = 0;
@@ -71,55 +92,83 @@ public class RangedEnemy : MonoBehaviour {
 		}
 		else
 		{
+			// Continues moving.
 			nav.enabled = true;
 		}
-        if (PlayerHealth.m_bIsDead)
+		// If player is dead do nothing.
+		if (PlayerHealth.m_bIsDead)
         {
         }
         else
         {
-            if(nav.isOnNavMesh)
+			// Checks if they are on the NavMesh then move.
+			if (nav.isOnNavMesh)
                 nav.SetDestination(Target.position);
         }
 
     }
 	//public void DoDamage()
 
-    private void OnTriggerEnter(Collider other)
+	//----------------------------------------------------------------------------------------------------
+	// OnTriggerEnter is called every time it is colliding with another object, if the player is being
+	// collided with but if dashing is true the enemy becomes stunned.
+	//
+	// Param: 
+	//      Other: Is the object that is being collided with.
+	//----------------------------------------------------------------------------------------------------
+	private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && PlayerCon.m_bDashing == true)
+		// Checks  if the player is dashing through them if so then they become stunned.
+		if (other.gameObject.tag == "Player" && PlayerCon.m_bDashing == true)
         {
             IsStunned = true;
         }
     }
 
-    public void DoDamage()
+	//----------------------------------------------------------------------------------------------------
+	// Deals damage to the player.
+	//----------------------------------------------------------------------------------------------------
+	public void DoDamage()
 	{
+		// Prints out a message to see if it hits
 		Debug.Log("HitPlayer");
+		// If the player has health then attack.
 		if (PlayerHealth.m_fHealth > 0)
 		{
+			// Does damage to the player.
 			PlayerHealth.TakeDamage(m_fDamage);
 		}
 	}
-   
 
-    public void TakeDamage(float fDamage)
+	//----------------------------------------------------------------------------------------------------
+	// Does damage to the enemy if it is not dead.
+	// 
+	// Param: 
+	//      fDamage: Is the amount of damage to be dealt to the enemy.
+	//----------------------------------------------------------------------------------------------------
+	public void TakeDamage(float fDamage)
 	{
+		// If they are dead then do nothing.
 		if (m_bIsDead)
 			return;
-
+		// Takes damage
 		m_fHealth -= fDamage;
-
+		// If their health is 0 or less then call death.
 		if (m_fHealth <= 0)
 		{
 			Death();
 		}
 	}
 
+	//----------------------------------------------------------------------------------------------------
+	// Sets enemy active to false and makes the enemy dissapear.
+	//----------------------------------------------------------------------------------------------------
 	private void Death()
 	{
+		// Sets dead true.
 		m_bIsDead = true;
-        gameObject.SetActive(false);
+		// Sets active false.
+		gameObject.SetActive(false);
         //Destroy(gameObject);
 	}
 }
