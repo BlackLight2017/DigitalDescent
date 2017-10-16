@@ -1655,6 +1655,7 @@ MonoBehaviour:
   target: {fileID: 1847016326}
   smoothSpeed: 0.125
   offset: {x: 5, y: 0, z: -10}
+  SpeedChangeTime: 0
 --- !u!81 &428726134
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2273,7 +2274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2315,7 +2316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 91, y: -38}
+  m_AnchoredPosition: {x: -8.8, y: -38}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &603891470
@@ -3803,11 +3804,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1168642565}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 659773ce99b7b544d87b5cca5a107de1, type: 3}
+  m_Script: {fileID: 11500000, guid: ae935b58bd57256418be749ad132d54c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameTimerText: {fileID: 578615821}
   gameOver: {fileID: 441132706}
+  gameTimer: 5
+  m_bGameOver: 0
 --- !u!4 &1168642567
 Transform:
   m_ObjectHideFlags: 0
@@ -4115,6 +4118,11 @@ Prefab:
     - target: {fileID: 114845575359702188, guid: 88ef1596cf5a9144a800d8afb73c1531,
         type: 2}
       propertyPath: m_fCurrentDashCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114205039839501134, guid: 88ef1596cf5a9144a800d8afb73c1531,
+        type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

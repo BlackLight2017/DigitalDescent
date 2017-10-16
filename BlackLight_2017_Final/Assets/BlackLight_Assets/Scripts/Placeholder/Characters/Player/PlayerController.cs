@@ -6,7 +6,11 @@ using UnityEngine;
 
 
 public class PlayerController : MonoBehaviour {
-   // animations for the player that will be added later
+    //----------------------------------------------------------------------------------------------------
+    // Sets up references to other objects
+    //----------------------------------------------------------------------------------------------------
+
+    // animations for the player that will be added later
     public Animation Idle;
     public Animation Walk;
     public Animation Run;
@@ -31,37 +35,41 @@ public class PlayerController : MonoBehaviour {
     // how many dashes the player has 
     public float m_fCurrentDashCount = 0;
 
-
+    //----------------------------------------------------------------------------------------------------
+    // Use this for initialization
+    //----------------------------------------------------------------------------------------------------
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
+
+    //----------------------------------------------------------------------------------------------------
+    // FixedUpdate is called once per frame, when the game load up the user wil be able to control the players 
+    // movement, jump and dash abilities.                                            
+    //----------------------------------------------------------------------------------------------------
     void FixedUpdate()
     {
-        //if the timer goes under 1 
-        //Timer goes down 
+        // if the timer is on dash cooldown counts down 
         if (timer == true)
         {
             m_fDashCooldown -= Time.deltaTime;
         }
-    ////  //m_fDashCooldown
-      if (m_fDashCooldown <= 0)
+        // if the dashcooldown is less or equal to zero add 1 to CurrentDashCount 
+       if (m_fDashCooldown <= 0)
       {
     
           m_fCurrentDashCount = 1;          
-              // if you have more than 1 dash count then you can dash
-    
+            // if they're is more than one dash 
               if (m_fCurrentDashCount > 0)
               {
-                  // Dash is gone 
-                  //Adds 5 seconds to the timer 
+                  //Adds 5 seconds to dashcooldown
+                  // Timer is turned off  
                   m_fDashCooldown += 5.0f;
                    timer = false; 
-              }
-            
-                //else
-                // no m_bDashing         
+              }      
+             
       }
+       // if they're no more dashes the timer resets
       else if (m_fCurrentDashCount == 0)
         {
             timer = true; 
@@ -70,9 +78,11 @@ public class PlayerController : MonoBehaviour {
         // Movement is controled by the xbox360 controller 
         // This input is for the left stick 
         float moveHorizontal = XCI.GetAxis(XboxAxis.LeftStickX);
+ 
         // movement of the player 
         transform.position = new Vector3(transform.position.x + (moveHorizontal * m_fMovementSpeed), transform.position.y, transform.position.z);
-      
+   
+        // when the left stick is tiled to the left it rotates the player 90 degrees (face playerto the left)
         if (XCI.GetAxis(XboxAxis.LeftStickX) < 0)
         {
             if (transform.eulerAngles.y == 270)
@@ -80,6 +90,7 @@ public class PlayerController : MonoBehaviour {
                 transform.eulerAngles = new Vector3 (0, 90,0);
             }
         }
+        // when the left stick is tiled to the right it rotates the player -90 degrees (faces player to the right) 
         if (XCI.GetAxis(XboxAxis.LeftStickX) > 0)
         {
             if (transform.eulerAngles.y == 90)
@@ -108,16 +119,14 @@ public class PlayerController : MonoBehaviour {
             rb.AddForce(Vector3.right * 2700);
 
             m_fCurrentDashCount -= 1;
-        }
+        }      
         if (m_bDashing == true && m_fDashTimer > 0)
         {
            // takes 1 second per second from m_fDashTimer 
             m_fDashTimer -= Time.deltaTime;
             // turns the players boxcollider into a trigger 
-         //  gameObject.GetComponent<BoxCollider>().isTrigger = true;
             // Freezes the players y position during the dash to prevent player falling through the ground 
              rb.constraints =
-                // change constraints on demo version 
              RigidbodyConstraints.FreezePositionZ |
               RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
               RigidbodyConstraints.FreezeRotationZ;
@@ -130,43 +139,40 @@ public class PlayerController : MonoBehaviour {
                     m_bDashing = false;
                     // boxcollider is no longer a trigger
 
-            //        gameObject.GetComponent<BoxCollider>().isTrigger = false;
                     // returns players constraints back to normal
                     rb.constraints =  RigidbodyConstraints.FreezePositionZ |
               RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
               RigidbodyConstraints.FreezeRotationZ; ;
                     transform.Rotate(0, 0, 0);
-
-
                 }
-
-            }
-   
+            }  
         //JUMPING
         if (m_bGrounded == true)
         {
-            //Then do jump code
-            // if (Input.GetAxis("Jump") > 0.1f) // Add jump test for control 
+            // when the 'A' button the xbox360 Control is pressed 
             if (XCI.GetButton(XboxButton.A))
             {
-                //m_fVerticalJumpForce = 5.0f;
+                // add jumpforce to players Y position 
                 Vector3 Jump = new Vector3(0, m_fVerticalJumpForce, 0);
+                // gives the player a more respoinsive jump with Forcemode.Impulse
                 transform.GetComponent<Rigidbody>().AddForce(Jump, ForceMode.Impulse);
+                // jump is disabled when in the air
                 m_bGrounded = false;
             }
         }
 
     }
-
-    //when the player collides with an object with the tag "Ground"
-    //The player can jump
+    //----------------------------------------------------------------------------------------------------
+    // OnCollisionStay is called when the player is colliding with an object, when this is called the player
+    // can jump 
+    //----------------------------------------------------------------------------------------------------
     private void OnCollisionStay(Collision collision)
     {
+        // if the player is collided with an object with the tagged 'Ground' the player can jump  
         if (collision.gameObject.tag == "Ground")
         {
             m_bGrounded = true;
         }
-        //turn on m_bGrounded   
     }
 }
             

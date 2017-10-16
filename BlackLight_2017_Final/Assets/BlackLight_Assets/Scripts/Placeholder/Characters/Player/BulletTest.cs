@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletTest : MonoBehaviour {
+    //----------------------------------------------------------------------------------------------------
+    // Sets up references to other objects
+    //----------------------------------------------------------------------------------------------------  
     private float spawn_time = 5;
     private float spawn_timer;
     public float Speed = 1.0f; 
@@ -11,21 +14,24 @@ public class BulletTest : MonoBehaviour {
     Rigidbody rb;
     Vector3 MoveDirection;
 
+    //----------------------------------------------------------------------------------------------------
     // Use this for initialization
-    void Start () {
-        spawn_timer = spawn_time;
+    //----------------------------------------------------------------------------------------------------     
+    void Start ()
+    {
+        // spawns bullet from the gameobject tagged "stungun" 
+    spawn_timer = spawn_time;
         rb = GetComponent<Rigidbody>();
         StunGun = GameObject.FindGameObjectWithTag("StunGun");
-      ///MoveDirection = StunGun.transform.LookAt();
-
         MoveDirection = StunGun.transform.right;
     }
-	
-	// Update is called once per frame
-	void Update () {
+    //----------------------------------------------------------------------------------------------------
+    // Update is called once per frame,this update adds force to the bullet 
+    //----------------------------------------------------------------------------------------------------
+    void Update ()
+    {
         spawn_timer = spawn_time;
 
-        rb.AddForce(MoveDirection * Speed);
-        	
+        rb.AddForce(MoveDirection * Speed);      	
 	}
 }
