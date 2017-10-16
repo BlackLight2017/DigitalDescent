@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
     public Animation Dash;
     public Animation SwingWeapon;
     public float DownForce;
+    
 
     public Image DashDisplay; 
 
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
     }
 
     //----------------------------------------------------------------------------------------------------
@@ -53,16 +55,25 @@ public class PlayerController : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     void FixedUpdate()
     {
+
+        m_fCurrentDashCount = m_fCurrentDashCount + 0;
+
+        DashDisplay.fillAmount = m_fCurrentDashCount;
         // if the timer is on dash cooldown counts down 
         if (timer == true)
         {
             m_fDashCooldown -= Time.deltaTime;
+            float DashFill = m_fDashCooldown;
+            DashFill = DashFill / 2;
+            DashDisplay.fillAmount = DashFill;
         }
+ 
         // if the dashcooldown is less or equal to zero add 1 to CurrentDashCount 
-       if (m_fDashCooldown <= 0)
+        if (m_fDashCooldown <= 0)
       {
-    
-          m_fCurrentDashCount = 1;          
+
+            DashDisplay.fillAmount = m_fCurrentDashCount; 
+            m_fCurrentDashCount = 1;          
             // if they're is more than one dash 
               if (m_fCurrentDashCount > 0)
               {
@@ -115,6 +126,7 @@ public class PlayerController : MonoBehaviour {
             rb.AddForce(Vector3.left * 2700);
             // currentdashcount is deducted by one giving the player no more dashes 
             m_fCurrentDashCount -= 1;
+
         }
         // if the right bumper of the xbox360 control is pressed and m_bDashing is false and there are more than one available dash         
         if (XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0)
@@ -123,7 +135,8 @@ public class PlayerController : MonoBehaviour {
             rb.AddForce(Vector3.right * 2700);
 
             m_fCurrentDashCount -= 1;
-        }      
+
+        }
         if (m_bDashing == true && m_fDashTimer > 0)
         {
            // takes 1 second per second from m_fDashTimer 
