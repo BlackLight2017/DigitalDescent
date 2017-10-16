@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     public Animation Jump;
     public Animation Dash;
     public Animation SwingWeapon;
+    public float DownForce;
 
     // how high the player can jump 
     public float m_fVerticalJumpForce;
@@ -100,7 +101,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         // adds gravity to the player to avoid the player being floaty 
-        rb.AddForce(Vector3.down * 10);
+        rb.AddForce(Vector3.down * DownForce);
       
         // if the left bumper of the xbox360 control is pressed and m_bDashing is false and there are more than one available dash         
         if (XCI.GetButton(XboxButton.LeftBumper) && m_bDashing == false && m_fCurrentDashCount > 0)

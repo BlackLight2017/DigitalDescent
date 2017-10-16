@@ -225,6 +225,7 @@ MonoBehaviour:
   f_Speed: 0
   f_Stunned: 0
   IsStunned: 0
+  Gun: {fileID: 1441691193457518}
 --- !u!114 &114443484525388332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,6 +244,9 @@ MonoBehaviour:
   Run: {fileID: 0}
   Attack: {fileID: 0}
   Die: {fileID: 0}
+  Body: {fileID: 0}
+  LeftArm: {fileID: 0}
+  RightArm: {fileID: 0}
 --- !u!114 &114711430545845424
 MonoBehaviour:
   m_ObjectHideFlags: 1

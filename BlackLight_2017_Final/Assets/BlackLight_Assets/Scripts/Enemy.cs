@@ -88,11 +88,13 @@ public class Enemy : MonoBehaviour {
             // Starts moving.
             nav.enabled = true;
             // Changes colour again.
-            Body.GetComponent<Renderer>().material.color = Color.black;
-			LeftArm.GetComponent<Renderer>().material.color = Color.black;
-			RightArm.GetComponent<Renderer>().material.color = Color.black;
-			// Resets stun timer.
-			f_Stunned += 3.0f;
+            
+            Body.GetComponent<Renderer>().material.color = new Color(0.18f,0.18f,0.18f);
+            LeftArm.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+            RightArm.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+
+            // Resets stun timer.
+            f_Stunned += 3.0f;
         }
         // If to far from player then stops moving and looks towards the player.
         if (dist > 15)

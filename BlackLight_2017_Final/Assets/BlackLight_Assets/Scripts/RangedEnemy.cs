@@ -21,6 +21,8 @@ public class RangedEnemy : MonoBehaviour {
     PlayerHealth PlayerHealth;
     PlayerController PlayerCon;
 	GameObject Player;
+    public GameObject Gun; 
+
 	float m_fTimer;
     float damping = 2;
 	float dist;
@@ -64,8 +66,10 @@ public class RangedEnemy : MonoBehaviour {
 			m_fDamage = 0;
 			// Changes colour to it being stunned.
 			GetComponent<Renderer>().material.color = Color.yellow;
-			// Counts down the stun timer.
-			f_Stunned -= Time.deltaTime;
+            Gun.GetComponent<Renderer>().material.color = Color.yellow;
+
+            // Counts down the stun timer.
+            f_Stunned -= Time.deltaTime;
         }
         // once the timer hits 0 speed is restored 
         if (f_Stunned <= 0)
@@ -76,10 +80,11 @@ public class RangedEnemy : MonoBehaviour {
 			m_fDamage = 10;
 			// Starts moving.
 			nav.enabled = true;
-			// Changes colour again.
-			GetComponent<Renderer>().material.color = Color.red;
-			// Resets stun timer.
-			f_Stunned += 3.0f;
+            // Changes colour again.
+            GetComponent<Renderer>().material.color = new Color(0.035f, 0.035f,0.035f);
+            Gun.GetComponent<Renderer>().material.color = new Color(0.035f, 0.035f, 0.035f);     
+            // Resets stun timer.
+            f_Stunned += 3.0f;
         }
 		// If to far from player or close then stops moving and looks towards the player.
 		if (dist < 5 || dist > 15)
