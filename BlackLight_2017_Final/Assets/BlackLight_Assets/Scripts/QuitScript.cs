@@ -9,7 +9,7 @@ public class QuitScript : MonoBehaviour {
 #if UNITY_EDITOR
 		UnityEditor.EditorApplication.isPlaying = false;
 #else
-		Applacation.Quit();
+		Application.Quit();
 #endif
 
 	}
