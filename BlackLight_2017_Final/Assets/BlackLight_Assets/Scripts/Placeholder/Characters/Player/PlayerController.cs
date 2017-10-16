@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using XboxCtrlrInput; 
+using XboxCtrlrInput;
+using UnityEngine.UI;
 
 using UnityEngine;
 
@@ -19,6 +20,8 @@ public class PlayerController : MonoBehaviour {
     public Animation SwingWeapon;
     public float DownForce;
 
+    public Image DashDisplay; 
+
     // how high the player can jump 
     public float m_fVerticalJumpForce;
     // how fast the player can move 
@@ -32,11 +35,11 @@ public class PlayerController : MonoBehaviour {
 
     public bool timer = true; 
     //cooldown for dash 
-    public float m_fDashCooldown = 5;
+    public float m_fDashCooldown = 2;
     // how many dashes the player has 
     public float m_fCurrentDashCount = 0;
 
-    //----------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------
     // Use this for initialization
     //----------------------------------------------------------------------------------------------------
     void Start()
@@ -65,7 +68,7 @@ public class PlayerController : MonoBehaviour {
               {
                   //Adds 5 seconds to dashcooldown
                   // Timer is turned off  
-                  m_fDashCooldown += 5.0f;
+                  m_fDashCooldown += 2.0f;
                    timer = false; 
               }      
              

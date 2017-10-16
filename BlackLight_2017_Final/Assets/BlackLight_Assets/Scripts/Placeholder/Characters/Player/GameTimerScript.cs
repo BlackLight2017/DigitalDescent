@@ -9,6 +9,7 @@ public class GameTimerScript : MonoBehaviour
     // Sets up references to other objects and creates variables
     //----------------------------------------------------------------------------------------------------
     public Text gameTimerText;
+    PlayerController Dashcount; 
     public Canvas gameOver;
     private SelectOnInput Select;
 
