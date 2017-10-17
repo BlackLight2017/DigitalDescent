@@ -33,7 +33,7 @@ public class GameOverManager : MonoBehaviour {
 			GameOver.enabled = true;
 			Select.enabled = true;
 		}
-		else if (GameTimerScript.m_bGameOver == false && EndAreaScript.m_bEndReached == false)
+		if (GameTimerScript.m_bGameOver == false && EndAreaScript.m_bEndReached == false)
 		{
 			GameOver.enabled = false;
 			Select.enabled = false;
