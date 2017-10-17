@@ -32938,7 +32938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTimerText: {fileID: 561423576}
-  gameTimer: 60
+  gameTimer: 40
   m_bGameOver: 0
 --- !u!4 &1568087479
 Transform:
@@ -33038,7 +33038,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh210744
+  m_Name: pb_Mesh-1978
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -41562,7 +41562,12 @@ Prefab:
     - target: {fileID: 114901736562914132, guid: 1927768d752ea4646a82cba3a50357b0,
         type: 2}
       propertyPath: fDamage
-      value: 100
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114901736562914132, guid: 1927768d752ea4646a82cba3a50357b0,
+        type: 2}
+      propertyPath: m_fAttackTime
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114426901206146538, guid: 1927768d752ea4646a82cba3a50357b0, type: 2}
