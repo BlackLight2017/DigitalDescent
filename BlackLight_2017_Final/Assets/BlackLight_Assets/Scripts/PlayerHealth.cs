@@ -32,8 +32,10 @@ public class PlayerHealth : MonoBehaviour {
     {
 		float fHealth = m_fHealth;
 		 fHealth = fHealth / 100.0f;
-		LeftHealthBar.fillAmount = fHealth;
-        RightHealthBar.fillAmount = fHealth;
+		if(LeftHealthBar)
+			LeftHealthBar.fillAmount = fHealth;
+		if (RightHealthBar)
+			RightHealthBar.fillAmount = fHealth;
     }
 
     void OnCollisionEnter(Collision col)

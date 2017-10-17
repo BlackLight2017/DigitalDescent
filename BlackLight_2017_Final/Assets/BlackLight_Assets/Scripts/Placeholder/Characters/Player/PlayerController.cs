@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour {
     public float m_fDashCooldown = 2;
     // how many dashes the player has 
     public float m_fCurrentDashCount = 0;
+	private bool m_bPaused = false;
 
     //---------------------------------------------------------------------------------------------------
     // Use this for initialization
@@ -57,22 +58,23 @@ public class PlayerController : MonoBehaviour {
     {
 
         m_fCurrentDashCount = m_fCurrentDashCount + 0;
-
-        DashDisplay.fillAmount = m_fCurrentDashCount;
+		if(DashDisplay)
+			DashDisplay.fillAmount = m_fCurrentDashCount;
         // if the timer is on dash cooldown counts down 
         if (timer == true)
         {
             m_fDashCooldown -= Time.deltaTime;
             float DashFill = m_fDashCooldown;
             DashFill = DashFill / 2;
-            DashDisplay.fillAmount = DashFill;
+			if(DashDisplay)
+				DashDisplay.fillAmount = DashFill;
         }
  
         // if the dashcooldown is less or equal to zero add 1 to CurrentDashCount 
         if (m_fDashCooldown <= 0)
       {
-
-            DashDisplay.fillAmount = m_fCurrentDashCount; 
+			if(DashDisplay)
+				DashDisplay.fillAmount = m_fCurrentDashCount; 
             m_fCurrentDashCount = 1;          
             // if they're is more than one dash 
               if (m_fCurrentDashCount > 0)
@@ -178,7 +180,9 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-    }
+		// Pause
+		
+	}
     //----------------------------------------------------------------------------------------------------
     // OnCollisionStay is called when the player is colliding with an object, when this is called the player
     // can jump 

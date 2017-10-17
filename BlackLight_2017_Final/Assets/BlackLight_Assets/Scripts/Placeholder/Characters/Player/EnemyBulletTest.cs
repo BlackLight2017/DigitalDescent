@@ -47,5 +47,13 @@ public class EnemyBulletTest : MonoBehaviour
         {
             Destroy(gameObject);
         }
+		if(other.gameObject.tag == "RangedEnemy" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Sword")
+		{
+
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
     }
 }

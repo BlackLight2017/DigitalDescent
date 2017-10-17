@@ -1160,6 +1160,7 @@ MonoBehaviour:
   target: {fileID: 477663056}
   smoothSpeed: 0.125
   offset: {x: 5, y: 1, z: -10}
+  SpeedChangeTime: 0
 --- !u!1 &1940046165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,8 +1194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d36628d7d53d5543961f090c37a6bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  End: {fileID: 365759400}
-  Endtrigger: {fileID: 0}
 --- !u!114 &1940046167
 MonoBehaviour:
   m_ObjectHideFlags: 0
