@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour {
     public float m_fDashCooldown = 2;
     // how many dashes the player has 
     public float m_fCurrentDashCount = 0;
+
+	public Canvas PauseMenu;
 	private bool m_bPaused = false;
 
     //---------------------------------------------------------------------------------------------------
@@ -47,7 +49,7 @@ public class PlayerController : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
+		PauseMenu.enabled = false;
     }
 
     //----------------------------------------------------------------------------------------------------
@@ -181,7 +183,11 @@ public class PlayerController : MonoBehaviour {
         }
 
 		// Pause
-		
+		if (XCI.GetButton(XboxButton.Start))
+		{
+			PauseMenu.enabled = true;
+			Time.timeScale = 0;
+		}
 	}
     //----------------------------------------------------------------------------------------------------
     // OnCollisionStay is called when the player is colliding with an object, when this is called the player
