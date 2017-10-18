@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameOverManager : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class GameOverManager : MonoBehaviour {
 	private SelectOnInput Select;
 	private EndArea EndAreaScript;
 	private GameTimerScript GameTimerScript;
+	public GameObject ReturnButton;
+	public EventSystem ES;
 
 	// Use this for initialization
 	void Start ()
@@ -26,16 +29,21 @@ public class GameOverManager : MonoBehaviour {
 		if(EndAreaScript.m_bEndReached == true)
 		{
 			GameOver.enabled = true;
+			ReturnButton.SetActive(true);
 			Select.enabled = true;
+			ES.firstSelectedGameObject = ReturnButton;
 		}
 		if(GameTimerScript.m_bGameOver == true)
 		{
 			GameOver.enabled = true;
+			ReturnButton.SetActive(true);
 			Select.enabled = true;
+			ES.firstSelectedGameObject = ReturnButton;
 		}
 		if (GameTimerScript.m_bGameOver == false && EndAreaScript.m_bEndReached == false)
 		{
 			GameOver.enabled = false;
+			ReturnButton.SetActive(false);
 			Select.enabled = false;
 		}
 	}

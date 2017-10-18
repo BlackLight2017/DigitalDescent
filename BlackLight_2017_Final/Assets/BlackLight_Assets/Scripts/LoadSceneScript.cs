@@ -10,5 +10,9 @@ public class LoadSceneScript : MonoBehaviour {
 	public void LoadByIndex(int SceneIndex)
 	{
 		SceneManager.LoadScene(SceneIndex);
+		if (Time.timeScale == 0)
+		{
+			Time.timeScale = 1;
+		}
 	}
 }

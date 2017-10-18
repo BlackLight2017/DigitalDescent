@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using XboxCtrlrInput;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 using UnityEngine;
 
@@ -41,16 +42,23 @@ public class PlayerController : MonoBehaviour {
     public float m_fCurrentDashCount = 0;
 
 	public Canvas PauseMenu;
-	private bool m_bPaused = false;
+	private SelectOnInput Select;
+	public GameObject Resume;
+	public GameObject Restart;
+	public GameObject Quit;
+	public EventSystem ES;
 
-    //---------------------------------------------------------------------------------------------------
-    // Use this for initialization
-    //----------------------------------------------------------------------------------------------------
-    void Start()
+	//---------------------------------------------------------------------------------------------------
+	// Use this for initialization
+	//----------------------------------------------------------------------------------------------------
+	void Start()
     {
         rb = GetComponent<Rigidbody>();
 		PauseMenu.enabled = false;
-    }
+		Time.timeScale = 1;
+		Select = PauseMenu.GetComponent<SelectOnInput>();
+		Select.enabled = false;
+	}
 
     //----------------------------------------------------------------------------------------------------
     // FixedUpdate is called once per frame, when the game load up the user wil be able to control the players 
@@ -185,8 +193,16 @@ public class PlayerController : MonoBehaviour {
 		// Pause
 		if (XCI.GetButton(XboxButton.Start))
 		{
-			PauseMenu.enabled = true;
-			Time.timeScale = 0;
+			if(Time.timeScale == 1)
+			{
+				Time.timeScale = 0;
+				PauseMenu.enabled = true;
+				Resume.SetActive(true);
+				Restart.SetActive(true);
+				Quit.SetActive(true);
+				Select.enabled = true;
+				ES.firstSelectedGameObject = Resume;
+			}
 		}
 	}
     //----------------------------------------------------------------------------------------------------
