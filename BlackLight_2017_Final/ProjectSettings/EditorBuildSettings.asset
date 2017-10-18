@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/BlackLight_Assets/Scenes/GreyBox_SandBox/JeremyTestScene.unity
     guid: 09bbbcb0cc49bd54cb2d85ababb12827
-  - enabled: 1
+  - enabled: 0
     path: Assets/BlackLight_Assets/Scenes/Alpha GreyBox/AlphaGreybox_01.unity
     guid: 7bf98cee98943dd468b967c6e4745af4
+  - enabled: 1
+    path: Assets/BlackLight_Assets/Scenes/GreyBox_SandBox/AlphaGreybox_Duplicate.unity
+    guid: 6078d8c61e798b74d9d3cfa69e68a590

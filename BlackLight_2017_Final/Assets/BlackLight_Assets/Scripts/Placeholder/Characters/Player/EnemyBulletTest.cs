@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyBulletTest : MonoBehaviour
 {
-    private float spawn_time = 5;
-    private float spawn_timer = 0;
-    public float Speed = 1.0f;
+    private float m_fspawn_time = 5;
+    private float m_fspawn_timer = 0;
+    public float m_fSpeed = 1.0f;
 
     GameObject Player;
     PlayerHealth PlayerScripts;
@@ -15,7 +15,7 @@ public class EnemyBulletTest : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //spawn_timer = spawn_time;
+        //m_fspawn_timer = spawn_time;
         Player = GameObject.FindGameObjectWithTag("Player");
         if(Player)
             PlayerScripts = Player.GetComponent<PlayerHealth>();
@@ -24,20 +24,20 @@ public class EnemyBulletTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //spawn_timer = spawn_time;
-        spawn_timer += Time.deltaTime;
+        //m_fspawn_timer = spawn_time;
+        m_fspawn_timer += Time.deltaTime;
         if(Player)
         {
-            if (spawn_timer >= 0 && spawn_timer <= 0.1 && !PlayerScripts.m_bIsDead)
+            if (m_fspawn_timer >= 0 && m_fspawn_timer <= 0.1 && !PlayerScripts.m_bIsDead)
             {
                 MoveDirection += Player.transform.position - transform.position;
                 MoveDirection.Normalize();
             }
-            if (spawn_timer >= 2)
+            if (m_fspawn_timer >= 2)
             {
                 Destroy(gameObject);
             }
-            transform.position += MoveDirection * Speed * Time.deltaTime;
+            transform.position += MoveDirection * m_fSpeed * Time.deltaTime;
         }
     }
 
@@ -47,7 +47,7 @@ public class EnemyBulletTest : MonoBehaviour
         {
             Destroy(gameObject);
         }
-		if(other.gameObject.tag == "RangedEnemy" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Sword")
+		if(other.gameObject.tag == "RangedEnemy" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Sword" || other.gameObject.tag == "Gun" || other.gameObject.tag == "EnemyStunGun")
 		{
 
 		}

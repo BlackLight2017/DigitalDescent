@@ -12,6 +12,9 @@ TagManager:
   - EnemyBullet
   - Regen
   - EnemyStunGun
+  - StunGun
+  - Sword
+  - Gun
   layers:
   - Default
   - TransparentFX

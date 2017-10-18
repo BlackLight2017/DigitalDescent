@@ -16,8 +16,8 @@ public class SwordTEST : MonoBehaviour
     // the amount of time until the sword can attack again
     public float m_fAttackTime = 1.0f;
 
-    private bool Attacking = false;
-    private bool RangedAttacking = false;
+    private bool m_bAttacking = false;
+    private bool m_bRangedAttacking = false;
 
     //----------------------------------------------------------------------------------------------------
     // FixedUpdate is called once per frame, this function allows the player to attack using the xboxcontroller.
@@ -30,7 +30,7 @@ public class SwordTEST : MonoBehaviour
         if (XCI.GetButton(XboxButton.X))
         {
             // when the attack time is zero the player can attack 
-            if (Attacking && m_fAttackTime <= 0)
+            if (m_bAttacking && m_fAttackTime <= 0)
             {
                 // enemy takes damage 
                 EnemyScript.TakeDamage(fDamage);
@@ -38,7 +38,7 @@ public class SwordTEST : MonoBehaviour
                 m_fAttackTime = 1;
             }
             // when the attack time is zero the player can attack 
-            if (RangedAttacking && m_fAttackTime <= 0)
+            if (m_bRangedAttacking && m_fAttackTime <= 0)
             {               
                 // enemy takes damage 
                 RangedEnemyScript.TakeDamage(fDamage);
@@ -62,14 +62,14 @@ public class SwordTEST : MonoBehaviour
             // if the enemies health is above 0 the player can still attack
             if (EnemyScript.m_fHealth > 0)
             {
-                Attacking = true;
+                m_bAttacking = true;
             }
             // else the player cannot attack the enemy
             else
-                Attacking = false;
+                m_bAttacking = false;
         }
         else
-            Attacking = false;
+            m_bAttacking = false;
 
         RangedEnemyScript = other.GetComponent<RangedEnemy>();
         if (RangedEnemyScript != null)
@@ -79,13 +79,13 @@ public class SwordTEST : MonoBehaviour
             // if the enemies health is above 0 the player can still attack
             if (RangedEnemyScript.m_fHealth > 0)
             {
-                RangedAttacking = true;
+                m_bRangedAttacking = true;
             }
             // else the player cannot attack the enemy
             else
-                RangedAttacking = false;
+                m_bRangedAttacking = false;
         }
         else
-            RangedAttacking = false;
+            m_bRangedAttacking = false;
     }
 }

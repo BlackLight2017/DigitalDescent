@@ -108,7 +108,7 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-  m_NavMeshData: {fileID: 23800000, guid: c7463849ec9827540a89d9d5bee327d5, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: cbd1b97d68aaf3841bb2cded4882aeae, type: 2}
 --- !u!43 &2933266
 Mesh:
   m_ObjectHideFlags: 0
@@ -8154,7 +8154,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-4076
+  m_Name: pb_Mesh-30986
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -29129,7 +29129,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-9080
+  m_Name: pb_Mesh-35930
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -32938,7 +32938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameTimerText: {fileID: 561423576}
-  gameTimer: 40
+  m_fgameTimer: 1800
   m_bGameOver: 0
 --- !u!4 &1568087479
 Transform:
@@ -46010,9 +46010,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1718642560}
-  smoothSpeed: 0.02
+  m_fsmoothSpeed: 0
   offset: {x: 4.5, y: 4, z: -11}
-  SpeedChangeTime: 0.15
+  m_fSpeedChangeTime: 0
 --- !u!81 &2133638558
 AudioListener:
   m_ObjectHideFlags: 0
@@ -46047,7 +46047,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.34007356, g: 0.5441177, b: 0.5272313, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

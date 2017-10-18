@@ -10,11 +10,8 @@ public class GameTimerScript : MonoBehaviour
     //----------------------------------------------------------------------------------------------------
     public Text gameTimerText;
     PlayerController Dashcount; 
-    //public Canvas gameOver;
-    //private SelectOnInput Select;
-
     // timer is set for 30 minutes
-    public float gameTimer = 1800;
+    public float m_fgameTimer = 1800;
     public bool m_bGameOver;
 
     //----------------------------------------------------------------------------------------------------
@@ -33,16 +30,16 @@ public class GameTimerScript : MonoBehaviour
     void Update()
     {
         // counts down the timer 
-        gameTimer -= Time.deltaTime;
+        m_fgameTimer -= Time.deltaTime;
         // caps the numbers at 60 for minutes and seconds so it looks like a timer
-        int seconds = (int)(gameTimer % 60);
-        int minutes = (int)(gameTimer / 60) % 60;
+        int seconds = (int)(m_fgameTimer % 60);
+        int minutes = (int)(m_fgameTimer / 60) % 60;
         // format of timer
         string timerString = string.Format("{0:00:}{1:00}", minutes, seconds);
-        // Gametimertext is going to display the timer
+        // m_fgameTimertext is going to display the timer
         gameTimerText.text = timerString;
 
-        if (gameTimer <= 0)
+        if (m_fgameTimer <= 0)
         {
             m_bGameOver = true;
             //Select.enabled = true;

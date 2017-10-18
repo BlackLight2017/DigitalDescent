@@ -11,10 +11,10 @@ public class StunGun : MonoBehaviour {
     // access to bullet spawn 
     public GameObject Bullet_Spawn;
     // how much time between shots 
-    public float spawn_time = 1;
+    public float m_fspawn_time = 1;
     private Rigidbody rb;
     // Timer for bullets being shot 
-    private float spawn_timer;
+    private float m_fspawn_timer;
     bool CanFire = false;
 
     //----------------------------------------------------------------------------------------------------
@@ -30,9 +30,9 @@ public class StunGun : MonoBehaviour {
     void Update () {
         // if canfire equals false the timer counts down and player cannot shoot 
         if (CanFire == false)
-            spawn_timer -= Time.deltaTime;
+            m_fspawn_timer -= Time.deltaTime;
         // if the timer is below 0 player can shoot again 
-        if (spawn_timer < 0)
+        if (m_fspawn_timer < 0)
         {
             CanFire = true;
         }
@@ -50,7 +50,7 @@ public class StunGun : MonoBehaviour {
     {
         if (CanFire == true)
         {        
-            spawn_timer = spawn_time;
+            m_fspawn_timer = m_fspawn_time;
             CanFire = false;
             // Instanciate a new Bullet Prefab
             float spawn_angle = Random.Range(0, 2 * Mathf.PI);

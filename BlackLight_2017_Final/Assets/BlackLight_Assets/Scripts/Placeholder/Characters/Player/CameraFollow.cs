@@ -6,9 +6,9 @@ public class CameraFollow : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     public Transform target;
 
-    public float smoothSpeed;
+    public float m_fsmoothSpeed;
     public Vector3 offset;
-    public float SpeedChangeTime;
+    public float m_fSpeedChangeTime;
     private float m_fTmier = 0;
 
     //----------------------------------------------------------------------------------------------------
@@ -20,16 +20,16 @@ public class CameraFollow : MonoBehaviour {
         // adds offse to camera thats targeted at the player 
         Vector3 desiredPosition = target.position + offset;
         // moves the camera with the position of the player and the offset of the camera giving it a smooth look 
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, m_fsmoothSpeed);
         transform.position = smoothedPosition;
-       // transform.position = new Vector3(smoothSpeed, transform.position.y, -10); 
+       // transform.position = new Vector3(m_fsmoothSpeed, transform.position.y, -10); 
         // when the left stick is tilted to the left it moves the camera to the left 
         if (XCI.GetAxis(XboxAxis.LeftStickX) < 0 )
         {
             m_fTmier += Time.deltaTime;
-            if(m_fTmier >= SpeedChangeTime)
+            if(m_fTmier >= m_fSpeedChangeTime)
             {
-                smoothSpeed = 0.105f;
+                m_fsmoothSpeed = 0.105f;
             }
             offset.x = -5;
         }
@@ -39,9 +39,9 @@ public class CameraFollow : MonoBehaviour {
         if (XCI.GetAxis(XboxAxis.LeftStickX) > 0)
         {
             m_fTmier += Time.deltaTime;
-            if (m_fTmier >= SpeedChangeTime)
+            if (m_fTmier >= m_fSpeedChangeTime)
             {
-                smoothSpeed = 0.105f;
+                m_fsmoothSpeed = 0.105f;
             }
             offset.x = 5;
         }
@@ -49,7 +49,7 @@ public class CameraFollow : MonoBehaviour {
         if(XCI.GetAxis(XboxAxis.LeftStickX) == 0)
         {
             m_fTmier = 0;
-            smoothSpeed = 0.09f;
+            m_fsmoothSpeed = 0.09f;
         }
 
     }

@@ -6,9 +6,9 @@ public class BulletTest : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     // Sets up references to other objects
     //----------------------------------------------------------------------------------------------------  
-    private float spawn_time = 5;
-    private float spawn_timer;
-    public float Speed = 1.0f; 
+    private float m_fspawn_time = 5;
+    private float m_fspawn_timer;
+    public float m_fSpeed = 1.0f; 
 
     public GameObject StunGun;
     Rigidbody rb;
@@ -20,7 +20,7 @@ public class BulletTest : MonoBehaviour {
     void Start ()
     {
         // spawns bullet from the gameobject tagged "stungun" 
-    spawn_timer = spawn_time;
+    m_fspawn_timer = m_fspawn_time;
         rb = GetComponent<Rigidbody>();
         StunGun = GameObject.FindGameObjectWithTag("StunGun");
         MoveDirection = StunGun.transform.right;
@@ -30,8 +30,8 @@ public class BulletTest : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     void Update ()
     {
-        spawn_timer = spawn_time;
+        m_fspawn_timer = m_fspawn_time;
 
-        rb.AddForce(MoveDirection * Speed);      	
+        rb.AddForce(MoveDirection * m_fSpeed);      	
 	}
 }
