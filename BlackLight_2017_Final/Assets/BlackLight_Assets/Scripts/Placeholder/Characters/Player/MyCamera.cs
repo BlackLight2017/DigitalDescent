@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MyCamera : MonoBehaviour {
-    public GameObject player;
 
-    private Vector3 offset;
+    public Vector3 targetpos; 
+    public static float viewX;
+    public static float viewY;
+    public GameObject player; 
+
+
     // Use this for initialization
     void Start () {
-        offset = transform.position - player.transform.position;
-
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update () {
-        transform.position = player.transform.position + offset;
+        viewX = gameObject.transform.position.x;
+        viewY = gameObject.transform.position.y;
+
+        targetpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+
 
     }
 }

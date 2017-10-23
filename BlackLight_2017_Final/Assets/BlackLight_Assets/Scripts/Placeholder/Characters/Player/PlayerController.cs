@@ -20,8 +20,7 @@ public class PlayerController : MonoBehaviour {
     public Animation Dash;
     public Animation SwingWeapon;
     public float DownForce;
-
-	public float MaxVel;
+    
 
     public Image DashDisplay; 
 
@@ -29,6 +28,8 @@ public class PlayerController : MonoBehaviour {
     public float m_fVerticalJumpForce;
     // how fast the player can move 
     public float m_fMovementSpeed;// = 10;
+    public float MaxVel;
+   
     private Rigidbody rb;
 
     // how long the dash lasts 
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 
     public bool timer = true; 
     //cooldown for dash 
-    public float m_fDashCooldown = 2;
+    public float m_fDashCooldown = 1;
     // how many dashes the player has 
     public float m_fCurrentDashCount = 0;
 
@@ -76,7 +77,7 @@ public class PlayerController : MonoBehaviour {
         {
             m_fDashCooldown -= Time.deltaTime;
             float DashFill = m_fDashCooldown;
-            DashFill = DashFill / 2;
+            DashFill = DashFill / 1;
 			if(DashDisplay)
 				DashDisplay.fillAmount = DashFill;
         }
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour {
               {
                   //Adds 5 seconds to dashcooldown
                   // Timer is turned off  
-                  m_fDashCooldown += 2.0f;
+                  m_fDashCooldown += 1.0f;
                    timer = false; 
               }      
              
@@ -131,7 +132,7 @@ public class PlayerController : MonoBehaviour {
         rb.AddForce(Vector3.down * DownForce);
       
         // if the left bumper of the xbox360 control is pressed and m_bDashing is false and there are more than one available dash         
-        if (XCI.GetButton(XboxButton.LeftBumper) && m_bDashing == false && m_fCurrentDashCount > 0)
+        if (XCI.GetButton(XboxButton.B) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) < 0)
         {
             // dashing is true 
             m_bDashing = true;
@@ -142,7 +143,7 @@ public class PlayerController : MonoBehaviour {
 
         }
         // if the right bumper of the xbox360 control is pressed and m_bDashing is false and there are more than one available dash         
-        if (XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0)
+        if (XCI.GetButton(XboxButton.B) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) > 0)
         {
             m_bDashing = true;
             rb.AddForce(Vector3.right * 2700);
@@ -190,6 +191,7 @@ public class PlayerController : MonoBehaviour {
                 m_bGrounded = false;
             }
         }
+
 		// Pause
 		if (XCI.GetButton(XboxButton.Start))
 		{
@@ -205,6 +207,7 @@ public class PlayerController : MonoBehaviour {
 				ES.firstSelectedGameObject = Resume;
 			}
 		}
+
 		// Stops the player from flying away of a ramp.
 		if (rb.velocity.y > MaxVel)
 		{

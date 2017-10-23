@@ -18,10 +18,13 @@ public class CameraFollow : MonoBehaviour {
     void FixedUpdate()
     {
         // adds offse to camera thats targeted at the player 
+       
         Vector3 desiredPosition = target.position + offset;
         // moves the camera with the position of the player and the offset of the camera giving it a smooth look 
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, m_fsmoothSpeed);
+
         transform.position = smoothedPosition;
+
        // transform.position = new Vector3(m_fsmoothSpeed, transform.position.y, -10); 
         // when the left stick is tilted to the left it moves the camera to the left 
         if (XCI.GetAxis(XboxAxis.LeftStickX) < 0 )
@@ -31,7 +34,7 @@ public class CameraFollow : MonoBehaviour {
             {
                 m_fsmoothSpeed = 0.06f;
             }
-            offset.x = -5;
+            offset.x = -7;
         }
    
      
@@ -43,14 +46,16 @@ public class CameraFollow : MonoBehaviour {
             {
                 m_fsmoothSpeed = 0.06f;
             }
-            offset.x = 5;
+            offset.x = 7;
         }
         // when the left stick isnt being used the camera is set to the default position 
         if(XCI.GetAxis(XboxAxis.LeftStickX) == 0)
         {
             m_fTmier = 0;
-            m_fsmoothSpeed = 0.02f;
+            m_fsmoothSpeed = 0.04f;
+
         }
+
 
     }
 }
