@@ -51,7 +51,7 @@ public class SwordTEST : MonoBehaviour
     // OnTriggerEnter checks if the player is collided with another gameobject, if enemies exist in the game
     // the player can collide and do damage to the enemies. 
     //----------------------------------------------------------------------------------------------------
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         // checks if colliding object has an enemy script or ranged enemyscript
         EnemyScript = other.GetComponent<Enemy>();

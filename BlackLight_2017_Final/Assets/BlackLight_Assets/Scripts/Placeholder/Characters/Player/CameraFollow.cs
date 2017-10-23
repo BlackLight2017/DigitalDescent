@@ -29,7 +29,7 @@ public class CameraFollow : MonoBehaviour {
             m_fTmier += Time.deltaTime;
             if(m_fTmier >= m_fSpeedChangeTime)
             {
-                m_fsmoothSpeed = 0.105f;
+                m_fsmoothSpeed = 0.06f;
             }
             offset.x = -5;
         }
@@ -41,7 +41,7 @@ public class CameraFollow : MonoBehaviour {
             m_fTmier += Time.deltaTime;
             if (m_fTmier >= m_fSpeedChangeTime)
             {
-                m_fsmoothSpeed = 0.105f;
+                m_fsmoothSpeed = 0.06f;
             }
             offset.x = 5;
         }
@@ -49,7 +49,7 @@ public class CameraFollow : MonoBehaviour {
         if(XCI.GetAxis(XboxAxis.LeftStickX) == 0)
         {
             m_fTmier = 0;
-            m_fsmoothSpeed = 0.09f;
+            m_fsmoothSpeed = 0.02f;
         }
 
     }

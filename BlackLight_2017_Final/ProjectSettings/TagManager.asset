@@ -15,6 +15,7 @@ TagManager:
   - StunGun
   - Sword
   - Gun
+  - Door
   layers:
   - Default
   - TransparentFX

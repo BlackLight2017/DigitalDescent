@@ -9,11 +9,12 @@ public class GameTimerScript : MonoBehaviour
     // Sets up references to other objects and creates variables
     //----------------------------------------------------------------------------------------------------
     public Text gameTimerText;
+    public Text HighScore;
     PlayerController Dashcount; 
     // timer is set for 30 minutes
     public float m_fgameTimer = 1800;
     public bool m_bGameOver;
-
+    public string timerString; 
     //----------------------------------------------------------------------------------------------------
     // Use this for initialization
     //----------------------------------------------------------------------------------------------------
@@ -21,6 +22,10 @@ public class GameTimerScript : MonoBehaviour
     {
         //gameOver.enabled = false;
         m_bGameOver = false;
+        // HighScore.text = "Highscore : " + PlayerPrefs.GetString(timerString).ToString();
+        // Gets the highscore 
+        HighScore.text = PlayerPrefs.GetString("HighScores");
+        
         //Select = gameOver.GetComponent<SelectOnInput>();
     }
     //----------------------------------------------------------------------------------------------------
@@ -35,9 +40,20 @@ public class GameTimerScript : MonoBehaviour
         int seconds = (int)(m_fgameTimer % 60);
         int minutes = (int)(m_fgameTimer / 60) % 60;
         // format of timer
-        string timerString = string.Format("{0:00:}{1:00}", minutes, seconds);
+        timerString = string.Format("{0:00:}{1:00}", minutes, seconds);
         // m_fgameTimertext is going to display the timer
         gameTimerText.text = timerString;
+
+        //displays the new time
+
+        PlayerPrefs.SetString("HighScores", timerString);
+
+
+        //if (PlayerPrefs.SetString("HighScores", timerString) >= PlayerPrefs.GetString("HighScores"))
+        //{
+        //    PlayerPrefs.SetString("HighScores", timerString);
+        //
+        //}
 
         if (m_fgameTimer <= 0)
         {
