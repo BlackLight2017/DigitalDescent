@@ -1284,7 +1284,6 @@ GameObject:
   - component: {fileID: 1181166390}
   - component: {fileID: 1181166392}
   - component: {fileID: 1181166391}
-  - component: {fileID: 1181166393}
   - component: {fileID: 1181166395}
   m_Layer: 5
   m_Name: MenuPanel
@@ -1348,19 +1347,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1181166389}
---- !u!114 &1181166393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1181166389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19d906c3f31e0cb4eab7f644e1237863, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EventSystem: {fileID: 969073354}
-  SelectedObject: {fileID: 1163461124}
 --- !u!114 &1181166395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,7 +1523,6 @@ GameObject:
   - component: {fileID: 1396996221}
   - component: {fileID: 1396996223}
   - component: {fileID: 1396996222}
-  - component: {fileID: 1396996225}
   - component: {fileID: 1396996224}
   m_Layer: 5
   m_Name: AudioPanel
@@ -1612,19 +1597,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ES: {fileID: 969073354}
---- !u!114 &1396996225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1396996220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19d906c3f31e0cb4eab7f644e1237863, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EventSystem: {fileID: 969073354}
-  SelectedObject: {fileID: 1163461124}
 --- !u!1 &1401425174
 GameObject:
   m_ObjectHideFlags: 0

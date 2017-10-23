@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
-
-    public float m_fHealth;
+	//----------------------------------------------------------------------------------------------------
+	// Sets up references to other objects and variables.
+	//----------------------------------------------------------------------------------------------------
+	public float m_fHealth;
     public float m_fDamage;
     public bool m_bIsDead = false;
     GameObject RangedEnemy;
@@ -15,19 +17,20 @@ public class PlayerHealth : MonoBehaviour {
     public Image RightHealthBar;
     private PlayerController playercon;
 
-    // Use this for initialization
-    void Awake ()
+	//----------------------------------------------------------------------------------------------------
+	// Use this for initialization.
+	//----------------------------------------------------------------------------------------------------
+	void Awake ()
     {
-
         RangedEnemy = GameObject.FindGameObjectWithTag("RangedEnemy");
         if(RangedEnemy)
             RangedEnemyScript = RangedEnemy.GetComponent<RangedEnemy>();
 		playercon = GetComponent<PlayerController> ();		
-        //Enemy = GameObject.FindGameObjectWithTag("Enemy");
-        //EnemyScript = Enemy.GetComponent<Enemy>();
     }
-	
-	// Update is called once per frame
+
+	//----------------------------------------------------------------------------------------------------
+	// Update is called once per frame,
+	//----------------------------------------------------------------------------------------------------
 	void Update ()
     {
 		float fHealth = m_fHealth;
@@ -38,11 +41,16 @@ public class PlayerHealth : MonoBehaviour {
 			RightHealthBar.fillAmount = fHealth;
     }
 
-    private void OnTriggerEnter(Collider col)
+	//----------------------------------------------------------------------------------------------------
+	// OnTriggerEnter is called every time it is colliding with another object,
+	//
+	// Param: 
+	//      Other: Is the object that is being collided with.
+	//----------------------------------------------------------------------------------------------------
+	private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "EnemyBullet" && playercon.m_bDashing == false)
         {
-            //RangedEnemyScript.DoDamage();
             TakeDamage(RangedEnemyScript.m_fDamage);
         }
         if (col.gameObject.tag == "Regen" && m_fHealth < 90)
@@ -51,8 +59,14 @@ public class PlayerHealth : MonoBehaviour {
             Destroy(col.gameObject); 
         }
     }
-	
-    public void TakeDamage(float fDamage)
+
+	//----------------------------------------------------------------------------------------------------
+	// Does damage to the enemy if it is not dead.
+	// 
+	// Param: 
+	//      fDamage: Is the amount of damage to be dealt to the Player.
+	//----------------------------------------------------------------------------------------------------
+	public void TakeDamage(float fDamage)
     {
         if (m_bIsDead)
             return;
@@ -63,12 +77,14 @@ public class PlayerHealth : MonoBehaviour {
             Death();
     }
 
-    private void Death()
+	//----------------------------------------------------------------------------------------------------
+	// Sets Player active to false and makes the Player dissapear and restart the level.
+	//----------------------------------------------------------------------------------------------------
+	private void Death()
     {
 		m_bIsDead = true;
 		Debug.Log("PlayerDead");
         gameObject.SetActive(false);
 		SceneManager.LoadScene(1);
-        //Destroy(gameObject);
     }
 }

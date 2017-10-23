@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class GameOverManager : MonoBehaviour {
-
+	//----------------------------------------------------------------------------------------------------
+	// Sets up references to other objects.
+	//----------------------------------------------------------------------------------------------------
 	public Canvas GameOver;
 	public GameObject EndArea;
 	public GameObject TimerGameObject;
@@ -14,7 +16,9 @@ public class GameOverManager : MonoBehaviour {
 	public GameObject ReturnButton;
 	public EventSystem ES;
 
-	// Use this for initialization
+	//----------------------------------------------------------------------------------------------------
+	// Use this for initialization.
+	//----------------------------------------------------------------------------------------------------
 	void Start ()
 	{
 		EndAreaScript = EndArea.GetComponent<EndArea>();
@@ -22,8 +26,11 @@ public class GameOverManager : MonoBehaviour {
 		Select = GameOver.GetComponent<SelectOnInput>();
 		Select.enabled = false;
 	}
-	
-	// Update is called once per frame
+
+	//----------------------------------------------------------------------------------------------------
+	// Update is called once per frame, Makes the end menu pop up and makes sure the player cant use the
+	// menu in the game.
+	//----------------------------------------------------------------------------------------------------
 	void Update ()
 	{
 		if(EndAreaScript.m_bEndReached == true)

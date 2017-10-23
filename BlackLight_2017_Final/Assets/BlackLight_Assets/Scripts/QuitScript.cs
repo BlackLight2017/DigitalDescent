@@ -8,18 +8,10 @@ public class QuitScript : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	public void Quit()
 	{
-
-		if (Time.timeScale == 0)
-		{
-			Time.timeScale = 1;
-		}
-
 #if UNITY_EDITOR
 		UnityEditor.EditorApplication.isPlaying = false;
 #else
 		Application.Quit();
 #endif
-
 	}
-
 }
