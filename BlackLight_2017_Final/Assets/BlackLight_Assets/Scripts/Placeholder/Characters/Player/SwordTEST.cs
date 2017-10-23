@@ -88,4 +88,12 @@ public class SwordTEST : MonoBehaviour
         else
             m_bRangedAttacking = false;
     }
+
+	private void OnTriggerExit()
+	{
+		m_bAttacking = false;
+		m_bRangedAttacking = false;
+		EnemyScript = null;
+		RangedEnemyScript = null;
+	}
 }

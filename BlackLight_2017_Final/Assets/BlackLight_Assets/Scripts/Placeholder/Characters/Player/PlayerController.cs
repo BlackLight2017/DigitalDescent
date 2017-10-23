@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour {
     public Animation Dash;
     public Animation SwingWeapon;
     public float DownForce;
-    
+
+	public float MaxVel;
 
     public Image DashDisplay; 
 
@@ -189,7 +190,6 @@ public class PlayerController : MonoBehaviour {
                 m_bGrounded = false;
             }
         }
-
 		// Pause
 		if (XCI.GetButton(XboxButton.Start))
 		{
@@ -203,6 +203,10 @@ public class PlayerController : MonoBehaviour {
 				Select.enabled = true;
 				ES.firstSelectedGameObject = Resume;
 			}
+		}
+		if (rb.velocity.y > MaxVel)
+		{
+			rb.velocity = new Vector3 (0,MaxVel,0);
 		}
 	}
     //----------------------------------------------------------------------------------------------------

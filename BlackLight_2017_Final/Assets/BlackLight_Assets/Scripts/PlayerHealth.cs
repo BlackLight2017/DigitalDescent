@@ -38,19 +38,6 @@ public class PlayerHealth : MonoBehaviour {
 			RightHealthBar.fillAmount = fHealth;
     }
 
-    void OnCollisionEnter(Collision col)
-    {
-		//Enemy EnemyScript = col.collider.GetComponent<Enemy>();
-		//if (EnemyScript != null)
-		//{
-		//	Debug.Log("HitEnemy");
-		//	if (EnemyScript.m_fHealth > 0)
-		//	{
-		//		EnemyScript.TakeDamage(m_fDamage);
-		//	}
-		//}
-	}
-
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "EnemyBullet" && playercon.m_bDashing == false)
@@ -58,15 +45,6 @@ public class PlayerHealth : MonoBehaviour {
             //RangedEnemyScript.DoDamage();
             TakeDamage(RangedEnemyScript.m_fDamage);
         }
-        //Enemy EnemyScript = col.GetComponent<Enemy>();
-        //if (EnemyScript != null)
-        //{
-        //	Debug.Log("HitEnemy");
-        //	if (EnemyScript.m_fHealth > 0)
-        //	{
-        //		EnemyScript.TakeDamage(m_fDamage);
-        //	}
-        //}
         if (col.gameObject.tag == "Regen" && m_fHealth < 90)
         {
             m_fHealth += 10;
