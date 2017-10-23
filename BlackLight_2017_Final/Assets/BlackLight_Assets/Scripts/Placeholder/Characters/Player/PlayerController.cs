@@ -193,6 +193,7 @@ public class PlayerController : MonoBehaviour {
 		// Pause
 		if (XCI.GetButton(XboxButton.Start))
 		{
+			// Sets the pause menu true.
 			if(Time.timeScale == 1)
 			{
 				Time.timeScale = 0;
@@ -204,6 +205,7 @@ public class PlayerController : MonoBehaviour {
 				ES.firstSelectedGameObject = Resume;
 			}
 		}
+		// Stops the player from flying away of a ramp.
 		if (rb.velocity.y > MaxVel)
 		{
 			rb.velocity = new Vector3 (0,MaxVel,0);
