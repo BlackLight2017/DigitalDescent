@@ -16,6 +16,7 @@ TagManager:
   - Sword
   - Gun
   - Door
+  - EndArea
   layers:
   - Default
   - TransparentFX

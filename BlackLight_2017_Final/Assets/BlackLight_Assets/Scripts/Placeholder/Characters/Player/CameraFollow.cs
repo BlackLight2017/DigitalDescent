@@ -19,7 +19,7 @@ public class CameraFollow : MonoBehaviour {
     {
         // adds offse to camera thats targeted at the player 
        
-        Vector3 desiredPosition = target.position + offset;
+        Vector3 desiredPosition = target.position + offset ;
         // moves the camera with the position of the player and the offset of the camera giving it a smooth look 
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, m_fsmoothSpeed);
 
@@ -53,9 +53,7 @@ public class CameraFollow : MonoBehaviour {
         {
             m_fTmier = 0;
             m_fsmoothSpeed = 0.04f;
-
         }
-
 
     }
 }

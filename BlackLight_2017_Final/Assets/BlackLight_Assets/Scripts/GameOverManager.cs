@@ -25,6 +25,7 @@ public class GameOverManager : MonoBehaviour {
 		GameTimerScript = TimerGameObject.GetComponent<GameTimerScript>();
 		//Select = GameOver.GetComponent<SelectOnInput>();
 		//Select.enabled = false;
+        
 	}
 
 	//----------------------------------------------------------------------------------------------------
@@ -35,13 +36,14 @@ public class GameOverManager : MonoBehaviour {
 	{
 		if(EndAreaScript.m_bEndReached == true)
 		{
-			GameOver.enabled = true;
-			ReturnButton.SetActive(true);
+            GameOver.enabled = true;
+            ReturnButton.SetActive(true);
 			//Select.enabled = true;
 			ES.firstSelectedGameObject = ReturnButton;
 		}
 		if(GameTimerScript.m_bGameOver == true)
 		{
+          
 			GameOver.enabled = true;
 			ReturnButton.SetActive(true);
 			//Select.enabled = true;

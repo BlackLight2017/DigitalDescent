@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using XboxCtrlrInput;
 
 public class GameTimerScript : MonoBehaviour
 {
@@ -9,11 +10,14 @@ public class GameTimerScript : MonoBehaviour
     // Sets up references to other objects and creates variables
     //----------------------------------------------------------------------------------------------------
     public Text gameTimerText;
+    public GameObject player; 
     public Text HighScore;
-    PlayerController Dashcount; 
+    public Text HighscoreSeconds; 
     // timer is set for 30 minutes
     public float m_fgameTimer = 1800;
     public bool m_bGameOver;
+    float seconds;
+    float minutes;
     public string timerString; 
     //----------------------------------------------------------------------------------------------------
     // Use this for initialization
@@ -24,8 +28,9 @@ public class GameTimerScript : MonoBehaviour
         m_bGameOver = false;
         // HighScore.text = "Highscore : " + PlayerPrefs.GetString(timerString).ToString();
         // Gets the highscore 
-        HighScore.text = PlayerPrefs.GetString("HighScores");
-        
+        HighScore.text = PlayerPrefs.GetFloat("HighScores").ToString();
+        HighscoreSeconds.text = PlayerPrefs.GetFloat("Seconds" ).ToString();
+
         //Select = gameOver.GetComponent<SelectOnInput>();
     }
     //----------------------------------------------------------------------------------------------------
@@ -36,25 +41,16 @@ public class GameTimerScript : MonoBehaviour
     {
         // counts down the timer 
         m_fgameTimer -= Time.deltaTime;
+
         // caps the numbers at 60 for minutes and seconds so it looks like a timer
-        int seconds = (int)(m_fgameTimer % 60);
-        int minutes = (int)(m_fgameTimer / 60) % 60;
+        seconds = (int)(m_fgameTimer % 60);
+        minutes = (int)(m_fgameTimer / 60) % 60;
         // format of timer
         timerString = string.Format("{0:00:}{1:00}", minutes, seconds);
         // m_fgameTimertext is going to display the timer
         gameTimerText.text = timerString;
 
-        //displays the new time
-
-        PlayerPrefs.SetString("HighScores", timerString);
-
-
-        //if (PlayerPrefs.SetString("HighScores", timerString) >= PlayerPrefs.GetString("HighScores"))
-        //{
-        //    PlayerPrefs.SetString("HighScores", timerString);
-        //
-        //}
-
+ /////////       PlayerPrefs.DeleteAll();
         if (m_fgameTimer <= 0)
         {
             m_bGameOver = true;
@@ -65,6 +61,27 @@ public class GameTimerScript : MonoBehaviour
         {
             //Select.enabled = false;
             m_bGameOver = false;
+        }
+    }
+    //----------------------------------------------------------------------------------------------------
+    // OnTriggerENeter is called everytime the player collided with the EndArea hitbox which will save the 
+    // time as the highscore. 
+    //----------------------------------------------------------------------------------------------------
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "EndArea")
+        {
+           
+            //displays the new time
+            if (minutes > PlayerPrefs.GetFloat("HighScores"))
+            {
+                PlayerPrefs.SetFloat("HighScores", minutes);
+            }
+
+            if (seconds > PlayerPrefs.GetFloat("Seconds"))
+            {
+                PlayerPrefs.SetFloat("Seconds", seconds);
+            }
         }
     }
 }

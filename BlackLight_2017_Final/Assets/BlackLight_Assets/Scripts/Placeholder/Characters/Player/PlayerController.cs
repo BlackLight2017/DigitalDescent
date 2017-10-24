@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     // Sets up references to other objects
     //----------------------------------------------------------------------------------------------------
-
+    public ParticleSystem particles; 
     // animations for the player that will be added later
     public Animation Idle;
     public Animation Walk;
@@ -33,13 +33,13 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody rb;
 
     // how long the dash lasts 
-    float m_fDashTimer = 0.4f;
+    float m_fDashTimer = 0.5f;
     bool m_bGrounded = true;
     public bool m_bDashing = false;
 
     public bool timer = true; 
     //cooldown for dash 
-    public float m_fDashCooldown = 1;
+    public float m_fDashCooldown = 1.35f;
     // how many dashes the player has 
     public float m_fCurrentDashCount = 0;
 
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour {
         {
             m_fDashCooldown -= Time.deltaTime;
             float DashFill = m_fDashCooldown;
-            DashFill = DashFill / 1;
+            DashFill = DashFill / 1.35f;
 			if(DashDisplay)
 				DashDisplay.fillAmount = DashFill;
         }
@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour {
               {
                   //Adds 5 seconds to dashcooldown
                   // Timer is turned off  
-                  m_fDashCooldown += 1.0f;
+                  m_fDashCooldown += 1.35f;
                    timer = false; 
               }      
              
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour {
             // dashing is true 
             m_bDashing = true;
             // force is added to the left of the player 
-            rb.AddForce(Vector3.left * 2700);
+            rb.AddForce(Vector3.left * 3200);
             // currentdashcount is deducted by one giving the player no more dashes 
             m_fCurrentDashCount -= 1;
 
@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour {
         if (XCI.GetButton(XboxButton.B) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) > 0)
         {
             m_bDashing = true;
-            rb.AddForce(Vector3.right * 2700);
+            rb.AddForce(Vector3.right * 3200);
 
             m_fCurrentDashCount -= 1;
 
@@ -168,10 +168,10 @@ public class PlayerController : MonoBehaviour {
                     m_fDashTimer += 0.4f;
                     // dashing is false ending the dash 
                     m_bDashing = false;
-                    // boxcollider is no longer a trigger
+                // boxcollider is no longer a trigger
 
-                    // returns players constraints back to normal
-                    rb.constraints =  RigidbodyConstraints.FreezePositionZ |
+                // returns players constraints back to normal
+                rb.constraints =  RigidbodyConstraints.FreezePositionZ |
               RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
               RigidbodyConstraints.FreezeRotationZ; ;
                     transform.Rotate(0, 0, 0);
