@@ -18,11 +18,11 @@ public class SelectOnInput : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		//if(Input.GetAxisRaw("Vertical") != 0 && ButtonSelected == false)
-		//{
-		//	EventSystem.SetSelectedGameObject(SelectedObject);
-		//	ButtonSelected = true;
-		//}
+		if(Input.GetAxisRaw("Vertical") != 0 && ButtonSelected == false)
+		{
+			EventSystem.SetSelectedGameObject(SelectedObject);
+			ButtonSelected = true;
+		}
 	}
 
 	private void OnDisable()
