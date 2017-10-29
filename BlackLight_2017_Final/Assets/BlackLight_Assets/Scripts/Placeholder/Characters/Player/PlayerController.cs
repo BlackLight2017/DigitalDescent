@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
 
     // how long the dash lasts 
     float m_fDashTimer = 0.5f;
-    bool m_bGrounded = true;
+    public bool m_bGrounded = true;
     public bool m_bDashing = false;
 
     public bool timer = true; 

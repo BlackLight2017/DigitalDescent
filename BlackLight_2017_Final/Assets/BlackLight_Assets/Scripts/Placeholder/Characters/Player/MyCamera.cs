@@ -24,7 +24,7 @@ public class MyCamera : MonoBehaviour
             m_fTmier += Time.deltaTime;
             if (m_fTmier >= m_fSpeedChangeTime)
             {
-                m_fsmoothSpeed = 0.056f;
+                m_fsmoothSpeed = 0.06f;
             }
             offset.x = -7;
         }
@@ -33,7 +33,7 @@ public class MyCamera : MonoBehaviour
             m_fTmier += Time.deltaTime;
             if (m_fTmier >= m_fSpeedChangeTime)
             {
-                m_fsmoothSpeed = 0.056f;
+                m_fsmoothSpeed = 0.06f;
             }
             offset.x = 7;
         }
