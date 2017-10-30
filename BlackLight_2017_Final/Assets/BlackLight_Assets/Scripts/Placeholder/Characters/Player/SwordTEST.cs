@@ -27,7 +27,7 @@ public class SwordTEST : MonoBehaviour
     {
         // the attacktime is deducted by delta time 
         m_fAttackTime -= Time.deltaTime;
-        if (XCI.GetButton(XboxButton.X) || Input.GetKey(KeyCode.K))
+        if (XCI.GetButton(XboxButton.X) || Input.GetKey(KeyCode.Mouse0))
         {
             // when the attack time is zero the player can attack 
             if (m_bAttacking && m_fAttackTime <= 0)
