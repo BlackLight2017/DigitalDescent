@@ -7769,8 +7769,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 322040176}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.48191708, y: 9.95, z: -0.09701647}
-  m_LocalScale: {x: 0.21195348, y: 19.454119, z: 0.9351874}
+  m_LocalPosition: {x: 0.012, y: 9.95, z: -0.09701647}
+  m_LocalScale: {x: 0.17582963, y: 19.454119, z: 0.9351874}
   m_Children: []
   m_Father: {fileID: 1762232614}
   m_RootOrder: 0
@@ -8644,7 +8644,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-33608
+  m_Name: pb_Mesh-9384
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -14963,7 +14963,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh39978
+  m_Name: pb_Mesh-8706
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -28639,7 +28639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1314283518
 Transform:
   m_ObjectHideFlags: 0
@@ -31459,7 +31459,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1645173041331556, guid: fd29412935e22c24596ec1472993a296, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd29412935e22c24596ec1472993a296, type: 2}
@@ -35521,7 +35521,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-3918
+  m_Name: pb_Mesh-4558
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -38516,8 +38516,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 18.41, z: 1}
-  m_Center: {x: 0, y: 9.03, z: 0}
+  m_Size: {x: 1, y: 1.66, z: 1}
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!33 &1762232613
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -38532,8 +38532,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1762232609}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.846, y: 0.93000007, z: -4.2}
-  m_LocalScale: {x: 3.7550943, y: 0.22842619, z: 3.9168618}
+  m_LocalPosition: {x: 7.35, y: 0.93000007, z: -4.2}
+  m_LocalScale: {x: 4.5265713, y: 0.22842619, z: 3.9168618}
   m_Children:
   - {fileID: 322040180}
   m_Father: {fileID: 0}
@@ -39509,7 +39509,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1474159468773194, guid: d2c213bf44f3b5541bb0149786533741, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2c213bf44f3b5541bb0149786533741, type: 2}
@@ -42544,12 +42544,12 @@ Prefab:
     - target: {fileID: 54372488374734766, guid: 1927768d752ea4646a82cba3a50357b0,
         type: 2}
       propertyPath: m_Mass
-      value: 5
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 114274855804830324, guid: 1927768d752ea4646a82cba3a50357b0,
         type: 2}
       propertyPath: DownForce
-      value: 35
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 114946563569514644, guid: 1927768d752ea4646a82cba3a50357b0,
         type: 2}
@@ -42559,12 +42559,12 @@ Prefab:
     - target: {fileID: 114274855804830324, guid: 1927768d752ea4646a82cba3a50357b0,
         type: 2}
       propertyPath: m_fVerticalJumpForce
-      value: 80
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 114274855804830324, guid: 1927768d752ea4646a82cba3a50357b0,
         type: 2}
       propertyPath: m_fMovementSpeed
-      value: 0.23
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 114274855804830324, guid: 1927768d752ea4646a82cba3a50357b0,
         type: 2}
@@ -45455,7 +45455,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 890400777
+  randomSeed: 1033505981
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -51002,7 +51002,6 @@ GameObject:
   - component: {fileID: 2133638560}
   - component: {fileID: 2133638559}
   - component: {fileID: 2133638558}
-  - component: {fileID: 2133638563}
   - component: {fileID: 2133638557}
   m_Layer: 0
   m_Name: Main Camera
@@ -51102,21 +51101,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
---- !u!114 &2133638563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2133638556}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df51a94a1a989ad4189c35c107000e60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 1718642560}
-  m_fsmoothSpeed: 3535
-  offset: {x: 4.5, y: 3, z: -10}
-  m_fSpeedChangeTime: 0
 --- !u!1001 &2143554275
 Prefab:
   m_ObjectHideFlags: 0

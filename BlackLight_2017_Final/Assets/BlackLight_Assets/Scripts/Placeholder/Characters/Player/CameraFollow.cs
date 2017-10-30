@@ -46,7 +46,7 @@ public class CameraFollow : MonoBehaviour {
             m_fTmier += Time.deltaTime;
             if(m_fTmier >= m_fSpeedChangeTime)
             {
-                m_fsmoothSpeed = 0.05f;
+                m_fsmoothSpeed = 0.045f;
             }
             offset.x = -7;
         }
@@ -58,7 +58,7 @@ public class CameraFollow : MonoBehaviour {
             m_fTmier += Time.deltaTime;
             if (m_fTmier >= m_fSpeedChangeTime)
             {
-                m_fsmoothSpeed = 0.05f;
+                m_fsmoothSpeed = 0.045f;
             }
             offset.x = 7;
         }
@@ -71,7 +71,7 @@ public class CameraFollow : MonoBehaviour {
             //    m_fsmoothSpeed = 0.1f;
             //}
             m_fTmier = 0;
-            m_fsmoothSpeed = 0.02f;
+            m_fsmoothSpeed = 0.01f;
         }
     }
 

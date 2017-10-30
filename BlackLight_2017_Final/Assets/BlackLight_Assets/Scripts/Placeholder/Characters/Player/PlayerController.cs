@@ -41,7 +41,8 @@ public class PlayerController : MonoBehaviour {
     //cooldown for dash 
     public float m_fDashCooldown = 1.35f;
     // how many dashes the player has 
-    public float m_fCurrentDashCount = 0;
+    public float m_fCurrentDashCount = 0.0f;
+  ////  public float RampUpTime = 0; 
 
 	public Canvas PauseMenu;
 	//private SelectOnInput Select;
@@ -118,22 +119,32 @@ public class PlayerController : MonoBehaviour {
             if (transform.eulerAngles.y == 270)
             {
                 transform.eulerAngles = new Vector3 (0, 90,0);
+              
             }
         }
         // when the left stick is tiled to the right it rotates the player -90 degrees (faces player to the right) 
         if (XCI.GetAxis(XboxAxis.LeftStickX) > 0)
         {
+      ////      RampUpTime += Time.deltaTime;
+
             if (transform.eulerAngles.y == 90)
             {
+
                 transform.eulerAngles = new Vector3(0, -90, 0);
+                
             }
+       ////    if (RampUpTime >= 1)
+       ////    {
+       ////        m_fMovementSpeed += 0.0004f;
+       ////    }
         }
 
         // adds gravity to the player to avoid the player being floaty 
         rb.AddForce(Vector3.down * DownForce);
       
         // if the left bumper of the xbox360 control is pressed and m_bDashing is false and there are more than one available dash         
-        if (XCI.GetButton(XboxButton.B) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) < 0)
+        if (XCI.GetButton(XboxButton.B) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) < 0
+            || XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) < 0)
         {
             // dashing is true 
             m_bDashing = true;
@@ -144,7 +155,8 @@ public class PlayerController : MonoBehaviour {
 
         }
         // if the right bumper of the xbox360 control is pressed and m_bDashing is false and there are more than one available dash         
-        if (XCI.GetButton(XboxButton.B) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) > 0)
+        if (XCI.GetButton(XboxButton.B) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) > 0
+            || XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) > 0)
         {
             m_bDashing = true;
             rb.AddForce(Vector3.right * 3200);
@@ -183,6 +195,15 @@ public class PlayerController : MonoBehaviour {
         {
             // when the 'A' button the xbox360 Control is pressed 
             if (XCI.GetButton(XboxButton.A))
+            {
+                // add jumpforce to players Y position 
+                Vector3 Jump = new Vector3(0, m_fVerticalJumpForce, 0);
+                // gives the player a more respoinsive jump with Forcemode.Impulse
+                transform.GetComponent<Rigidbody>().AddForce(Jump, ForceMode.Impulse);
+                // jump is disabled when in the air
+                m_bGrounded = false;
+            }
+            if (Input.GetKey(KeyCode.Space))
             {
                 // add jumpforce to players Y position 
                 Vector3 Jump = new Vector3(0, m_fVerticalJumpForce, 0);
