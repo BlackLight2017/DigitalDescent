@@ -10,7 +10,7 @@ public class GameOverManager : MonoBehaviour {
 	public Canvas GameOver;
 	public GameObject EndArea;
 	public GameObject TimerGameObject;
-	//private SelectOnInput Select;
+	private SelectOnInput Select;
 	private EndArea EndAreaScript;
 	private GameTimerScript GameTimerScript;
 	public GameObject ReturnButton;
@@ -23,8 +23,8 @@ public class GameOverManager : MonoBehaviour {
 	{
 		EndAreaScript = EndArea.GetComponent<EndArea>();
 		GameTimerScript = TimerGameObject.GetComponent<GameTimerScript>();
-		//Select = GameOver.GetComponent<SelectOnInput>();
-		//Select.enabled = false;
+		Select = GameOver.GetComponent<SelectOnInput>();
+		Select.enabled = false;
         
 	}
 
@@ -38,7 +38,7 @@ public class GameOverManager : MonoBehaviour {
 		{
             GameOver.enabled = true;
             ReturnButton.SetActive(true);
-			//Select.enabled = true;
+			Select.enabled = true;
 			ES.firstSelectedGameObject = ReturnButton;
 		}
 		if(GameTimerScript.m_bGameOver == true)
@@ -46,14 +46,14 @@ public class GameOverManager : MonoBehaviour {
           
 			GameOver.enabled = true;
 			ReturnButton.SetActive(true);
-			//Select.enabled = true;
+			Select.enabled = true;
 			ES.firstSelectedGameObject = ReturnButton;
 		}
 		if (GameTimerScript.m_bGameOver == false && EndAreaScript.m_bEndReached == false)
 		{
 			GameOver.enabled = false;
 			ReturnButton.SetActive(false);
-			//Select.enabled = false;
+			Select.enabled = false;
 		}
 	}
 }
