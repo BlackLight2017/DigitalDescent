@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     // Sets up references to other objects
     //----------------------------------------------------------------------------------------------------
-    public ParticleSystem particles; 
+///    public ParticleSystem particles; 
     // animations for the player that will be added later
     public Animation Idle;
     public Animation Walk;
@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour {
 	void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
 		PauseMenu.enabled = false;
 		Time.timeScale = 1;
 		//Select = PauseMenu.GetComponent<SelectOnInput>();
@@ -75,7 +76,7 @@ public class PlayerController : MonoBehaviour {
         // if the timer is on dash cooldown counts down 
         if (timer == true)
         {
-            m_fDashCooldown -= Time.deltaTime;
+            m_fDashCooldown += Time.deltaTime;
             float DashFill = m_fDashCooldown;
             DashFill = DashFill / 1.35f;
 			if(DashDisplay)
@@ -83,7 +84,7 @@ public class PlayerController : MonoBehaviour {
         }
  
         // if the dashcooldown is less or equal to zero add 1 to CurrentDashCount 
-        if (m_fDashCooldown <= 0)
+        if (m_fDashCooldown >= 1.35f)
       {
 			if(DashDisplay)
 				DashDisplay.fillAmount = m_fCurrentDashCount; 
@@ -93,7 +94,7 @@ public class PlayerController : MonoBehaviour {
               {
                   //Adds 5 seconds to dashcooldown
                   // Timer is turned off  
-                  m_fDashCooldown += 1.35f;
+                  m_fDashCooldown -= 1.35f;
                    timer = false; 
               }      
              
@@ -227,6 +228,8 @@ public class PlayerController : MonoBehaviour {
         }
       
     }
+  
+
 }
             
         
