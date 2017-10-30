@@ -37,12 +37,13 @@ public class PlayerController : MonoBehaviour {
     public bool m_bGrounded = true;
     public bool m_bDashing = false;
 
-    public bool timer = true; 
+    public bool timer = true;
+    public bool RampUp = true;  
     //cooldown for dash 
     public float m_fDashCooldown = 1.35f;
     // how many dashes the player has 
     public float m_fCurrentDashCount = 0.0f;
-  ////  public float RampUpTime = 0; 
+    public float RampUpTime = 0; 
 
 	public Canvas PauseMenu;
 	//private SelectOnInput Select;
@@ -116,29 +117,60 @@ public class PlayerController : MonoBehaviour {
         // when the left stick is tiled to the left it rotates the player 90 degrees (face playerto the left)
         if (XCI.GetAxis(XboxAxis.LeftStickX) < 0)
         {
+            if (RampUp == true)
+            {
+                RampUpTime += Time.deltaTime;
+                if (RampUpTime >= 1)
+                {
+                    m_fMovementSpeed += 0.00120f;
+                }
+            }
             if (transform.eulerAngles.y == 270)
             {
                 transform.eulerAngles = new Vector3 (0, 90,0);
               
             }
+            if (RampUpTime >= 3)
+            {
+                RampUp = false;
+
+
+            }
         }
         // when the left stick is tiled to the right it rotates the player -90 degrees (faces player to the right) 
         if (XCI.GetAxis(XboxAxis.LeftStickX) > 0)
         {
-      ////      RampUpTime += Time.deltaTime;
-
-            if (transform.eulerAngles.y == 90)
+            if (RampUp == true)
             {
-
-                transform.eulerAngles = new Vector3(0, -90, 0);
-                
+                RampUpTime += Time.deltaTime;
+                if (RampUpTime >= 1)
+                {
+                    m_fMovementSpeed += 0.00120f;
+                }
             }
-       ////    if (RampUpTime >= 1)
-       ////    {
-       ////        m_fMovementSpeed += 0.0004f;
-       ////    }
-        }
+                if (transform.eulerAngles.y == 90)
+                {
 
+                    transform.eulerAngles = new Vector3(0, -90, 0);
+
+                }        
+             
+                if (RampUpTime >= 3)
+                {
+                    RampUp = false;
+                      
+                       
+            }
+                
+
+        }
+        if (XCI.GetAxis(XboxAxis.LeftStickX) == 0)
+        {
+            m_fMovementSpeed = 0.17f;
+            RampUpTime = 0.0f;
+            RampUp = true;
+
+        }
         // adds gravity to the player to avoid the player being floaty 
         rb.AddForce(Vector3.down * DownForce);
       
