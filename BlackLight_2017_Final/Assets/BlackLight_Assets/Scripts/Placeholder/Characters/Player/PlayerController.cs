@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour {
     public float m_fVerticalJumpForce;
     // how fast the player can move 
     public float m_fMovementSpeed;// = 10;
+    public float m_fKeyboardMovementSpeed;// = 10;
+
     public float MaxVel;
    
     private Rigidbody rb;
@@ -110,19 +112,21 @@ public class PlayerController : MonoBehaviour {
         // Movement is controled by the xbox360 controller 
         // This input is for the left stick 
         float moveHorizontal = XCI.GetAxis(XboxAxis.LeftStickX);
- 
+        float m_fKeyboardMoveHorizontal = Input.GetAxis("Horizontal");
         // movement of the player 
         transform.position = new Vector3(transform.position.x + (moveHorizontal * m_fMovementSpeed), transform.position.y, transform.position.z);
-   
+        transform.position = new Vector3(transform.position.x + (m_fKeyboardMoveHorizontal * m_fKeyboardMovementSpeed), transform.position.y, transform.position.z);
+
         // when the left stick is tiled to the left it rotates the player 90 degrees (face playerto the left)
-        if (XCI.GetAxis(XboxAxis.LeftStickX) < 0)
+        if (XCI.GetAxis(XboxAxis.LeftStickX) < 0 || Input.GetKey(KeyCode.A))
         {
             if (RampUp == true)
             {
                 RampUpTime += Time.deltaTime;
                 if (RampUpTime >= 1)
                 {
-                    m_fMovementSpeed += 0.00120f;
+                    m_fMovementSpeed += 0.00015f;
+                    m_fKeyboardMovementSpeed += 0.00120f;
                 }
             }
             if (transform.eulerAngles.y == 270)
@@ -138,14 +142,16 @@ public class PlayerController : MonoBehaviour {
             }
         }
         // when the left stick is tiled to the right it rotates the player -90 degrees (faces player to the right) 
-        if (XCI.GetAxis(XboxAxis.LeftStickX) > 0)
+        if (XCI.GetAxis(XboxAxis.LeftStickX) > 0 || Input.GetKey(KeyCode.D))
         {
             if (RampUp == true)
             {
                 RampUpTime += Time.deltaTime;
                 if (RampUpTime >= 1)
                 {
-                    m_fMovementSpeed += 0.00120f;
+                    m_fMovementSpeed += 0.00015f;
+                    m_fKeyboardMovementSpeed += 0.00120f;
+
                 }
             }
                 if (transform.eulerAngles.y == 90)
@@ -157,26 +163,26 @@ public class PlayerController : MonoBehaviour {
              
                 if (RampUpTime >= 3)
                 {
-                    RampUp = false;
-                      
-                       
-            }
-                
-
+                    RampUp = false;                                            
+            }                
         }
-        if (XCI.GetAxis(XboxAxis.LeftStickX) == 0)
+       
+        if (XCI.GetAxis(XboxAxis.LeftStickX) == 0 && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
         {
-            m_fMovementSpeed = 0.17f;
+            m_fMovementSpeed = 0.005f;
+            m_fKeyboardMovementSpeed = 0.25f;
             RampUpTime = 0.0f;
             RampUp = true;
 
         }
+
         // adds gravity to the player to avoid the player being floaty 
         rb.AddForce(Vector3.down * DownForce);
       
         // if the left bumper of the xbox360 control is pressed and m_bDashing is false and there are more than one available dash         
         if (XCI.GetButton(XboxButton.B) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) < 0
-            || XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) < 0)
+            || XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) < 0
+            || Input.GetKey(KeyCode.LeftShift) && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.A))
         {
             // dashing is true 
             m_bDashing = true;
@@ -188,7 +194,8 @@ public class PlayerController : MonoBehaviour {
         }
         // if the right bumper of the xbox360 control is pressed and m_bDashing is false and there are more than one available dash         
         if (XCI.GetButton(XboxButton.B) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) > 0
-            || XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) > 0)
+            || XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) > 0
+            || Input.GetKey(KeyCode.LeftShift) && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.D))
         {
             m_bDashing = true;
             rb.AddForce(Vector3.right * 3200);

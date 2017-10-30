@@ -38,10 +38,10 @@ public class CameraFollow : MonoBehaviour {
 
         Vector3 smoothedPosition = new Vector3(posx, posy, posz);
         transform.position = smoothedPosition;
-
+        
        // transform.position = new Vector3(m_fsmoothSpeed, transform.position.y, -10); 
         // when the left stick is tilted to the left it moves the camera to the left 
-        if (XCI.GetAxis(XboxAxis.LeftStickX) < 0 )
+        if (XCI.GetAxis(XboxAxis.LeftStickX) < 0 || Input.GetKey(KeyCode.A))
         {
             m_fTmier += Time.deltaTime;
             if(m_fTmier >= m_fSpeedChangeTime)
@@ -53,7 +53,7 @@ public class CameraFollow : MonoBehaviour {
    
      
         // when the left stick is tilted to the right it moves the camera to the right 
-        if (XCI.GetAxis(XboxAxis.LeftStickX) > 0)
+        if (XCI.GetAxis(XboxAxis.LeftStickX) > 0 || Input.GetKey(KeyCode.D))
         {
             m_fTmier += Time.deltaTime;
             if (m_fTmier >= m_fSpeedChangeTime)
@@ -63,7 +63,7 @@ public class CameraFollow : MonoBehaviour {
             offset.x = 7;
         }
         // when the left stick isnt being used the camera is set to the default position 
-        if(XCI.GetAxis(XboxAxis.LeftStickX) == 0)
+        if(XCI.GetAxis(XboxAxis.LeftStickX) == 0 && Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
         {
             //if (target.GetComponent<Rigidbody>().velocity.y < 0)
             //{
