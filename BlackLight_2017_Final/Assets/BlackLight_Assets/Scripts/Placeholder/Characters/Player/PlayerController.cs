@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
     public Animation Jump;
     public Animation Dash;
     public Animation SwingWeapon;
+    public AudioSource Dashing; 
     public float DownForce;
     
 
@@ -184,6 +185,7 @@ public class PlayerController : MonoBehaviour {
             || XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) < 0
             || Input.GetKey(KeyCode.LeftShift) && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.A))
         {
+            Dashing.Play(); 
             // dashing is true 
             m_bDashing = true;
             // force is added to the left of the player 
@@ -197,6 +199,8 @@ public class PlayerController : MonoBehaviour {
             || XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) > 0
             || Input.GetKey(KeyCode.LeftShift) && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.D))
         {
+            Dashing.Play();
+
             m_bDashing = true;
             rb.AddForce(Vector3.right * 3200);
 

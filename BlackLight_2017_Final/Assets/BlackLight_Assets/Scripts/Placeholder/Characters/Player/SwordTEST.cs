@@ -29,9 +29,12 @@ public class SwordTEST : MonoBehaviour
         m_fAttackTime -= Time.deltaTime;
         if (XCI.GetButton(XboxButton.X) || Input.GetKey(KeyCode.Mouse0))
         {
+
             // when the attack time is zero the player can attack 
             if (m_bAttacking && m_fAttackTime <= 0)
             {
+                swingsound.Play();
+
                 // enemy takes damage 
                 EnemyScript.TakeDamage(fDamage);
                 // one is added to attack time to reset timer
