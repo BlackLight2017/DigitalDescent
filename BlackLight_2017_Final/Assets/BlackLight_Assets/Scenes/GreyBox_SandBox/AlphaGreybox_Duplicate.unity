@@ -14469,6 +14469,23 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
+--- !u!1 &648076455 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1623618803008600, guid: 1927768d752ea4646a82cba3a50357b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1940358447}
+--- !u!4 &648076456 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4216700733445770, guid: 1927768d752ea4646a82cba3a50357b0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1940358447}
+--- !u!81 &648076461
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 648076455}
+  m_Enabled: 1
 --- !u!43 &650431148
 Mesh:
   m_ObjectHideFlags: 0
@@ -15634,6 +15651,11 @@ Prefab:
     - target: {fileID: 1575032728142804, guid: 29a749336b31b57408b557e75dd360d8, type: 2}
       propertyPath: m_Name
       value: HealthBox (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 65670484304657398, guid: 29a749336b31b57408b557e75dd360d8,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29a749336b31b57408b557e75dd360d8, type: 2}
@@ -26034,6 +26056,115 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
+--- !u!1 &1199888122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1199888123}
+  - component: {fileID: 1199888124}
+  m_Layer: 0
+  m_Name: Bladesound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1199888123
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1199888122}
+  m_LocalRotation: {x: -0.2174413, y: -0.47155917, z: -0.156405, w: 0.8401718}
+  m_LocalPosition: {x: -0.26532644, y: -0.36883467, z: 7.755447}
+  m_LocalScale: {x: 7.5501103, y: 7.90807, z: 4.9860744}
+  m_Children: []
+  m_Father: {fileID: 648076456}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1199888124
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1199888122}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 58887954b27857148a7d5d74db833e4f, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1001 &1204870349
 Prefab:
   m_ObjectHideFlags: 0
@@ -34659,7 +34790,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1591783430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42659,6 +42790,16 @@ Prefab:
         type: 2}
       propertyPath: m_fKeyboardMovementSpeed
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114901736562914132, guid: 1927768d752ea4646a82cba3a50357b0,
+        type: 2}
+      propertyPath: swingsound
+      value: 
+      objectReference: {fileID: 1199888124}
+    - target: {fileID: 114946563569514644, guid: 1927768d752ea4646a82cba3a50357b0,
+        type: 2}
+      propertyPath: HealthRegen
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114426901206146538, guid: 1927768d752ea4646a82cba3a50357b0, type: 2}

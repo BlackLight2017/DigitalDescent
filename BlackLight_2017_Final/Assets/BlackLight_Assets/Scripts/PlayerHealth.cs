@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	public float m_fHealth;
     public float m_fDamage;
+    public float HealthRegen; 
     public bool m_bIsDead = false;
     GameObject RangedEnemy;
     RangedEnemy RangedEnemyScript;
@@ -47,7 +48,7 @@ public class PlayerHealth : MonoBehaviour {
 	// Param: 
 	//      Other: Is the object that is being collided with.
 	//----------------------------------------------------------------------------------------------------
-	private void OnTriggerEnter(Collider col)
+	private void OnTriggerStay(Collider col)
     {
         if (col.gameObject.tag == "EnemyBullet" && playercon.m_bDashing == false)
         {
@@ -55,7 +56,7 @@ public class PlayerHealth : MonoBehaviour {
         }
         if (col.gameObject.tag == "Regen" && m_fHealth < 90)
         {
-            m_fHealth += 10;
+            m_fHealth += HealthRegen / 2;
             Destroy(col.gameObject); 
         }
     }
