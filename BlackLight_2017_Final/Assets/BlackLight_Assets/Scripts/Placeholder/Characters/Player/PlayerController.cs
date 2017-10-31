@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     // Sets up references to other objects
     //----------------------------------------------------------------------------------------------------
-///    public ParticleSystem particles; 
+    public ParticleSystem particles; 
     // animations for the player that will be added later
     public Animation Idle;
     public Animation Walk;
@@ -21,7 +21,13 @@ public class PlayerController : MonoBehaviour {
     public Animation SwingWeapon;
     public AudioSource Dashing; 
     public float DownForce;
-    
+    public GameObject LegR;
+    public GameObject LegL;
+    public GameObject ArmR;
+    public GameObject ArmL;
+    public GameObject Neck; 
+                      
+    Animator anim;
 
     public Image DashDisplay; 
 
@@ -61,7 +67,7 @@ public class PlayerController : MonoBehaviour {
 	void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
+        anim = GetComponent<Animator>();
 		PauseMenu.enabled = false;
 		Time.timeScale = 1;
 		//Select = PauseMenu.GetComponent<SelectOnInput>();
@@ -185,7 +191,8 @@ public class PlayerController : MonoBehaviour {
             || XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) < 0
             || Input.GetKey(KeyCode.LeftShift) && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.A))
         {
-            Dashing.Play(); 
+            Dashing.Play();
+            particles.Play(); 
             // dashing is true 
             m_bDashing = true;
             // force is added to the left of the player 
@@ -200,6 +207,13 @@ public class PlayerController : MonoBehaviour {
             || Input.GetKey(KeyCode.LeftShift) && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.D))
         {
             Dashing.Play();
+                        particles.Play();
+            GetComponent<Renderer>().material.color = Color.yellow;
+            LegL.GetComponent<Renderer>().material.color = Color.yellow;
+            LegR.GetComponent<Renderer>().material.color = Color.yellow;
+            ArmR.GetComponent<Renderer>().material.color = Color.yellow;
+            ArmL.GetComponent<Renderer>().material.color = Color.yellow;
+            Neck.GetComponent<Renderer>().material.color = Color.yellow;
 
             m_bDashing = true;
             rb.AddForce(Vector3.right * 3200);
@@ -224,6 +238,13 @@ public class PlayerController : MonoBehaviour {
                     m_fDashTimer += 0.4f;
                     // dashing is false ending the dash 
                     m_bDashing = false;
+
+                GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+                LegL.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+                LegR.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+                ArmR.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+                ArmL.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+                Neck.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
                 // boxcollider is no longer a trigger
 
                 // returns players constraints back to normal
