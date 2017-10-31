@@ -21,9 +21,8 @@ public class RangedEnemy : MonoBehaviour {
     PlayerHealth PlayerHealth;
     PlayerController PlayerCon;
 	GameObject Player;
-    public GameObject Gun; 
+    public GameObject Gun;
 
-	float m_fTimer;
     float damping = 2;
 	float dist;
 
@@ -32,7 +31,6 @@ public class RangedEnemy : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	void Awake()
 	{
-		m_fTimer = 0;
         f_Stunned = 3.0f;
         IsStunned = false;
 

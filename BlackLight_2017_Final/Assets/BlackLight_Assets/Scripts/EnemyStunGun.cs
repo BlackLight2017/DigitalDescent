@@ -22,7 +22,7 @@ public class EnemyStunGun : MonoBehaviour {
     private Transform Target;
     RangedEnemy RangedEnemy;
     GameObject rangedEnemy;
-
+	AudioSource Audio;
 	//----------------------------------------------------------------------------------------------------
 	// Use this for initialization
 	//----------------------------------------------------------------------------------------------------
@@ -32,7 +32,8 @@ public class EnemyStunGun : MonoBehaviour {
         Target = GameObject.FindGameObjectWithTag("Player").transform;
         rangedEnemy = GameObject.FindGameObjectWithTag("RangedEnemy");
         RangedEnemy = rangedEnemy.GetComponent<RangedEnemy>();
-    }
+		Audio = GetComponent<AudioSource>();
+	}
 
 	//----------------------------------------------------------------------------------------------------
 	// Update is called once per frame, shoots from a spawn when it is allowed.
@@ -101,6 +102,8 @@ public class EnemyStunGun : MonoBehaviour {
 			      
             // Bullet moves 
             Instantiate(Bullet_prefab, Bullet_Spawn.transform.position, Quaternion.identity);
+
+			Audio.Play();
         }
     }
 }

@@ -34,6 +34,9 @@ public class Enemy : MonoBehaviour {
 	public GameObject LeftArm;
 	public GameObject RightArm;
 
+	public AudioSource AttackSound;
+	public AudioSource DeathSound;
+
 	//----------------------------------------------------------------------------------------------------
 	// Use this for initialization
 	//----------------------------------------------------------------------------------------------------
@@ -51,7 +54,7 @@ public class Enemy : MonoBehaviour {
         PlayerCon = Player.GetComponent<PlayerController>();
         // Sets Timer to 0.
         m_fTimer = 0;
-		
+
 	}
 
     //----------------------------------------------------------------------------------------------------
@@ -61,74 +64,85 @@ public class Enemy : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     void Update ()
     {
-        // Dist equals the distance from the enemy to player.
-        dist = Vector3.Distance(transform.position, Target.position);
-        // Increases the time.
-        m_fTimer += Time.deltaTime;
-        if (IsStunned == true)
-        {
-            // Stops moving.
-            nav.enabled = false;
-            // Sets damage to 0.
-            m_fDamage = 0; 
-            // Changes colour to it being stunned.
-            Body.GetComponent<Renderer>().material.color = Color.yellow;
-			LeftArm.GetComponent<Renderer>().material.color = Color.yellow;
-			RightArm.GetComponent<Renderer>().material.color = Color.yellow;
-			// Counts down the stun timer.
-			f_Stunned -= Time.deltaTime;
-        }
-        // once the timer hits 0 speed is restored 
-        if (f_Stunned <= 0)
-        {
-            // Sets stunned to false.
-            IsStunned = false;
-            // Sets damage to 15.
-            m_fDamage = 15;
-            // Starts moving.
-            nav.enabled = true;
-            // Changes colour again.
-            
-            Body.GetComponent<Renderer>().material.color = new Color(0.18f,0.18f,0.18f);
-            LeftArm.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-            RightArm.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+		if (!m_bIsDead)
+		{
+			// Dist equals the distance from the enemy to player.
+			dist = Vector3.Distance(transform.position, Target.position);
+			// Increases the time.
+			m_fTimer += Time.deltaTime;
+			if (IsStunned == true)
+			{
+				// Stops moving.
+				nav.enabled = false;
+				// Sets damage to 0.
+				m_fDamage = 0;
+				// Changes colour to it being stunned.
+				Body.GetComponent<Renderer>().material.color = Color.yellow;
+				LeftArm.GetComponent<Renderer>().material.color = Color.yellow;
+				RightArm.GetComponent<Renderer>().material.color = Color.yellow;
+				// Counts down the stun timer.
+				f_Stunned -= Time.deltaTime;
+			}
+			// once the timer hits 0 speed is restored 
+			if (f_Stunned <= 0)
+			{
+				// Sets stunned to false.
+				IsStunned = false;
+				// Sets damage to 15.
+				m_fDamage = 15;
+				// Starts moving.
+				nav.enabled = true;
+				// Changes colour again.
 
-            // Resets stun timer.
-            f_Stunned += 3.0f;
-        }
-        // If to far from player then stops moving and looks towards the player.
-        if (dist > 15)
-        {
-            Vector3 LookPos = Target.position - transform.position;
-            LookPos.y = 0;
-            Quaternion Rotation = Quaternion.LookRotation(LookPos);
-            transform.rotation = Quaternion.Slerp(transform.rotation, Rotation, Time.deltaTime * damping);
-            nav.enabled = false;
-        }
-        else
-        {
-            // Continues moving.
-            nav.enabled = true;
-        }
-        // If player is dead do nothing.
-        if (PlayerHealth.m_bIsDead)
-		{
+				Body.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+				LeftArm.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+				RightArm.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+
+				// Resets stun timer.
+				f_Stunned += 3.0f;
+			}
+			// If to far from player then stops moving and looks towards the player.
+			if (dist > 15)
+			{
+				Vector3 LookPos = Target.position - transform.position;
+				LookPos.y = 0;
+				Quaternion Rotation = Quaternion.LookRotation(LookPos);
+				transform.rotation = Quaternion.Slerp(transform.rotation, Rotation, Time.deltaTime * damping);
+				nav.enabled = false;
+			}
+			else
+			{
+				// Continues moving.
+				nav.enabled = true;
+			}
+			// If player is dead do nothing.
+			if (PlayerHealth.m_bIsDead)
+			{
+			}
+			else
+			{
+				// Checks if they are on the NavMesh then move.
+				if (nav.isOnNavMesh)
+					nav.SetDestination(Target.position);
+				// If Attacking is true then attack every second.
+				if (Attacking)
+				{
+					if (m_fTimer >= 1 && PlayerCon.m_bDashing == false)
+					{
+						DoDamage();
+						m_fTimer = 0;
+					}
+				}
+			}
 		}
-		else
+		if(m_bIsDead)
 		{
-            // Checks if they are on the NavMesh then move.
-            if (nav.isOnNavMesh)
-                nav.SetDestination(Target.position);
-            // If Attacking is true then attack every second.
-            if(Attacking)
-            {
-                if (m_fTimer >= 1 && PlayerCon.m_bDashing == false)
-                {
-                    DoDamage();
-                    m_fTimer = 0;
-                }
-            }            
-        }
+			if (!DeathSound.isPlaying)
+			{
+				// Sets active false.
+				gameObject.SetActive(false);
+			}
+		}
 	}
 
     //----------------------------------------------------------------------------------------------------
@@ -180,6 +194,7 @@ public class Enemy : MonoBehaviour {
             // Does damage to the player.
             PlayerHealth.TakeDamage(m_fDamage);
 		}
+		AttackSound.Play();
     }
 
     //----------------------------------------------------------------------------------------------------
@@ -207,9 +222,8 @@ public class Enemy : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     private void Death()
     {
-        // Sets dead true.
-        m_bIsDead = true;
-        // Sets active false.
-        gameObject.SetActive(false);
+		DeathSound.Play();
+		// Sets dead true.
+		m_bIsDead = true; 
     }
 }
