@@ -10,6 +10,7 @@ public class SwordTEST : MonoBehaviour
     Enemy EnemyScript;
     RangedEnemy RangedEnemyScript;
     public AudioSource swingsound;
+    public Animator SwingWeapon;
 
     // the damage of the sword 
     public float fDamage = 15.0f;
@@ -33,8 +34,8 @@ public class SwordTEST : MonoBehaviour
             // when the attack time is zero the player can attack 
             if (m_bAttacking && m_fAttackTime <= 0)
             {
+                SwingWeapon.Play("Take 001"); 
                 swingsound.Play();
-
                 // enemy takes damage 
                 EnemyScript.TakeDamage(fDamage);
                 // one is added to attack time to reset timer
