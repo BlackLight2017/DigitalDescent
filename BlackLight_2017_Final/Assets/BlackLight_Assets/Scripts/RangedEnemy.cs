@@ -22,6 +22,7 @@ public class RangedEnemy : MonoBehaviour {
     PlayerController PlayerCon;
 	GameObject Player;
     public GameObject Gun;
+    public AudioSource DeathSound;
 
     float damping = 2;
 	float dist;
@@ -54,59 +55,72 @@ public class RangedEnemy : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	void Update()
 	{
-		// Dist equals the distance from the enemy to player.
-		dist = Vector3.Distance(transform.position, Target.position);
-        if (IsStunned == true)
+        if (!m_bIsDead)
         {
-			// Stops moving.
-			nav.enabled = false;
-			// Sets damage to 0.
-			m_fDamage = 0;
-			// Changes colour to it being stunned.
-			GetComponent<Renderer>().material.color = Color.yellow;
-            Gun.GetComponent<Renderer>().material.color = Color.yellow;
+            // Dist equals the distance from the enemy to player.
+            dist = Vector3.Distance(transform.position, Target.position);
+            if (IsStunned == true)
+            {
+                // Stops moving.
+                nav.enabled = false;
+                // Sets damage to 0.
+                m_fDamage = 0;
+                // Changes colour to it being stunned.
+                GetComponent<Renderer>().material.color = Color.yellow;
+                Gun.GetComponent<Renderer>().material.color = Color.yellow;
 
-            // Counts down the stun timer.
-            f_Stunned -= Time.deltaTime;
+                // Counts down the stun timer.
+                f_Stunned -= Time.deltaTime;
+            }
+            // once the timer hits 0 speed is restored 
+            if (f_Stunned <= 0)
+            {
+                // Sets stunned to false.
+                IsStunned = false;
+                // Sets damage to 15.
+                m_fDamage = 10;
+                // Starts moving.
+                nav.enabled = true;
+                // Changes colour again.
+                GetComponent<Renderer>().material.color = new Color(0.035f, 0.035f, 0.035f);
+                Gun.GetComponent<Renderer>().material.color = new Color(0.035f, 0.035f, 0.035f);
+                // Resets stun timer.
+                f_Stunned += 3.0f;
+            }
+            // If to far from player or close then stops moving and looks towards the player.
+            if (dist < 5 || dist > 15)
+            {
+                Vector3 LookPos = Target.position - transform.position;
+                LookPos.y = 0;
+                Quaternion Rotation = Quaternion.LookRotation(LookPos);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Rotation, Time.deltaTime * damping);
+                nav.enabled = false;
+            }
+            else
+            {
+                // Continues moving.
+                nav.enabled = true;
+            }
+            // If player is dead do nothing.
+            if (PlayerHealth.m_bIsDead)
+            {
+            }
+            else
+            {
+                // Checks if they are on the NavMesh then move.
+                if (nav.isOnNavMesh)
+                    nav.SetDestination(Target.position);
+            }
         }
-        // once the timer hits 0 speed is restored 
-        if (f_Stunned <= 0)
+        if (m_bIsDead)
         {
-			// Sets stunned to false.
-			IsStunned = false;
-			// Sets damage to 15.
-			m_fDamage = 10;
-			// Starts moving.
-			nav.enabled = true;
-            // Changes colour again.
-            GetComponent<Renderer>().material.color = new Color(0.035f, 0.035f,0.035f);
-            Gun.GetComponent<Renderer>().material.color = new Color(0.035f, 0.035f, 0.035f);     
-            // Resets stun timer.
-            f_Stunned += 3.0f;
-        }
-		// If to far from player or close then stops moving and looks towards the player.
-		if (dist < 5 || dist > 15)
-		{
-            Vector3 LookPos = Target.position - transform.position;
-            LookPos.y = 0;
-            Quaternion Rotation = Quaternion.LookRotation(LookPos);
-            transform.rotation = Quaternion.Slerp(transform.rotation, Rotation, Time.deltaTime * damping);
-			nav.enabled = false;
-		}
-		else
-		{
-			// Continues moving.
-			nav.enabled = true;
-		}
-		// If player is dead do nothing.
-		if (PlayerHealth.m_bIsDead)
-        {
-        }
-        else
-        {
-			// Checks if they are on the NavMesh then move.
-			if (nav.isOnNavMesh)
-                nav.SetDestination(Target.position);
+            GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
+            Gun.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
+            if (!DeathSound.isPlaying)
+            {
+                // Sets active false.
+                gameObject.SetActive(false);
+            }
         }
 
     }
@@ -168,10 +182,13 @@ public class RangedEnemy : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	private void Death()
 	{
+        DeathSound.Play();
 		// Sets dead true.
 		m_bIsDead = true;
-		// Sets active false.
-		gameObject.SetActive(false);
+        // Sets active false.
+        EnemyStunGun Shoot = GetComponent<EnemyStunGun>();
+        Shoot.enabled = false;
+		//gameObject.SetActive(false);
         //Destroy(gameObject);
 	}
 }

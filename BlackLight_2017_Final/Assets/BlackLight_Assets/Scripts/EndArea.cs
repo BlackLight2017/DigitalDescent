@@ -28,9 +28,5 @@ public class EndArea : MonoBehaviour {
 		{
 			m_bEndReached = true;
 		}
-		else
-		{
-			m_bEndReached = false;
-		}
 	}
 }

@@ -7,7 +7,7 @@ public class ResumeScript : MonoBehaviour {
 	// Sets up references to other objects.
 	//----------------------------------------------------------------------------------------------------
 	public Canvas PauseMenu;
-	private SelectOnInput Select;
+	//private SelectOnInput Select;
 	public GameObject Resume;
 	public GameObject Restart;
 	public GameObject Quit;
@@ -17,7 +17,7 @@ public class ResumeScript : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	void Start()
 	{
-		Select = PauseMenu.GetComponent<SelectOnInput>();
+		//Select = PauseMenu.GetComponent<SelectOnInput>();
 	}
 
 	//----------------------------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ public class ResumeScript : MonoBehaviour {
 			Resume.SetActive(false);
 			Restart.SetActive(false);
 			Quit.SetActive(false);
-			Select.enabled = false;
+			//Select.enabled = false;
 		}
 	}
 

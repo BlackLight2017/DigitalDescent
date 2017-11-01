@@ -137,7 +137,10 @@ public class Enemy : MonoBehaviour {
 		}
 		if(m_bIsDead)
 		{
-			if (!DeathSound.isPlaying)
+            Body.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
+            LeftArm.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
+            RightArm.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
+            if (!DeathSound.isPlaying)
 			{
 				// Sets active false.
 				gameObject.SetActive(false);

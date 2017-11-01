@@ -8,12 +8,13 @@ public class GameOverManager : MonoBehaviour {
 	// Sets up references to other objects.
 	//----------------------------------------------------------------------------------------------------
 	public Canvas GameOver;
+    public Canvas Win;
 	public GameObject EndArea;
 	public GameObject TimerGameObject;
-	private SelectOnInput Select;
-	private EndArea EndAreaScript;
+    private EndArea EndAreaScript;
 	private GameTimerScript GameTimerScript;
 	public GameObject ReturnButton;
+    public GameObject WinButton;
 	public EventSystem ES;
 
 	//----------------------------------------------------------------------------------------------------
@@ -23,11 +24,7 @@ public class GameOverManager : MonoBehaviour {
 	{
 		EndAreaScript = EndArea.GetComponent<EndArea>();
 		GameTimerScript = TimerGameObject.GetComponent<GameTimerScript>();
-		Select = GameOver.GetComponent<SelectOnInput>();
-		if(Select != null)
-			Select.enabled = false;
-        
-	}
+    }
 
 	//----------------------------------------------------------------------------------------------------
 	// Update is called once per frame, Makes the end menu pop up and makes sure the player cant use the
@@ -37,27 +34,22 @@ public class GameOverManager : MonoBehaviour {
 	{
 		if(EndAreaScript.m_bEndReached == true)
 		{
-            GameOver.enabled = true;
-            ReturnButton.SetActive(true);
-			if (Select != null)
-				Select.enabled = true;
-			ES.firstSelectedGameObject = ReturnButton;
+            Win.enabled = true;
+            WinButton.SetActive(true);
+            ES.SetSelectedGameObject(WinButton);
 		}
 		if(GameTimerScript.m_bGameOver == true)
 		{
-          
 			GameOver.enabled = true;
 			ReturnButton.SetActive(true);
-			if (Select != null)
-				Select.enabled = true;
-			ES.firstSelectedGameObject = ReturnButton;
+			ES.SetSelectedGameObject(ReturnButton);
 		}
 		if (GameTimerScript.m_bGameOver == false && EndAreaScript.m_bEndReached == false)
 		{
 			GameOver.enabled = false;
-			ReturnButton.SetActive(false);
-			if (Select != null)
-				Select.enabled = false;
+            Win.enabled = false;
+            ReturnButton.SetActive(false);
+            WinButton.SetActive(false);
 		}
 	}
 }

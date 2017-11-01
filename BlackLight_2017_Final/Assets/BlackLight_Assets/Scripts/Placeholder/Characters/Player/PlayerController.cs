@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour {
     public float RampUpTime = 0; 
 
 	public Canvas PauseMenu;
-	//private SelectOnInput Select;
+	private SelectOnInput Select;
 	public GameObject Resume;
 	public GameObject Restart;
 	public GameObject Quit;
@@ -69,9 +69,9 @@ public class PlayerController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
 		PauseMenu.enabled = false;
-		Time.timeScale = 1;
-		//Select = PauseMenu.GetComponent<SelectOnInput>();
-		//Select.enabled = false;
+        Time.timeScale = 1;
+		Select = PauseMenu.GetComponent<SelectOnInput>();
+		Select.enabled = false;
 	}
 
     //----------------------------------------------------------------------------------------------------
@@ -289,7 +289,7 @@ public class PlayerController : MonoBehaviour {
 				Resume.SetActive(true);
 				Restart.SetActive(true);
 				Quit.SetActive(true);
-				//Select.enabled = true;
+				Select.enabled = true;
 				ES.firstSelectedGameObject = Resume;
 			}
 		}
