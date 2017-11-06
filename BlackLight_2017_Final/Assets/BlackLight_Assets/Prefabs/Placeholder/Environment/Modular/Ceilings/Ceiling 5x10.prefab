@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: e3926133a380f3c469c47bdf4c1aac15, type: 2}
+  - {fileID: 2100000, guid: 81173fb471fb63542bc77d63abce26e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1232,7 +1232,7 @@ MonoBehaviour:
   m_SelectedEdges:
   - x: 0
     y: 0
-  m_selectedTriangles: 0000000000000000
+  m_selectedTriangles: 00000000
 --- !u!114 &114333559897382450
 MonoBehaviour:
   m_ObjectHideFlags: 1
