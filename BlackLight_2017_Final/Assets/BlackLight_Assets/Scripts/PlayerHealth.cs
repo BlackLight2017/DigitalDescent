@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
-	//----------------------------------------------------------------------------------------------------
-	// Sets up references to other objects and variables.
-	//----------------------------------------------------------------------------------------------------
-	public float m_fHealth;
+    //----------------------------------------------------------------------------------------------------
+    // Sets up references to other objects and variables.
+    //----------------------------------------------------------------------------------------------------
+    public ParticleSystem Damage; 
+
+    public float m_fHealth;
     public float m_fDamage;
     public float HealthRegen; 
     public bool m_bIsDead = false;
@@ -72,7 +74,12 @@ public class PlayerHealth : MonoBehaviour {
         if (m_bIsDead)
             return;
 
+        float currentHealth = m_fHealth;
+
         m_fHealth -= fDamage;
+
+        if (m_fHealth < currentHealth)
+            Damage.Play();
 
         if (m_fHealth <= 0) 
             Death();
