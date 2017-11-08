@@ -80,7 +80,7 @@ public class GameTimerScript : MonoBehaviour
         }
     }
     //----------------------------------------------------------------------------------------------------
-    // OnTriggerENeter is called everytime the player collided with the EndArea hitbox which will save the 
+    // OnTriggerEnter is called everytime the player collided with the EndArea hitbox which will save the 
     // time as the highscore. 
     //----------------------------------------------------------------------------------------------------
     void OnTriggerEnter(Collider col)

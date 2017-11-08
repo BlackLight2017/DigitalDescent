@@ -4,22 +4,32 @@ using UnityEngine;
 
 public class DoorScript : MonoBehaviour {
 
+    //----------------------------------------------------------------------------------------------------
+    // Sets up references to other objects and creates variables
+    //----------------------------------------------------------------------------------------------------
+
     public float m_fSpeed;
     public GameObject Door; 
     public bool m_bOpenDoor;
     public float m_fOpenTime = 1.0f;
     public float m_fCloseTime = 1.0f;
 
-    // Use this for initialization
+    //----------------------------------------------------------------------------------------------------
+    // Fixed Update is called once per frame, The door script is activated once the player comes in contact
+    // with the doors box collider. Once the player hits the box collider the door will open up and close 
+    // automatically
+    //----------------------------------------------------------------------------------------------------
     void FixedUpdate () {
         if (m_bOpenDoor == true)
         {
+            // speed of the door 
             m_fSpeed = 8.0f;
-
+            // how long the door stays open 
             m_fOpenTime -= Time.deltaTime; 
             Door.transform.position += transform.up * m_fSpeed * Time.deltaTime;
             if(m_fOpenTime <= 0)
             {
+                // once the doors open time is zero the door will close
                 m_bOpenDoor = false;
             }
         }
@@ -27,10 +37,13 @@ public class DoorScript : MonoBehaviour {
         {
             if (m_fOpenTime <= 0)
             {
+                // how long till the door closes 
                 m_fCloseTime -= Time.deltaTime;
                 Door.transform.position -= transform.up * m_fSpeed * Time.deltaTime;
                 if (m_fCloseTime <= 0)
                 {
+                    // once the door is closed both open and close times are re added and the door
+                    // doesent move until the player interacts with it again
                     m_fSpeed = 0;
                     m_fOpenTime += 0.65f;
                     m_fCloseTime += 0.65f; 
@@ -39,7 +52,9 @@ public class DoorScript : MonoBehaviour {
         }
     }
 
-    // Update is called once per frame
+    //----------------------------------------------------------------------------------------------------
+    // OnTriggerEnter is called everytime the player collided with the Door hitbox the door script will activate 
+    //----------------------------------------------------------------------------------------------------
     void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Player")

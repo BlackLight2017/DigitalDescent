@@ -76,7 +76,8 @@ public class PlayerController : MonoBehaviour {
 
     //----------------------------------------------------------------------------------------------------
     // FixedUpdate is called once per frame, when the game load up the user wil be able to control the players 
-    // movement, jump and dash abilities.                                            
+    // movement, jump and dash abilities. The user can control the player using the keyboard or an xbox Controller.
+    // Particles are also called in the update when the player dashes                                            
     //----------------------------------------------------------------------------------------------------
     void FixedUpdate()
     {
@@ -125,7 +126,7 @@ public class PlayerController : MonoBehaviour {
         transform.position = new Vector3(transform.position.x + (m_fKeyboardMoveHorizontal * m_fKeyboardMovementSpeed), transform.position.y, transform.position.z);
 
         // when the left stick is tiled to the left it rotates the player 90 degrees (face playerto the left)
-        if (XCI.GetAxis(XboxAxis.LeftStickX) < 0 || Input.GetKey(KeyCode.A))
+        if (XCI.GetAxis(XboxAxis.LeftStickX) < 0 || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             if (RampUp == true)
             {
@@ -149,7 +150,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
         // when the left stick is tiled to the right it rotates the player -90 degrees (faces player to the right) 
-        if (XCI.GetAxis(XboxAxis.LeftStickX) > 0 || Input.GetKey(KeyCode.D))
+        if (XCI.GetAxis(XboxAxis.LeftStickX) > 0 || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             if (RampUp == true)
             {
@@ -174,7 +175,8 @@ public class PlayerController : MonoBehaviour {
             }                
         }
        
-        if (XCI.GetAxis(XboxAxis.LeftStickX) == 0 && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+        if (XCI.GetAxis(XboxAxis.LeftStickX) == 0 && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) 
+            && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
             m_fMovementSpeed = 0.005f;
             m_fKeyboardMovementSpeed = 0.25f;
@@ -189,7 +191,8 @@ public class PlayerController : MonoBehaviour {
         // if the left bumper of the xbox360 control is pressed and m_bDashing is false and there are more than one available dash         
         if (XCI.GetButton(XboxButton.B) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) < 0
             || XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) < 0
-            || Input.GetKey(KeyCode.LeftShift) && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.A))
+            || Input.GetKey(KeyCode.LeftShift)  && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.A)
+            || Input.GetKey(KeyCode.LeftShift)  && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.LeftArrow))
         {
             Dashing.Play();
             particles.Play(); 
@@ -204,10 +207,12 @@ public class PlayerController : MonoBehaviour {
         // if the right bumper of the xbox360 control is pressed and m_bDashing is false and there are more than one available dash         
         if (XCI.GetButton(XboxButton.B) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) > 0
             || XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) > 0
-            || Input.GetKey(KeyCode.LeftShift) && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.D))
+            || Input.GetKey(KeyCode.LeftShift) && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.D)
+            || Input.GetKey(KeyCode.LeftShift) && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.RightArrow))
         {
             Dashing.Play();
-                        particles.Play();
+            particles.Play();
+
             GetComponent<Renderer>().material.color = Color.yellow;
             LegL.GetComponent<Renderer>().material.color = Color.yellow;
             LegR.GetComponent<Renderer>().material.color = Color.yellow;
@@ -245,7 +250,6 @@ public class PlayerController : MonoBehaviour {
                 ArmR.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
                 ArmL.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
                 Neck.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-                // boxcollider is no longer a trigger
 
                 // returns players constraints back to normal
                 rb.constraints =  RigidbodyConstraints.FreezePositionZ |
@@ -311,11 +315,8 @@ public class PlayerController : MonoBehaviour {
         {
             m_bGrounded = true;
         }
-      
     }
-  
-
-}
+  }
             
         
 
