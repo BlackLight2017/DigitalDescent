@@ -128,26 +128,27 @@ public class PlayerController : MonoBehaviour {
         // when the left stick is tiled to the left it rotates the player 90 degrees (face playerto the left)
         if (XCI.GetAxis(XboxAxis.LeftStickX) < 0 || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            if (RampUp == true)
-            {
-                RampUpTime += Time.deltaTime;
-                if (RampUpTime >= 1)
-                {
-                    m_fMovementSpeed += 0.00015f;
-                    m_fKeyboardMovementSpeed += 0.00120f;
-                }
-            }
+            // RAMP UP WHEN RUNNING TO LEFT
+          // if (RampUp == true)
+          // {
+          //     RampUpTime += Time.deltaTime;
+          //     if (RampUpTime >= 1)
+          //     {
+          //         m_fMovementSpeed += 0.00015f;
+          //         m_fKeyboardMovementSpeed += 0.00120f;
+          //     }
+          // }
             if (transform.eulerAngles.y == 270)
             {
                 transform.eulerAngles = new Vector3 (0, 90,0);
               
             }
-            if (RampUpTime >= 3)
-            {
-                RampUp = false;
-
-
-            }
+         //  if (RampUpTime >= 3)
+         //  {
+         //      RampUp = false;
+         //
+         //
+         //  }
         }
         // when the left stick is tiled to the right it rotates the player -90 degrees (faces player to the right) 
         if (XCI.GetAxis(XboxAxis.LeftStickX) > 0 || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))

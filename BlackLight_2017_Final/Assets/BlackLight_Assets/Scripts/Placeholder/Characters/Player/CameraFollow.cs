@@ -46,9 +46,9 @@ public class CameraFollow : MonoBehaviour {
             m_fTmier += Time.deltaTime;
             if(m_fTmier >= m_fSpeedChangeTime)
             {
-                m_fsmoothSpeed = 0.045f;
+               m_fsmoothSpeed = 0.045f;
             }
-            offset.x = -7;
+            offset.x = -2.0f; // 7 
         }
 
 
@@ -60,7 +60,7 @@ public class CameraFollow : MonoBehaviour {
             {
                 m_fsmoothSpeed = 0.045f;
             }
-            offset.x = 7;
+            offset.x = 7.0f;
         }
         // when the left stick isnt being used the camera is set to the default position 
         if(XCI.GetAxis(XboxAxis.LeftStickX) == 0 && Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
@@ -71,7 +71,7 @@ public class CameraFollow : MonoBehaviour {
             //    m_fsmoothSpeed = 0.1f;
             //}
             m_fTmier = 0;
-            m_fsmoothSpeed = 0.01f;
+            m_fsmoothSpeed = 0.02f; // 0.01 
         }
     }
 
