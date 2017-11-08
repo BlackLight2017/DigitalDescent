@@ -12,7 +12,8 @@ public class GameTimerScript : MonoBehaviour
     public Text gameTimerText;
     public GameObject player; 
     public Text HighScore;
-    public Text HighscoreSeconds; 
+    public Text HighscoreSeconds;
+    public bool ResetHighScore = false;
     // timer is set for 30 minutes
     public float m_fgameTimer = 1800;
     public bool m_bGameOver;
@@ -35,7 +36,9 @@ public class GameTimerScript : MonoBehaviour
     }
     //----------------------------------------------------------------------------------------------------
     // Update is called once per frame, while the game is playing the timer will count down from the desired time.
-    // When the timer reaches zero the players controls are disable and the gameover screen is displayed
+    // When the timer reaches zero the players controls are disable and the gameover screen is displayed.When the
+    // player has reached the end the timer is saved and put into Highscore. The highscore can be reset using a combination 
+    // of buttons on the controller. 
     //----------------------------------------------------------------------------------------------------
     void Update()
     {
@@ -49,8 +52,21 @@ public class GameTimerScript : MonoBehaviour
         timerString = string.Format("{0:00:}{1:00}", minutes, seconds);
         // m_fgameTimertext is going to display the timer
         gameTimerText.text = timerString;
+      
+        // Hold LeftBumper,Rightbumper,A and back to Clear Highscore 
+        if (XCI.GetButton(XboxButton.A) && XCI.GetButton(XboxButton.RightBumper) && XCI.GetButton(XboxButton.LeftBumper)
+            && XCI.GetButton(XboxButton.Back))
+        {
+            ResetHighScore = true;
+            m_bGameOver = true;
 
- /////////       PlayerPrefs.DeleteAll();
+        }
+
+        if (ResetHighScore == true)
+        {
+            PlayerPrefs.DeleteAll();
+            ResetHighScore = false; 
+        }
         if (m_fgameTimer <= 0)
         {
             m_bGameOver = true;
