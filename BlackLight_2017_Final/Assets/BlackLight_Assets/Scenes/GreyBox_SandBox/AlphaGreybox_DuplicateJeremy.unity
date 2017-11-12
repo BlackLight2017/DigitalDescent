@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.4964127, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-  m_NavMeshData: {fileID: 23800000, guid: b74cb450db1771540af8d7527a63578d, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 4c79d35c5e680ae448d85342354ee644, type: 2}
 --- !u!43 &2933266
 Mesh:
   m_ObjectHideFlags: 0
@@ -10557,7 +10557,7 @@ MonoBehaviour:
   EndArea: {fileID: 458783868}
   TimerGameObject: {fileID: 1568087477}
   ReturnButton: {fileID: 2064980780}
-  WinButton: {fileID: 1600258062}
+  WinButton: {fileID: 0}
   ES: {fileID: 10371150}
 --- !u!4 &462499775
 Transform:
@@ -31041,11 +31041,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114711430545845424, guid: fd29412935e22c24596ec1472993a296,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd29412935e22c24596ec1472993a296, type: 2}
   m_IsPrefabParent: 0
@@ -33522,6 +33517,7 @@ MonoBehaviour:
   player: {fileID: 0}
   HighScore: {fileID: 0}
   HighscoreSeconds: {fileID: 0}
+  ResetHighScore: 0
   m_fgameTimer: 1800
   m_bGameOver: 0
   timerString: 
@@ -34876,11 +34872,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1599447899}
---- !u!1 &1600258062 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1068113708975096, guid: 831dae48708b8774487ac03db2e5e904,
-    type: 2}
-  m_PrefabInternal: {fileID: 268501814}
 --- !u!43 &1601447482
 Mesh:
   m_ObjectHideFlags: 0

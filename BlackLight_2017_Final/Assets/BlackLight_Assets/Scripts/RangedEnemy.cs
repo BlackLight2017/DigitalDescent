@@ -12,6 +12,8 @@ public class RangedEnemy : MonoBehaviour {
     public float f_Speed;
     public float f_Stunned;
     public bool IsStunned;
+	public float m_fShooting_Distance;
+	public float m_fOutOfRange;
 
     private Transform Target;
 	private NavMeshAgent nav;
@@ -88,7 +90,7 @@ public class RangedEnemy : MonoBehaviour {
                 f_Stunned += 3.0f;
             }
             // If to far from player or close then stops moving and looks towards the player.
-            if (dist < 5 || dist > 15)
+            if (dist < m_fShooting_Distance || dist > m_fOutOfRange)
             {
                 Vector3 LookPos = Target.position - transform.position;
                 LookPos.y = 0;

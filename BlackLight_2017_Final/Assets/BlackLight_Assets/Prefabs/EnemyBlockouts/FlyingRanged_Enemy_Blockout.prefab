@@ -415,6 +415,8 @@ MonoBehaviour:
   f_Speed: 0
   f_Stunned: 0
   IsStunned: 0
+  m_fShooting_Distance: 5
+  m_fOutOfRange: 15
   Gun: {fileID: 1441691193457518}
   DeathSound: {fileID: 82226972802651928}
 --- !u!114 &114711430545845424
