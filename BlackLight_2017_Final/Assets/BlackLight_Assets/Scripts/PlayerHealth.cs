@@ -14,7 +14,10 @@ public class PlayerHealth : MonoBehaviour {
     public float m_fDamage;
     public float HealthRegen; 
     public bool m_bIsDead = false;
-    GameObject RangedEnemy;
+	public Canvas DeathCanvas;
+	public GameObject Restart;
+	public GameObject Exit;
+	GameObject RangedEnemy;
     RangedEnemy RangedEnemyScript;
 	public Image LeftHealthBar;
     public Image RightHealthBar;
@@ -28,8 +31,11 @@ public class PlayerHealth : MonoBehaviour {
         RangedEnemy = GameObject.FindGameObjectWithTag("RangedEnemy");
         if(RangedEnemy)
             RangedEnemyScript = RangedEnemy.GetComponent<RangedEnemy>();
-		playercon = GetComponent<PlayerController> ();		
-    }
+		playercon = GetComponent<PlayerController> ();
+		DeathCanvas.enabled = false;
+		Restart.SetActive(false);
+		Exit.SetActive(false);
+	}
 
 	//----------------------------------------------------------------------------------------------------
 	// Update is called once per frame,
@@ -93,6 +99,9 @@ public class PlayerHealth : MonoBehaviour {
 		m_bIsDead = true;
 		Debug.Log("PlayerDead");
         gameObject.SetActive(false);
-		SceneManager.LoadScene(1);
+		DeathCanvas.enabled = true;
+		Restart.SetActive(true);
+		Exit.SetActive(true);
+		Time.timeScale = 0;
     }
 }
