@@ -12,6 +12,7 @@ public class EnemyStunGun : MonoBehaviour {
     public GameObject Bullet_Spawn;
     // how much time between shots 
     public float spawn_time = 2;
+	public float m_fGunRange;
     private Rigidbody rb;
     // Timer for bullets being shot 
     private float spawn_timer;
@@ -51,7 +52,7 @@ public class EnemyStunGun : MonoBehaviour {
         // if canfire equals ture, distance is less then 5, and stunned is false then shoot,
         if (CanFire == true)
         {
-            if (m_fDist < 5)
+            if (m_fDist < m_fGunRange)
             {
                 if(!IsStunned)
                 {
