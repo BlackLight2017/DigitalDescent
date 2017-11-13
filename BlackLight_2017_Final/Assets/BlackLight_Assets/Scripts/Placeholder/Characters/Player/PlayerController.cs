@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
     public Animation SwingWeapon;
     public AudioSource Dashing; 
     public float DownForce;
+
     public GameObject LegR;
     public GameObject LegL;
     public GameObject ArmR;
@@ -34,10 +35,17 @@ public class PlayerController : MonoBehaviour {
     // how high the player can jump 
     public float m_fVerticalJumpForce;
     // how fast the player can move 
-    public float m_fMovementSpeed;// = 10;
-    public float m_fKeyboardMovementSpeed;// = 10;
-    public float m_fControllerRampUp; //0.00005f
-    public float m_fKeyBoardRampUp;   //0.00090f
+    // THE DEFAULT SPEED OF KEYBOARD AND CONTROLLER
+    public float m_fDefaultPlayerSpeed;
+    private float m_fDefaultControllerPlayerSpeed;
+    // THE RESULTING RAMP UP SPEED 
+    private float m_fRampUpMovementSpeed;// = 10;
+    // keybaord ramp up 
+    public float m_fRampUpSpeed;// = 10;
+    // ADDS THE AMOUNT OF TO THE CONTROLLER AND KEYBAORD SPEED 
+    private float m_fControllerRampUp; //0.00005f
+    // m_RampUpSpeed
+    public float m_RampUpSpeed;   //0.00090f
 
     public float MaxVel;
    
@@ -125,8 +133,8 @@ public class PlayerController : MonoBehaviour {
         float moveHorizontal = XCI.GetAxis(XboxAxis.LeftStickX);
         float m_fKeyboardMoveHorizontal = Input.GetAxis("Horizontal");
         // movement of the player 
-        transform.position = new Vector3(transform.position.x + (moveHorizontal * m_fMovementSpeed), transform.position.y, transform.position.z);
-        transform.position = new Vector3(transform.position.x + (m_fKeyboardMoveHorizontal * m_fKeyboardMovementSpeed), transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x + (moveHorizontal * m_fRampUpMovementSpeed), transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x + (m_fKeyboardMoveHorizontal * m_fRampUpSpeed), transform.position.y, transform.position.z);
 
         // when the left stick is tiled to the left it rotates the player 90 degrees (face playerto the left)
         if (XCI.GetAxis(XboxAxis.LeftStickX) < 0 || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -137,8 +145,8 @@ public class PlayerController : MonoBehaviour {
           //     RampUpTime += Time.deltaTime;
           //     if (RampUpTime >= 1)
           //     {
-          //         m_fMovementSpeed += 0.00015f;
-          //         m_fKeyboardMovementSpeed += 0.00120f;
+          //         m_fRampUpMovementSpeed += 0.00015f;
+          //         m_fRampUpSpeed += 0.00120f;
           //     }
           // }
             if (transform.eulerAngles.y == 270)
@@ -156,13 +164,14 @@ public class PlayerController : MonoBehaviour {
         // when the left stick is tiled to the right it rotates the player -90 degrees (faces player to the right) 
         if (XCI.GetAxis(XboxAxis.LeftStickX) > 0 || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
+
             if (RampUp == true)
             {
                 RampUpTime += Time.deltaTime;
                 if (RampUpTime >= 1)
                 {
-                    m_fMovementSpeed += m_fControllerRampUp;        // 0.00015
-                    m_fKeyboardMovementSpeed += m_fKeyBoardRampUp;//0.00120f
+                    m_fRampUpMovementSpeed += m_fControllerRampUp;        // 0.00015
+                    m_fRampUpSpeed += m_RampUpSpeed;//0.00120f
 
                 }
             }
@@ -182,8 +191,11 @@ public class PlayerController : MonoBehaviour {
         if (XCI.GetAxis(XboxAxis.LeftStickX) == 0 && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) 
             && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
-            m_fMovementSpeed = 0.005f;
-            m_fKeyboardMovementSpeed = 0.25f;
+
+            test();
+
+           // m_fRampUpMovementSpeed = 0.005f;
+          //  m_fRampUpSpeed = 0.25f;
             RampUpTime = 0.0f;
             RampUp = true;
 
@@ -312,10 +324,15 @@ public class PlayerController : MonoBehaviour {
     // OnCollisionStay is called when the player is colliding with an object, when this is called the player
     // can jump 
     //----------------------------------------------------------------------------------------------------
+    public void test()
+    {
+        m_fRampUpSpeed = m_fDefaultPlayerSpeed;
+        m_fRampUpMovementSpeed = m_fDefaultControllerPlayerSpeed;
+
+    }
     private void OnCollisionStay(Collision collision)
     {
         // if the player is collided with an object with the tagged 'Ground' the player can jump  
-        if (collision.gameObject.tag == "Ground")
         {
             m_bGrounded = true;
         }
