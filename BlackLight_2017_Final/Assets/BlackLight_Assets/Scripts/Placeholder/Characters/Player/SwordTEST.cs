@@ -7,7 +7,10 @@ public class SwordTEST : MonoBehaviour
     //----------------------------------------------------------------------------------------------------
     // Sets up references to other objects and creates variables
     //----------------------------------------------------------------------------------------------------
+
+    public TrailRenderer Trails;
     Enemy EnemyScript;
+    
     RangedEnemy RangedEnemyScript;
     public AudioSource swingsound;
     public GameObject Sword;
@@ -28,7 +31,8 @@ public class SwordTEST : MonoBehaviour
     void start()
     {
         rend = gameObject.GetComponent<MeshRenderer>();
-        rend.sharedMaterial = material[1]; 
+        rend.sharedMaterial = material[1];
+        gameObject.GetComponent<TrailRenderer>().enabled = false;
     }
     //----------------------------------------------------------------------------------------------------
     // FixedUpdate is called once per frame, this function allows the player to attack using the xboxcontroller.
@@ -46,12 +50,18 @@ public class SwordTEST : MonoBehaviour
         //    m_bSwordColor = true;
 
         //}
-
+     //  if (XCI.GetButtonUp(XboxButton.X) || Input.GetKeyUp(KeyCode.Mouse0))
+     //  {
+     //      gameObject.GetComponentInChildren<TrailRenderer>().enabled = false;
+     //
+     //  }
         if (XCI.GetButtonUp(XboxButton.X) || Input.GetKeyUp(KeyCode.Mouse0))
         {
+
             m_bSwordColor = true;
             ColorChange();
-          //  swingsound.Play();
+
+            //  swingsound.Play();
 
             //          Sword.GetComponent<Renderer>().material.color = Color.red;
             // when the attack time is zero the player can attack 
@@ -82,6 +92,7 @@ public class SwordTEST : MonoBehaviour
         if (m_bSwordColor == true)
         {
             ///    Sword.GetComponent<Renderer>().material.color = Color.red;
+            gameObject.GetComponentInChildren<TrailRenderer>().enabled = true;
 
             rend.sharedMaterial = material[1];
             m_fColorChange -= Time.deltaTime;
@@ -90,6 +101,7 @@ public class SwordTEST : MonoBehaviour
         {
             m_bSwordColor = false;
             ///     Sword.GetComponent<Renderer>().material.color = Color.grey;
+            gameObject.GetComponentInChildren<TrailRenderer>().enabled = false;
 
             rend.sharedMaterial = material[0];
 

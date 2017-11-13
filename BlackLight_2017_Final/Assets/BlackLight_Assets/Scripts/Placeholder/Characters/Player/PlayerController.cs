@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour {
 
 	//---------------------------------------------------------------------------------------------------
 	// Use this for initialization
+    //* try to revert keyboard speed back to normal after ramp up 
 	//----------------------------------------------------------------------------------------------------
 	void Start()
     {
