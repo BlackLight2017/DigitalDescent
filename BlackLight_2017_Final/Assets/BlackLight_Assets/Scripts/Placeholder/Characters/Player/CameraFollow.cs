@@ -23,7 +23,7 @@ public class CameraFollow : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     void FixedUpdate()
     {
-        print(m_fsmoothSpeed);
+       // print(m_fsmoothSpeed);
         // adds offse to camera thats targeted at the player 
        
         Vector3 desiredPosition = target.position + offset ;

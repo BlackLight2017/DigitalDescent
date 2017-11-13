@@ -158,8 +158,8 @@ public class PlayerController : MonoBehaviour {
                 RampUpTime += Time.deltaTime;
                 if (RampUpTime >= 1)
                 {
-                    m_fMovementSpeed += 0.00015f;
-                    m_fKeyboardMovementSpeed += 0.00120f;
+                    m_fMovementSpeed += 0.00005f;        // 0.00015
+                    m_fKeyboardMovementSpeed += 0.00090f;//0.00120f
 
                 }
             }
@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour {
 
                 }        
              
-                if (RampUpTime >= 3)
+                if (RampUpTime >= 2.5f)
                 {
                     RampUp = false;                                            
             }                
