@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour {
     // how fast the player can move 
     public float m_fMovementSpeed;// = 10;
     public float m_fKeyboardMovementSpeed;// = 10;
+    public float m_fControllerRampUp; //0.00005f
+    public float m_fKeyBoardRampUp;   //0.00090f
 
     public float MaxVel;
    
@@ -158,8 +160,8 @@ public class PlayerController : MonoBehaviour {
                 RampUpTime += Time.deltaTime;
                 if (RampUpTime >= 1)
                 {
-                    m_fMovementSpeed += 0.00005f;        // 0.00015
-                    m_fKeyboardMovementSpeed += 0.00090f;//0.00120f
+                    m_fMovementSpeed += m_fControllerRampUp;        // 0.00015
+                    m_fKeyboardMovementSpeed += m_fKeyBoardRampUp;//0.00120f
 
                 }
             }
