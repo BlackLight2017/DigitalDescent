@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/BlackLight_Assets/Scenes/Alpha GreyBox/MainMenu.unity
+    guid: a256d115fa3fea349a35c087faa8427c
+  - enabled: 0
     path: Assets/BlackLight_Assets/Scenes/GreyBox_SandBox/MenuTest.unity
     guid: 9fdf5277053a6d9459d6c873fe7c0866
   - enabled: 0
