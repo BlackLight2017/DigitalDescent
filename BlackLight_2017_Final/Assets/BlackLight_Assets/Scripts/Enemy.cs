@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour {
     public float m_fHealth;
     public float m_fDamage;
     public float f_Stunned = 3.0f;
+	public float m_fOutOfRange;
+	public float m_fStoppingDistance;
     private float dist;
     float damping = 2;
 
@@ -102,7 +104,7 @@ public class Enemy : MonoBehaviour {
 				f_Stunned += 3.0f;
 			}
 			// If to far from player then stops moving and looks towards the player.
-			if (dist > 15)
+			if (dist > m_fOutOfRange || dist < m_fStoppingDistance)
 			{
 				Vector3 LookPos = Target.position - transform.position;
 				LookPos.y = 0;
