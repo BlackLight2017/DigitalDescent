@@ -13,7 +13,8 @@ public class GameOverManager : MonoBehaviour {
 	public GameObject TimerGameObject;
     private EndArea EndAreaScript;
 	private GameTimerScript GameTimerScript;
-	public GameObject ReturnButton;
+	//public GameObject ReturnButton;
+    public GameObject Restart;
     public GameObject WinButton;
 	public EventSystem ES;
 
@@ -41,14 +42,16 @@ public class GameOverManager : MonoBehaviour {
 		if(GameTimerScript.m_bGameOver == true)
 		{
 			GameOver.enabled = true;
-			ReturnButton.SetActive(true);
-			ES.SetSelectedGameObject(ReturnButton);
+			//ReturnButton.SetActive(true);
+            Restart.SetActive(true);
+            ES.SetSelectedGameObject(Restart);
 		}
 		if (GameTimerScript.m_bGameOver == false && EndAreaScript.m_bEndReached == false)
 		{
 			GameOver.enabled = false;
             Win.enabled = false;
-            ReturnButton.SetActive(false);
+            //ReturnButton.SetActive(false);
+            Restart.SetActive(false);
             WinButton.SetActive(false);
 		}
 	}
