@@ -8,14 +8,14 @@ public class Enemy : MonoBehaviour {
     // Sets up references to other objects and creates variables with Headers
     //----------------------------------------------------------------------------------------------------
     [Header("Stats")]
-    public ParticleSystem PunchParticle;  
+    public ParticleSystem PunchParticle;
     public float m_fHealth;
     public float m_fDamage;
     public float f_Stunned = 3.0f;
 	public float m_fOutOfRange;
 	public float m_fStoppingDistance;
     public float ChargePunch; 
-    private float dist;
+    private int dist;
     float damping = 2;
 
     [Header("Animations")]
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour {
         PlayerCon = Player.GetComponent<PlayerController>();
         // Sets Timer to 0.
         m_fTimer = 0;
-        anim = GetComponent<Animator>(); 
+        anim = GetComponent<Animator>();
 
 	}
 
@@ -69,10 +69,10 @@ public class Enemy : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     void Update ()
     {
-		if (!m_bIsDead)
+        if (!m_bIsDead)
 		{
 			// Dist equals the distance from the enemy to player.
-			dist = Vector3.Distance(transform.position, Target.position);
+			dist = (int)Vector3.Distance(transform.position, Target.position);
 			// Increases the time.
 			m_fTimer += Time.deltaTime;
 			if (IsStunned == true)
@@ -131,24 +131,27 @@ public class Enemy : MonoBehaviour {
 					nav.SetDestination(Target.position);
                 // If Attacking is true then attack every second.
                 
-                if (dist >= ChargePunch)
+                if (dist < ChargePunch)
                 {
-                    
+                    Debug.Log("Particle is playing");
+                    if (!PunchParticle.isPlaying)
                         PunchParticle.Play();
-                    
                 }
+                //PunchParticle.Stop();
                 if (Attacking)
-                  {
-                      PunchParticle.Stop();
+                {
+                    PunchParticle.Stop();
 
-                      if (m_fTimer >= 3 && PlayerCon.m_bDashing == false)
-                      {
-                          DoDamage();
-                          m_fTimer = 0;
-                      }
-                 }
-                
-			}
+                        if (m_fTimer >= 3 && PlayerCon.m_bDashing == false)
+                        {
+                            //PunchParticle.Stop();
+                            DoDamage();
+                            m_fTimer = 0;
+                        }
+
+                }
+
+            }
 		}
 		if(m_bIsDead)
 		{
@@ -162,6 +165,7 @@ public class Enemy : MonoBehaviour {
 			}
 		}
 	}
+
 
     //----------------------------------------------------------------------------------------------------
     // OnTriggerEnter is called every time it is colliding with another object, Sets attacking to true if

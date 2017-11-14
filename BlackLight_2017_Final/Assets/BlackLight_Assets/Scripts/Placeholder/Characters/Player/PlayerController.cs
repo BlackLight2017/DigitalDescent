@@ -192,7 +192,7 @@ public class PlayerController : MonoBehaviour {
             && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
         {
 
-            test();
+            RampSpeed();
 
            // m_fRampUpMovementSpeed = 0.005f;
           //  m_fRampUpSpeed = 0.25f;
@@ -324,7 +324,7 @@ public class PlayerController : MonoBehaviour {
     // OnCollisionStay is called when the player is colliding with an object, when this is called the player
     // can jump 
     //----------------------------------------------------------------------------------------------------
-    public void test()
+    public void RampSpeed()
     {
         m_fRampUpSpeed = m_fDefaultPlayerSpeed;
         m_fRampUpMovementSpeed = m_fDefaultControllerPlayerSpeed;
