@@ -8,11 +8,13 @@ public class Enemy : MonoBehaviour {
     // Sets up references to other objects and creates variables with Headers
     //----------------------------------------------------------------------------------------------------
     [Header("Stats")]
+    public ParticleSystem PunchParticle;  
     public float m_fHealth;
     public float m_fDamage;
     public float f_Stunned = 3.0f;
 	public float m_fOutOfRange;
 	public float m_fStoppingDistance;
+    public float ChargePunch; 
     private float dist;
     float damping = 2;
 
@@ -21,7 +23,7 @@ public class Enemy : MonoBehaviour {
     public Animation Run;
     public Animation Attack;
     public Animation Die;
-
+    Animator anim; 
     private Transform Target;
     private NavMeshAgent nav;
     private bool m_bIsDead;
@@ -56,6 +58,7 @@ public class Enemy : MonoBehaviour {
         PlayerCon = Player.GetComponent<PlayerController>();
         // Sets Timer to 0.
         m_fTimer = 0;
+        anim = GetComponent<Animator>(); 
 
 	}
 
@@ -126,15 +129,25 @@ public class Enemy : MonoBehaviour {
 				// Checks if they are on the NavMesh then move.
 				if (nav.isOnNavMesh)
 					nav.SetDestination(Target.position);
-				// If Attacking is true then attack every second.
-				if (Attacking)
-				{
-					if (m_fTimer >= 1 && PlayerCon.m_bDashing == false)
-					{
-						DoDamage();
-						m_fTimer = 0;
-					}
-				}
+                // If Attacking is true then attack every second.
+                
+                if (dist >= ChargePunch)
+                {
+                    
+                        PunchParticle.Play();
+                    
+                }
+                if (Attacking)
+                  {
+                      PunchParticle.Stop();
+
+                      if (m_fTimer >= 3 && PlayerCon.m_bDashing == false)
+                      {
+                          DoDamage();
+                          m_fTimer = 0;
+                      }
+                 }
+                
 			}
 		}
 		if(m_bIsDead)
@@ -193,6 +206,7 @@ public class Enemy : MonoBehaviour {
     {
         // Prints out a message to see if it hits
 		Debug.Log("HitPlayer");
+        
         // If the player has health then attack.
         if(PlayerHealth.m_fHealth > 0)
         {

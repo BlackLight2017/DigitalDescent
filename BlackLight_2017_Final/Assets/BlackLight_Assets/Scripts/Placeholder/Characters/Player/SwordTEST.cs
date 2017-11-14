@@ -55,7 +55,7 @@ public class SwordTEST : MonoBehaviour
      //      gameObject.GetComponentInChildren<TrailRenderer>().enabled = false;
      //
      //  }
-        if (XCI.GetButtonUp(XboxButton.X) || Input.GetKeyUp(KeyCode.Mouse0))
+        if (XCI.GetButtonDown(XboxButton.X) || Input.GetKeyDown(KeyCode.Mouse0))
         {
 
             m_bSwordColor = true;

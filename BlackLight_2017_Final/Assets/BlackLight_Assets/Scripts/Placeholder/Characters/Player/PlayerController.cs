@@ -299,7 +299,7 @@ public class PlayerController : MonoBehaviour {
         }
 
 		// Pause
-		if (XCI.GetButton(XboxButton.Start))
+		if (XCI.GetButton(XboxButton.Start) || Input.GetKey(KeyCode.Escape))
 		{
 			// Sets the pause menu true.
 			if(Time.timeScale == 1)
