@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PunchParticle: {fileID: 198063729467843660}
-  m_fHealth: 100000
+  m_fHealth: 100
   m_fDamage: 10
   f_Stunned: 3
   m_fOutOfRange: 5

@@ -21,8 +21,12 @@ public class SwordTEST : MonoBehaviour
     // the damage of the sword 
     public float fDamage = 15.0f;
     // the amount of time until the sword can attack again
-    public float m_fAttackTime = 1.0f;
+    public float m_fStartTime;
+    public float m_fSwordColorTimer;
+    public float m_fSwordColorCoolDown; 
+   
     public float m_fColorChange = 0.1f;
+    public float m_fAttackTime; 
 
     private bool m_bSwordColor = false;
     private bool m_bAttacking = false;
@@ -44,28 +48,32 @@ public class SwordTEST : MonoBehaviour
         ///  Sword.GetComponent<Renderer>().material.color = Color.gray;
 
         // the attacktime is deducted by delta time 
-        m_fAttackTime -= Time.deltaTime;
+        m_fStartTime -= Time.deltaTime;
+        m_fSwordColorTimer += Time.deltaTime;
+
         //if (Input.GetKeyDown(KeyCode.Mouse0))
         //{
         //    m_bSwordColor = true;
 
         //}
-     //  if (XCI.GetButtonUp(XboxButton.X) || Input.GetKeyUp(KeyCode.Mouse0))
-     //  {
-     //      gameObject.GetComponentInChildren<TrailRenderer>().enabled = false;
-     //
-     //  }
+        //  if (XCI.GetButtonUp(XboxButton.X) || Input.GetKeyUp(KeyCode.Mouse0))
+        //  {
+        //      gameObject.GetComponentInChildren<TrailRenderer>().enabled = false;
+        //
+        //  }
         if (XCI.GetButtonDown(XboxButton.X) || Input.GetKeyDown(KeyCode.Mouse0))
         {
-
-            m_bSwordColor = true;
-            ColorChange();
-
+            if (m_fSwordColorTimer >= m_fSwordColorCoolDown)
+            {
+                m_bSwordColor = true;
+                ColorChange();
+                m_fSwordColorTimer = 0;
+            }
             //  swingsound.Play();
 
             //          Sword.GetComponent<Renderer>().material.color = Color.red;
             // when the attack time is zero the player can attack 
-            if (m_bAttacking && m_fAttackTime <= 0)
+            if (m_bAttacking && m_fStartTime <= 0)
             {
 
               //  m_bSwordColor = true;
@@ -73,10 +81,10 @@ public class SwordTEST : MonoBehaviour
                 //   enemy takes damage 
                 EnemyScript.TakeDamage(fDamage);
                 //   one is added to attack time to reset timer
-                m_fAttackTime = 1;
+                m_fStartTime = m_fAttackTime;
             }
             // when the attack time is zero the player can attack 
-            if (m_bRangedAttacking && m_fAttackTime <= 0)
+            if (m_bRangedAttacking && m_fStartTime <= 0)
             {
          //       m_bSwordColor = true;
            //     Sword.GetComponent<Renderer>().material.color = Color.red;
@@ -84,7 +92,7 @@ public class SwordTEST : MonoBehaviour
                 // enemy takes damage 
                 RangedEnemyScript.TakeDamage(fDamage);
                 // one is added to attack time to reset timer
-                m_fAttackTime = 1;
+                m_fStartTime = m_fAttackTime;
             }
         }
 

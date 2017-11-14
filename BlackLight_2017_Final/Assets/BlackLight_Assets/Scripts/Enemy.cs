@@ -133,16 +133,19 @@ public class Enemy : MonoBehaviour {
                 
                 if (dist < ChargePunch)
                 {
-                    Debug.Log("Particle is playing");
-                    if (!PunchParticle.isPlaying)
-                        PunchParticle.Play();
+                    if (m_fTimer >= 1)
+                    {
+                        Debug.Log("Particle is playing");
+                        if (!PunchParticle.isPlaying)
+                            PunchParticle.Play();
+                    }
                 }
                 //PunchParticle.Stop();
                 if (Attacking)
                 {
                     PunchParticle.Stop();
 
-                        if (m_fTimer >= 3 && PlayerCon.m_bDashing == false)
+                        if (m_fTimer >= 2 && PlayerCon.m_bDashing == false)
                         {
                             //PunchParticle.Stop();
                             DoDamage();
