@@ -394,6 +394,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1732629370889998
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4832551566379144}
+  - component: {fileID: 108411390259104416}
+  m_Layer: 0
+  m_Name: Point light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1807481714234428
 GameObject:
   m_ObjectHideFlags: 1
@@ -557,7 +573,7 @@ GameObject:
   - component: {fileID: 4969907387985964}
   - component: {fileID: 82857095881559192}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: DashingAudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -674,7 +690,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.70710677}
   m_LocalPosition: {x: 0.13, y: 1.23, z: 0.33}
   m_LocalScale: {x: 0.5199661, y: 2.5003898, z: 0.6717879}
-  m_Children: []
+  m_Children:
+  - {fileID: 4832551566379144}
   m_Father: {fileID: 4932825602360096}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.00001}
@@ -869,6 +886,19 @@ Transform:
   m_Father: {fileID: 4943496540215770}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4832551566379144
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1732629370889998}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4246092172177940}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4854118225204406
 Transform:
   m_ObjectHideFlags: 1
@@ -917,7 +947,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1657218630941278}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.407, y: 1.007, z: -4.644}
+  m_LocalPosition: {x: 3.78, y: 0.936, z: -3.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4246092172177940}
@@ -1908,7 +1938,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a001c57ddb8c4514bb85b8d54baf2ec0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5dbd94062404a8643ba00c0654642079, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.217
   m_Pitch: 0.65
@@ -1988,7 +2018,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 58887954b27857148a7d5d74db833e4f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ae9788441a6121946b28936b022228b0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 0.81
@@ -2067,8 +2097,9 @@ AudioSource:
   m_GameObject: {fileID: 1950420509124116}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 276b9bd47732e444cbb3663c925f28b8, type: 3}
+  OutputAudioMixerGroup: {fileID: 243897172746916834, guid: 01cfc083571c3aa42a3acb54ed5a8f25,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 5dbd94062404a8643ba00c0654642079, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2126,7 +2157,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2180,14 +2211,14 @@ TrailRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1211220288686050}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2206,7 +2237,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 0.5
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -2215,26 +2246,32 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: 1
+        value: 0.5256405
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 0.02564168
         inSlope: 0
         outSlope: 0
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-      m_RotationOrder: 4
+      m_RotationOrder: 0
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 0.11764705, g: 1, b: 0.8174442, a: 1}
+      key1: {r: 0.14422354, g: 1, b: 0.8229428, a: 0.4509804}
+      key2: {r: 1, g: 1, b: 1, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 65535
-      ctime2: 0
+      ctime1: 27178
+      ctime2: 61295
       ctime3: 0
       ctime4: 0
       ctime5: 0
@@ -2242,22 +2279,72 @@ TrailRenderer:
       ctime7: 0
       atime0: 0
       atime1: 65535
-      atime2: 0
+      atime2: 65535
       atime3: 0
       atime4: 0
       atime5: 0
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_NumColorKeys: 2
+      m_NumColorKeys: 3
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
-    alignment: 0
+    alignment: 1
     textureMode: 0
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
+--- !u!108 &108411390259104416
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1732629370889998}
+  m_Enabled: 0
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 0.9019608, g: 1, b: 0, a: 1}
+  m_Intensity: 5
+  m_Range: 4.17
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_FalloffTable:
+    m_Table[0]: 0
+    m_Table[1]: 0
+    m_Table[2]: 0
+    m_Table[3]: 0
+    m_Table[4]: 0
+    m_Table[5]: 0
+    m_Table[6]: 0
+    m_Table[7]: 0
+    m_Table[8]: 0
+    m_Table[9]: 0
+    m_Table[10]: 0
+    m_Table[11]: 0
+    m_Table[12]: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!114 &114229146358427626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2317,7 +2404,7 @@ MonoBehaviour:
   Sword: {fileID: 1211220288686050}
   material:
   - {fileID: 2100000, guid: 2910ff0388775e7409d2e3a96c28a707, type: 2}
-  - {fileID: 2100000, guid: 091a958c8b253ec4fb4654101fa3b6d9, type: 2}
+  - {fileID: 0}
   rend: {fileID: 23920300116799348}
   fDamage: 100
   m_fAttackTime: 0.5
@@ -2440,7 +2527,7 @@ MonoBehaviour:
   Damage: {fileID: 198858253943037678}
   m_fHealth: 100
   m_fDamage: 0
-  HealthRegen: 10
+  HealthRegen: 20
   m_bIsDead: 0
   DeathCanvas: {fileID: 0}
   Restart: {fileID: 0}
@@ -2466,7 +2553,7 @@ MonoBehaviour:
   Dash: {fileID: 0}
   SwingWeapon: {fileID: 0}
   Dashing: {fileID: 82857095881559192}
-  DownForce: 220
+  DownForce: 200
   LegR: {fileID: 1964452582228558}
   LegL: {fileID: 1870962408475182}
   ArmR: {fileID: 1497360918264858}
@@ -2474,10 +2561,9 @@ MonoBehaviour:
   Neck: {fileID: 1821780535454258}
   DashDisplay: {fileID: 0}
   m_fVerticalJumpForce: 80
-  m_fMovementSpeed: 0.005
-  m_fKeyboardMovementSpeed: 0.25
-  m_fControllerRampUp: 0
-  m_fKeyBoardRampUp: 0.0014
+  m_fDefaultPlayerSpeed: 0.17
+  m_fRampUpSpeed: 0
+  m_RampUpSpeed: 0.0012
   MaxVel: 11
   m_bGrounded: 1
   m_bDashing: 0
@@ -2604,7 +2690,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1054022472
+  randomSeed: -798471328
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5040,7 +5126,7 @@ ParticleSystem:
   LightsModule:
     enabled: 1
     ratio: 0.65
-    light: {fileID: 0}
+    light: {fileID: 108411390259104416}
     randomDistribution: 1
     color: 1
     range: 1
