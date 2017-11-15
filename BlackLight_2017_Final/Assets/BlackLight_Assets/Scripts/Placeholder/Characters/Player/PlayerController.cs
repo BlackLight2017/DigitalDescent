@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     // Sets up references to other objects
     //----------------------------------------------------------------------------------------------------
+
+    public SwordTEST sword;
     public ParticleSystem particles; 
     // animations for the player that will be added later
     public Animation Idle;
@@ -19,7 +21,8 @@ public class PlayerController : MonoBehaviour {
     public Animation Jump;
     public Animation Dash;
     public Animation SwingWeapon;
-    public AudioSource Dashing; 
+    public AudioSource Dashing;
+    public Animator Attackings; 
     public float DownForce;
 
     public GameObject LegR;
@@ -29,7 +32,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject Neck; 
                       
     Animator anim;
-
+   
     public Image DashDisplay; 
 
     // how high the player can jump 
@@ -92,6 +95,7 @@ public class PlayerController : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     void FixedUpdate()
     {
+        
 
         m_fCurrentDashCount = m_fCurrentDashCount + 0;
 		if(DashDisplay)
@@ -274,6 +278,13 @@ public class PlayerController : MonoBehaviour {
                     transform.Rotate(0, 0, 0);
                 }
             }  
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+          
+            Attackings.SetTrigger("isAttacking") ;
+            sword.StartAttack(0.4f);
+
+        }
         //JUMPING
         if (m_bGrounded == true)
         {
