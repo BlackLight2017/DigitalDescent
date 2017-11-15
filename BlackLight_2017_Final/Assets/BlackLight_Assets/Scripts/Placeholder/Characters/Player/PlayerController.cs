@@ -278,7 +278,7 @@ public class PlayerController : MonoBehaviour {
                     transform.Rotate(0, 0, 0);
                 }
             }  
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) || XCI.GetButton(XboxButton.X))
         {
           
             Attackings.SetTrigger("isAttacking") ;
