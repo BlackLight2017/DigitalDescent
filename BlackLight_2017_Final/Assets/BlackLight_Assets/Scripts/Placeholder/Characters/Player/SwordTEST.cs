@@ -67,8 +67,11 @@ public class SwordTEST : MonoBehaviour
             {
                 //apply the damage
                 Debug.Log("DAMAGING!");
-                EnemyScript.TakeDamage(fDamage);
-                isAttacking = false;
+				if(EnemyScript)
+					EnemyScript.TakeDamage(fDamage);
+				if (RangedEnemyScript)
+					RangedEnemyScript.TakeDamage(fDamage);
+				isAttacking = false;
             }
         }
 
@@ -217,7 +220,7 @@ public class SwordTEST : MonoBehaviour
 	{
 		m_bAttacking = false;
 		m_bRangedAttacking = false;
-		//EnemyScript = null;
-		//RangedEnemyScript = null;
+		EnemyScript = null;
+		RangedEnemyScript = null;
 	}
 }
