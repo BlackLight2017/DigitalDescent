@@ -9413,6 +9413,30 @@ Prefab:
       propertyPath: m_fSwordColorCoolDown
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114723121881611686, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: controller
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114723121881611686, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: m_AddingRampSpeed
+      value: 0.0009
+      objectReference: {fileID: 0}
+    - target: {fileID: 114723121881611686, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 1804729380}
+    - target: {fileID: 114723121881611686, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: m_fAddingRampSpeed
+      value: 0.0018
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993366512489084, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
   m_IsPrefabParent: 0
@@ -11498,7 +11522,7 @@ MonoBehaviour:
   Win: {fileID: 1591783432}
   EndArea: {fileID: 458783868}
   TimerGameObject: {fileID: 296102523}
-  Restart: {fileID: 0}
+  Restart: {fileID: 414326992}
   WinButton: {fileID: 2064980780}
   ES: {fileID: 10371150}
 --- !u!4 &462499775
@@ -16203,6 +16227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b819b4a14e08024bb2f2bc029bf4368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: 0
+  sword: {fileID: 0}
   particles: {fileID: 2036020586}
   Idle: {fileID: 0}
   Walk: {fileID: 0}
@@ -16211,6 +16237,7 @@ MonoBehaviour:
   Dash: {fileID: 0}
   SwingWeapon: {fileID: 0}
   Dashing: {fileID: 1887790649}
+  Attackings: {fileID: 0}
   DownForce: 220
   LegR: {fileID: 0}
   LegL: {fileID: 0}
@@ -16221,7 +16248,7 @@ MonoBehaviour:
   m_fVerticalJumpForce: 80
   m_fDefaultPlayerSpeed: 0
   m_fRampUpSpeed: 0
-  m_RampUpSpeed: 0
+  m_fAddingRampSpeed: 0
   MaxVel: 11
   m_bGrounded: 1
   m_bDashing: 0
@@ -18986,6 +19013,7 @@ MonoBehaviour:
   swingsound: {fileID: 0}
   Sword: {fileID: 0}
   material: []
+  damageTime: 0
   rend: {fileID: 0}
   fDamage: 15
   m_fStartTime: 0
@@ -20486,6 +20514,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b819b4a14e08024bb2f2bc029bf4368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: 0
+  sword: {fileID: 0}
   particles: {fileID: 2036020586}
   Idle: {fileID: 0}
   Walk: {fileID: 0}
@@ -20494,6 +20524,7 @@ MonoBehaviour:
   Dash: {fileID: 0}
   SwingWeapon: {fileID: 0}
   Dashing: {fileID: 183981335}
+  Attackings: {fileID: 0}
   DownForce: 200
   LegR: {fileID: 1047710456}
   LegL: {fileID: 407288049}
@@ -20504,7 +20535,7 @@ MonoBehaviour:
   m_fVerticalJumpForce: 80
   m_fDefaultPlayerSpeed: 0.25
   m_fRampUpSpeed: 0
-  m_RampUpSpeed: 0.0013
+  m_fAddingRampSpeed: 0
   MaxVel: 11
   m_bGrounded: 1
   m_bDashing: 0
@@ -22965,6 +22996,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100048, guid: 3e0bc9a442ec50e4c835045c8c8f87fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e0bc9a442ec50e4c835045c8c8f87fb, type: 3}
   m_IsPrefabParent: 0
@@ -23742,6 +23777,34 @@ Transform:
   m_PrefabParentObject: {fileID: 4555878608194372, guid: d2c213bf44f3b5541bb0149786533741,
     type: 2}
   m_PrefabInternal: {fileID: 1795344054}
+--- !u!1 &988776837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1704645000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 988776838}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &988776838
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1704645000}
+  m_GameObject: {fileID: 988776837}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 345248}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &997154352
 Prefab:
   m_ObjectHideFlags: 0
@@ -41235,6 +41298,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4136585630904860, guid: 7e1fbc8328406d4438091b9302615f66,
     type: 2}
   m_PrefabInternal: {fileID: 1798233642}
+--- !u!114 &1804729380 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114409333293407088, guid: 17d21e1724f9520468182e882b3100ab,
+    type: 2}
+  m_PrefabInternal: {fileID: 382754242}
+  m_Script: {fileID: 11500000, guid: 51fac0772ee49224bb0a7d17a088505d, type: 3}
 --- !u!1001 &1808407100
 Prefab:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     // Sets up references to other objects
     //----------------------------------------------------------------------------------------------------
-
+    public XboxController controller;
     public SwordTEST sword;
     public ParticleSystem particles; 
     // animations for the player that will be added later
@@ -42,13 +42,11 @@ public class PlayerController : MonoBehaviour {
     public float m_fDefaultPlayerSpeed;
     private float m_fDefaultControllerPlayerSpeed;
     // THE RESULTING RAMP UP SPEED 
-    private float m_fRampUpMovementSpeed;// = 10;
-    // keybaord ramp up 
     public float m_fRampUpSpeed;// = 10;
     // ADDS THE AMOUNT OF TO THE CONTROLLER AND KEYBAORD SPEED 
     private float m_fControllerRampUp; //0.00005f
-    // m_RampUpSpeed
-    public float m_RampUpSpeed;   //0.00090f
+    // ADDS TO RAMP UP SPEED 
+    public float m_fAddingRampSpeed;   //0.00090f
 
     public float MaxVel;
    
@@ -134,14 +132,13 @@ public class PlayerController : MonoBehaviour {
         
         // Movement is controled by the xbox360 controller 
         // This input is for the left stick 
-        float moveHorizontal = XCI.GetAxis(XboxAxis.LeftStickX);
-        float m_fKeyboardMoveHorizontal = Input.GetAxis("Horizontal");
+        float moveHorizontal = XCI.GetAxis(XboxAxis.LeftStickX, controller);
+        //float m_fKeyboardMoveHorizontal = Input.GetAxis("Horizontal");
         // movement of the player 
-        transform.position = new Vector3(transform.position.x + (moveHorizontal * m_fRampUpMovementSpeed), transform.position.y, transform.position.z);
-        transform.position = new Vector3(transform.position.x + (m_fKeyboardMoveHorizontal * m_fRampUpSpeed), transform.position.y, transform.position.z);
+       transform.position = new Vector3(transform.position.x + (moveHorizontal * m_fRampUpSpeed), transform.position.y, transform.position.z);
 
         // when the left stick is tiled to the left it rotates the player 90 degrees (face playerto the left)
-        if (XCI.GetAxis(XboxAxis.LeftStickX) < 0 || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (XCI.GetAxis(XboxAxis.LeftStickX, controller) < 0)
         {
             // RAMP UP WHEN RUNNING TO LEFT
           // if (RampUp == true)
@@ -166,7 +163,7 @@ public class PlayerController : MonoBehaviour {
          //  }
         }
         // when the left stick is tiled to the right it rotates the player -90 degrees (faces player to the right) 
-        if (XCI.GetAxis(XboxAxis.LeftStickX) > 0 || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if (XCI.GetAxis(XboxAxis.LeftStickX, controller) > 0)
         {
 
             if (RampUp == true)
@@ -174,8 +171,7 @@ public class PlayerController : MonoBehaviour {
                 RampUpTime += Time.deltaTime;
                 if (RampUpTime >= 1)
                 {
-                    m_fRampUpMovementSpeed += m_fControllerRampUp;        // 0.00015
-                    m_fRampUpSpeed += m_RampUpSpeed;//0.00120f
+                    m_fRampUpSpeed += m_fAddingRampSpeed;//0.00120f
 
                 }
             }
@@ -192,8 +188,7 @@ public class PlayerController : MonoBehaviour {
             }                
         }
        
-        if (XCI.GetAxis(XboxAxis.LeftStickX) == 0 && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) 
-            && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow))
+        if (XCI.GetAxis(XboxAxis.LeftStickX, controller) == 0 )
         {
 
             RampSpeed();
@@ -209,10 +204,9 @@ public class PlayerController : MonoBehaviour {
         rb.AddForce(Vector3.down * DownForce);
       
         // if the left bumper of the xbox360 control is pressed and m_bDashing is false and there are more than one available dash         
-        if (XCI.GetButton(XboxButton.B) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) < 0
-            || XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) < 0
-            || Input.GetKey(KeyCode.LeftShift)  && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.A)
-            || Input.GetKey(KeyCode.LeftShift)  && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.LeftArrow))
+        if (XCI.GetButton(XboxButton.B, controller) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX, controller) < 0
+            || XCI.GetButton(XboxButton.RightBumper, controller) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX, controller) < 0
+           )
         {
             Dashing.Play();
             particles.Play(); 
@@ -225,10 +219,8 @@ public class PlayerController : MonoBehaviour {
 
         }
         // if the right bumper of the xbox360 control is pressed and m_bDashing is false and there are more than one available dash         
-        if (XCI.GetButton(XboxButton.B) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) > 0
-            || XCI.GetButton(XboxButton.RightBumper) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX) > 0
-            || Input.GetKey(KeyCode.LeftShift) && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.D)
-            || Input.GetKey(KeyCode.LeftShift) && m_bDashing == false && m_fCurrentDashCount > 0 && Input.GetKey(KeyCode.RightArrow))
+        if (XCI.GetButton(XboxButton.B, controller) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX, controller) > 0
+            || XCI.GetButton(XboxButton.RightBumper, controller) && m_bDashing == false && m_fCurrentDashCount > 0 && XCI.GetAxis(XboxAxis.LeftStickX, controller) > 0)
         {
             Dashing.Play();
             particles.Play();
@@ -278,18 +270,18 @@ public class PlayerController : MonoBehaviour {
                     transform.Rotate(0, 0, 0);
                 }
             }  
-        if (Input.GetKey(KeyCode.Mouse0) || XCI.GetButton(XboxButton.X))
+        if ( XCI.GetButton(XboxButton.X, controller))
         {
           
             Attackings.SetTrigger("isAttacking") ;
-            sword.StartAttack(0.4f);
+            sword.StartAttack(0.5f);
 
         }
         //JUMPING
         if (m_bGrounded == true)
         {
             // when the 'A' button the xbox360 Control is pressed 
-            if (XCI.GetButton(XboxButton.A))
+            if (XCI.GetButton(XboxButton.A, controller))
             {
                 // add jumpforce to players Y position 
                 Vector3 Jump = new Vector3(0, m_fVerticalJumpForce, 0);
@@ -298,19 +290,11 @@ public class PlayerController : MonoBehaviour {
                 // jump is disabled when in the air
                 m_bGrounded = false;
             }
-            if (Input.GetKey(KeyCode.Space))
-            {
-                // add jumpforce to players Y position 
-                Vector3 Jump = new Vector3(0, m_fVerticalJumpForce, 0);
-                // gives the player a more respoinsive jump with Forcemode.Impulse
-                transform.GetComponent<Rigidbody>().AddForce(Jump, ForceMode.Impulse);
-                // jump is disabled when in the air
-                m_bGrounded = false;
-            }
+          
         }
 
 		// Pause
-		if (XCI.GetButton(XboxButton.Start) || Input.GetKey(KeyCode.Escape))
+		if (XCI.GetButton(XboxButton.Start, controller) )
 		{
 			// Sets the pause menu true.
 			if(Time.timeScale == 1)
@@ -338,7 +322,6 @@ public class PlayerController : MonoBehaviour {
     public void RampSpeed()
     {
         m_fRampUpSpeed = m_fDefaultPlayerSpeed;
-        m_fRampUpMovementSpeed = m_fDefaultControllerPlayerSpeed;
 
     }
     private void OnCollisionStay(Collision collision)
