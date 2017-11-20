@@ -9252,7 +9252,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4932825602360096, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4932825602360096, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
       propertyPath: m_LocalRotation.y
@@ -9436,6 +9436,16 @@ Prefab:
     - target: {fileID: 4993366512489084, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
       propertyPath: m_RootOrder
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 65282112814180002, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 65282112814180002, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: m_Center.x
+      value: 0.99
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
@@ -16250,6 +16260,7 @@ MonoBehaviour:
   m_fRampUpSpeed: 0
   m_fAddingRampSpeed: 0
   MaxVel: 11
+  m_fJumpTime: 0
   m_bGrounded: 1
   m_bDashing: 0
   timer: 1
@@ -20537,6 +20548,7 @@ MonoBehaviour:
   m_fRampUpSpeed: 0
   m_fAddingRampSpeed: 0
   MaxVel: 11
+  m_fJumpTime: 0
   m_bGrounded: 1
   m_bDashing: 0
   timer: 1
@@ -21006,6 +21018,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114238339242407706, guid: 53b9f40d2a686c64b914c1c416b5edf7,
+        type: 2}
+      propertyPath: ES
+      value: 
+      objectReference: {fileID: 10371150}
+    - target: {fileID: 114337580567555000, guid: 53b9f40d2a686c64b914c1c416b5edf7,
+        type: 2}
+      propertyPath: EventSystem
+      value: 
+      objectReference: {fileID: 10371150}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53b9f40d2a686c64b914c1c416b5edf7, type: 2}
   m_IsPrefabParent: 0
@@ -49099,7 +49121,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2133638556}
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 5.01, y: 4.8, z: -15.5}
+  m_LocalPosition: {x: 5.01, y: 4.8, z: -11.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

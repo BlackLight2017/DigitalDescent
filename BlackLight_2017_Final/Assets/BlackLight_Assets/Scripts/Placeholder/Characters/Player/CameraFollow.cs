@@ -6,8 +6,13 @@ public class CameraFollow : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     public Transform target;
     public GameObject falling;
+    public PlayerController jump; 
     public float m_fsmoothSpeed;
     public Vector3 offset;
+    private float PlayerY;
+    private bool Timer; 
+    private float m_fJumpTime; 
+
     public float m_fSpeedChangeTime;
     private float m_fTmier = 0;
     Vector3 vel = Vector3.zero;
@@ -23,14 +28,19 @@ public class CameraFollow : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     void FixedUpdate()
     {
-       // print(m_fsmoothSpeed);
+        // print(m_fsmoothSpeed);
         // adds offse to camera thats targeted at the player 
-       
+        if (Timer == true)
+        {
+            m_fJumpTime += Time.deltaTime;
+
+        }
+
         Vector3 desiredPosition = target.position + offset ;
         // moves the camera with the position of the player and the offset of the camera giving it a smooth look 
         //Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, m_fsmoothSpeed);
         float posx = Mathf.Lerp(transform.position.x, desiredPosition.x, m_fsmoothSpeed);
-        float posy = Mathf.Lerp(transform.position.y, desiredPosition.y, 0.1f);
+        float posy = Mathf.Lerp(transform.position.y, desiredPosition.y, PlayerY);
         float posz = Mathf.Lerp(transform.position.z, desiredPosition.z, m_fsmoothSpeed);
         //lower smoother
 
@@ -51,7 +61,24 @@ public class CameraFollow : MonoBehaviour {
             offset.x = -2.0f; // 7 
         }
 
+        if (XCI.GetButton(XboxButton.A))
+        {
+            Timer = true; 
+            PlayerY = 0.0f;
+          
+        }
+        if (m_fJumpTime >= 0.50f)
+        {
+            PlayerY = 0.1f;
+            m_fJumpTime = 0;
+            Timer = false;
 
+        }
+        //      else if (XCI.GetButtonUp(XboxButton.A))
+        //      {
+        //          PlayerY = 0.1f;
+        //
+        //      }
         // when the left stick is tilted to the right it moves the camera to the right 
         if (XCI.GetAxis(XboxAxis.LeftStickX) > 0)
         {
@@ -60,7 +87,7 @@ public class CameraFollow : MonoBehaviour {
             {
                 m_fsmoothSpeed = 0.045f;
             }
-            offset.x = 7.0f;
+            offset.x = 4.5f;
         }
         // when the left stick isnt being used the camera is set to the default position 
         if(XCI.GetAxis(XboxAxis.LeftStickX) == 0 )

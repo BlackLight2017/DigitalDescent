@@ -49,7 +49,8 @@ public class PlayerController : MonoBehaviour {
     public float m_fAddingRampSpeed;   //0.00090f
 
     public float MaxVel;
-   
+    public float m_fJumpTime;
+
     private Rigidbody rb;
 
     // how long the dash lasts 
@@ -93,8 +94,8 @@ public class PlayerController : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     void FixedUpdate()
     {
-        
 
+        m_fJumpTime += Time.deltaTime; 
         m_fCurrentDashCount = m_fCurrentDashCount + 0;
 		if(DashDisplay)
 			DashDisplay.fillAmount = m_fCurrentDashCount;
@@ -280,15 +281,19 @@ public class PlayerController : MonoBehaviour {
         //JUMPING
         if (m_bGrounded == true)
         {
-            // when the 'A' button the xbox360 Control is pressed 
-            if (XCI.GetButton(XboxButton.A, controller))
+            if (m_fJumpTime >= 0.75f)
             {
-                // add jumpforce to players Y position 
-                Vector3 Jump = new Vector3(0, m_fVerticalJumpForce, 0);
-                // gives the player a more respoinsive jump with Forcemode.Impulse
-                transform.GetComponent<Rigidbody>().AddForce(Jump, ForceMode.Impulse);
-                // jump is disabled when in the air
-                m_bGrounded = false;
+                // when the 'A' button the xbox360 Control is pressed 
+                if (XCI.GetButton(XboxButton.A, controller))
+                {
+                    // add jumpforce to players Y position 
+                    Vector3 Jump = new Vector3(0, m_fVerticalJumpForce, 0);
+                    // gives the player a more respoinsive jump with Forcemode.Impulse
+                    transform.GetComponent<Rigidbody>().AddForce(Jump, ForceMode.Impulse);
+                    m_fJumpTime = 0; 
+                    // jump is disabled when in the air
+                    m_bGrounded = false;
+                }
             }
           
         }
