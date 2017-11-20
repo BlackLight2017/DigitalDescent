@@ -161,13 +161,16 @@ public class Enemy : MonoBehaviour {
             Body.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
             LeftArm.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
             RightArm.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
-            if (!DeathSound.isPlaying)
-			{
-				// Sets active false.
-				gameObject.SetActive(false);
-			}
-		}
-	}
+            //  if (!DeathSound.isPlaying)
+            //{
+            //	// Sets active false.
+            //	gameObject.SetActive(false);
+            //}
+            gameObject.SetActive(false);
+
+        }
+
+    }
 
 
     //----------------------------------------------------------------------------------------------------

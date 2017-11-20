@@ -23,8 +23,8 @@ public class SwordTEST : MonoBehaviour
     // the amount of time until the sword can attack again
     public float m_fStartTime;
     public float m_fSwordColorTimer;
-    public float m_fSwordColorCoolDown; 
-   
+    public float m_fSwordColorCoolDown;
+    public float m_fSwordDelay;
     public float m_fColorChange = 0.1f;
     public float m_fAttackTime; 
     private bool m_bSwordColor = false;
@@ -41,17 +41,17 @@ public class SwordTEST : MonoBehaviour
 
 
     private bool isAttacking = false;
-    private float swordDamageTimer = 0.0f;
-    private float swordDamageDelay = 0.0f;
+  //  private float swordDamageTimer = 0.0f;
+  //  private float swordDamageDelay = 0.0f;
 
-    public void StartAttack(float a_delay)
-    {
-        //you wait 0.5 seconds and then add damage
-        isAttacking = true;
-        swordDamageDelay = a_delay;
-        swordDamageTimer = 0.0f;
-
-    }
+//   public void StartAttack(float a_delay)
+//   {
+//       //you wait 0.5 seconds and then add damage
+//       isAttacking = true;
+//       swordDamageDelay = a_delay;
+//       swordDamageTimer = 0.0f;
+//
+//   }
 
     //----------------------------------------------------------------------------------------------------
     // FixedUpdate is called once per frame, this function allows the player to attack using the xboxcontroller.
@@ -59,27 +59,28 @@ public class SwordTEST : MonoBehaviour
     //----------------------------------------------------------------------------------------------------
     private void FixedUpdate()
     {
-        if(isAttacking)
-        {
-            swordDamageTimer += Time.fixedDeltaTime;
-            
-            if(swordDamageTimer > swordDamageDelay)
-            {
-                //apply the damage
-                Debug.Log("DAMAGING!");
-				if(EnemyScript)
-					EnemyScript.TakeDamage(fDamage);
-				if (RangedEnemyScript)
-					RangedEnemyScript.TakeDamage(fDamage);
-				isAttacking = false;
-            }
-        }
+        //  if(isAttacking)
+        //  {
+        //      swordDamageTimer += Time.fixedDeltaTime;
+        //      
+        //      if(swordDamageTimer > swordDamageDelay)
+        //      {
+        //          //apply the damage
+        //          Debug.Log("DAMAGING!");
+        //		if(EnemyScript)
+        //			EnemyScript.TakeDamage(fDamage);
+        //		if (RangedEnemyScript)
+        //			RangedEnemyScript.TakeDamage(fDamage);
+        //		isAttacking = false;
+        //      }
+        //  }
 
 
 
         ///  Sword.GetComponent<Renderer>().material.color = Color.gray;
 
         // the attacktime is deducted by delta time 
+        m_fSwordDelay += Time.deltaTime; 
         m_fStartTime -= Time.deltaTime;
         m_fSwordColorTimer += Time.deltaTime;
         damageTime += Time.deltaTime;
@@ -114,7 +115,8 @@ public class SwordTEST : MonoBehaviour
                     //  m_bSwordColor = true;
                     //   SwingWeapon.Play(); 
                     //   enemy takes damage 
-                   // EnemyScript.TakeDamage(fDamage);
+
+                    EnemyScript.TakeDamage(fDamage);
                     //   one is added to attack time to reset timer
                     m_fStartTime = m_fAttackTime;
                     damageTime = 0;

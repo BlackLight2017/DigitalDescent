@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour {
 	void Start()
     {
         rb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+    //      anim = GetComponent<Animator>();
 		PauseMenu.enabled = false;
         Time.timeScale = 1;
 		Select = PauseMenu.GetComponent<SelectOnInput>();
@@ -89,11 +89,18 @@ public class PlayerController : MonoBehaviour {
 
     //----------------------------------------------------------------------------------------------------
     // FixedUpdate is called once per frame, when the game load up the user wil be able to control the players 
-    // movement, jump and dash abilities. The user can control the player using the keyboard or an xbox Controller.
+    // movement, jump and dash abilities. The user can control the player using an xbox Controller.
     // Particles are also called in the update when the player dashes                                            
     //----------------------------------------------------------------------------------------------------
     void FixedUpdate()
     {
+        if (XCI.GetButton(XboxButton.X, controller))
+        {
+
+            Attackings.SetTrigger("isAttacking");
+            //  sword.StartAttack(0.5f);
+
+        }
 
         m_fJumpTime += Time.deltaTime; 
         m_fCurrentDashCount = m_fCurrentDashCount + 0;
@@ -271,20 +278,14 @@ public class PlayerController : MonoBehaviour {
                     transform.Rotate(0, 0, 0);
                 }
             }  
-        if ( XCI.GetButton(XboxButton.X, controller))
-        {
-          
-            Attackings.SetTrigger("isAttacking") ;
-            sword.StartAttack(0.5f);
-
-        }
+    
         //JUMPING
         if (m_bGrounded == true)
         {
-            if (m_fJumpTime >= 0.75f)
+            if (m_fJumpTime >= 0.50f)
             {
                 // when the 'A' button the xbox360 Control is pressed 
-                if (XCI.GetButton(XboxButton.A, controller))
+                if (XCI.GetButtonDown(XboxButton.A, controller)) //|| Input.GetKey(KeyCode.Space))
                 {
                     // add jumpforce to players Y position 
                     Vector3 Jump = new Vector3(0, m_fVerticalJumpForce, 0);

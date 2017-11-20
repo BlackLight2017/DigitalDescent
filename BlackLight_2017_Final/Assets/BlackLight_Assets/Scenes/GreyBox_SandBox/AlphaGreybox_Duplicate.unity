@@ -9431,7 +9431,7 @@ Prefab:
     - target: {fileID: 114723121881611686, guid: 17d21e1724f9520468182e882b3100ab,
         type: 2}
       propertyPath: m_fAddingRampSpeed
-      value: 0.0018
+      value: 0.0007
       objectReference: {fileID: 0}
     - target: {fileID: 4993366512489084, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
       propertyPath: m_RootOrder
@@ -9440,12 +9440,32 @@ Prefab:
     - target: {fileID: 65282112814180002, guid: 17d21e1724f9520468182e882b3100ab,
         type: 2}
       propertyPath: m_Size.x
-      value: 1.08
+      value: 1.21
       objectReference: {fileID: 0}
     - target: {fileID: 65282112814180002, guid: 17d21e1724f9520468182e882b3100ab,
         type: 2}
       propertyPath: m_Center.x
       value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 114639475598693428, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: m_fHealth
+      value: 696969
+      objectReference: {fileID: 0}
+    - target: {fileID: 114723121881611686, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: m_fVerticalJumpForce
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 65282112814180002, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 65282112814180002, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 0.59
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
@@ -19030,6 +19050,7 @@ MonoBehaviour:
   m_fStartTime: 0
   m_fSwordColorTimer: 0
   m_fSwordColorCoolDown: 0
+  m_fSwordDelay: 0
   m_fColorChange: 0.5
   m_fAttackTime: 1
 --- !u!1001 &776610054
@@ -32653,7 +32674,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1645173041331556, guid: fd29412935e22c24596ec1472993a296, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65448666131218552, guid: fd29412935e22c24596ec1472993a296,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 65448666131218552, guid: fd29412935e22c24596ec1472993a296,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 65448666131218552, guid: fd29412935e22c24596ec1472993a296,
+        type: 2}
+      propertyPath: m_Center.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 195591313048211140, guid: fd29412935e22c24596ec1472993a296,
+        type: 2}
+      propertyPath: m_BaseOffset
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd29412935e22c24596ec1472993a296, type: 2}
@@ -49049,9 +49090,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 345248}
   falling: {fileID: 2133638556}
+  jump: {fileID: 0}
   m_fsmoothSpeed: 0
   offset: {x: 4.5, y: 3.66, z: -8.8}
   m_fSpeedChangeTime: 0
+  m_test: 0
 --- !u!81 &2133638558
 AudioListener:
   m_ObjectHideFlags: 0

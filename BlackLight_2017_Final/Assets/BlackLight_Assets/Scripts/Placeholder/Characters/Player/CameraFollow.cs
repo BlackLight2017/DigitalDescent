@@ -10,11 +10,14 @@ public class CameraFollow : MonoBehaviour {
     public float m_fsmoothSpeed;
     public Vector3 offset;
     private float PlayerY;
-    private bool Timer; 
-    private float m_fJumpTime; 
-
+    private bool Timer;
+    private bool m_bJumpCooldownTimer = false;
+    private float m_fJumpTime;
+    private float m_fJumpCoolDown;
     public float m_fSpeedChangeTime;
     private float m_fTmier = 0;
+    public float m_test;
+
     Vector3 vel = Vector3.zero;
     float targetPos;
     void Start()
@@ -35,7 +38,15 @@ public class CameraFollow : MonoBehaviour {
             m_fJumpTime += Time.deltaTime;
 
         }
-
+        m_test += Time.deltaTime; 
+        if (m_bJumpCooldownTimer == true)
+        {
+            m_fJumpCoolDown -= Time.deltaTime;
+        }
+        if (m_fJumpCoolDown <= 0)
+        {
+            m_bJumpCooldownTimer = false;
+        }
         Vector3 desiredPosition = target.position + offset ;
         // moves the camera with the position of the player and the offset of the camera giving it a smooth look 
         //Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, m_fsmoothSpeed);
@@ -56,23 +67,26 @@ public class CameraFollow : MonoBehaviour {
             m_fTmier += Time.deltaTime;
             if(m_fTmier >= m_fSpeedChangeTime)
             {
-               m_fsmoothSpeed = 0.045f;
+               m_fsmoothSpeed = 0.038f;
             }
             offset.x = -2.0f; // 7 
         }
-
-        if (XCI.GetButton(XboxButton.A))
+        if (m_bJumpCooldownTimer == false && m_test >= 0.00000000003f)
         {
-            Timer = true; 
-            PlayerY = 0.0f;
-          
-        }
-        if (m_fJumpTime >= 0.50f)
-        {
-            PlayerY = 0.1f;
-            m_fJumpTime = 0;
-            Timer = false;
-
+            m_test = 0; 
+            if (XCI.GetButton(XboxButton.A))
+            {
+                Timer = true;
+                PlayerY = 0.0f;
+                m_fJumpCoolDown = 0.10f;
+            }
+            if (m_fJumpTime >= 0.39f)
+            {
+                PlayerY = 0.1f;
+                m_fJumpTime = 0;
+                Timer = false;
+                m_bJumpCooldownTimer = true;
+            }
         }
         //      else if (XCI.GetButtonUp(XboxButton.A))
         //      {
