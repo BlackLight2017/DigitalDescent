@@ -337,6 +337,19 @@ public class PlayerController : MonoBehaviour {
             m_bGrounded = true;
         }
     }
+
+	public void DoDamage()
+	{
+		Debug.Log("DAMAGE!");
+		if(sword.m_bAttacking == true)
+		{
+			sword.EnemyScript.TakeDamage(100);
+		}
+		if (sword.m_bRangedAttacking == true)
+		{
+			sword.RangedEnemyScript.TakeDamage(100);
+		}
+	}
   }
             
         

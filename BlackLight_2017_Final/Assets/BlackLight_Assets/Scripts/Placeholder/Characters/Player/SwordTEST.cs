@@ -9,30 +9,35 @@ public class SwordTEST : MonoBehaviour
     //----------------------------------------------------------------------------------------------------
 
     public TrailRenderer Trails;
-    Enemy EnemyScript;
+    public Enemy EnemyScript;
     
-    RangedEnemy RangedEnemyScript;
+    public RangedEnemy RangedEnemyScript;
     public AudioSource swingsound;
     public GameObject Sword;
     // public Animation SwingWeapon;
     public Material[] material;
-    public float damageTime; 
     public MeshRenderer rend;
     // the damage of the sword 
     public float fDamage = 15.0f;
     // the amount of time until the sword can attack again
-    public float m_fStartTime;
-    public float m_fSwordColorTimer;
+    public float m_fAttackTimer;
+	public float m_fCoolDownTime;
+
+	public float m_fSwordColorTimer;
     public float m_fSwordColorCoolDown;
     public float m_fSwordDelay;
     public float m_fColorChange = 0.1f;
-    public float m_fAttackTime; 
+    //public float m_fAttackTime; 
     private bool m_bSwordColor = false;
-    private bool m_bAttacking = false;
-    private bool m_bRangedAttacking = false;
+    public bool m_bAttacking = false;
+    public bool m_bRangedAttacking = false;
 
+	private bool m_bClicked = false;
+	private bool m_bDamage = false;
+	public float m_fAttackDelay;
+	public float m_fAttackTimerDelay;
 
-    void start()
+	void start()
     {
         rend = gameObject.GetComponent<MeshRenderer>();
         rend.sharedMaterial = material[1];
@@ -77,13 +82,12 @@ public class SwordTEST : MonoBehaviour
 
 
 
-        ///  Sword.GetComponent<Renderer>().material.color = Color.gray;
+		///  Sword.GetComponent<Renderer>().material.color = Color.gray;
 
-        // the attacktime is deducted by delta time 
-        m_fSwordDelay += Time.deltaTime; 
-        m_fStartTime -= Time.deltaTime;
+		// the attacktime is deducted by delta time 
+		m_fAttackTimer += Time.deltaTime;
         m_fSwordColorTimer += Time.deltaTime;
-        damageTime += Time.deltaTime;
+        
         //if (Input.GetKeyDown(KeyCode.Mouse0))
         //{
         //    m_bSwordColor = true;
@@ -96,6 +100,7 @@ public class SwordTEST : MonoBehaviour
         //  }
         if (XCI.GetButtonDown(XboxButton.X) || Input.GetKeyDown(KeyCode.Mouse0))
         {
+			m_bClicked = true;
             if (m_fSwordColorTimer >= m_fSwordColorCoolDown)
             {
                 m_bSwordColor = true;
@@ -107,33 +112,54 @@ public class SwordTEST : MonoBehaviour
 
             //          Sword.GetComponent<Renderer>().material.color = Color.red;
             // when the attack time is zero the player can attack 
-            if (m_bAttacking && m_fStartTime <= 0)
+            if (m_bAttacking && m_fAttackTimer >= m_fCoolDownTime)
             {
-                
-                if (damageTime >= 0.50f)
-                {
-                    //  m_bSwordColor = true;
-                    //   SwingWeapon.Play(); 
-                    //   enemy takes damage 
-
-                    EnemyScript.TakeDamage(fDamage);
-                    //   one is added to attack time to reset timer
-                    m_fStartTime = m_fAttackTime;
-                    damageTime = 0;
-                }
+				if (m_bDamage)
+				{
+					//   enemy takes damage 
+					//EnemyScript.TakeDamage(fDamage);
+					// reset timer
+					m_fAttackTimer = 0;
+					m_fAttackTimerDelay = 0;
+					m_bDamage = false;
+				}
+				//  m_bSwordColor = true;
+				//   SwingWeapon.Play(); 
             }
             // when the attack time is zero the player can attack 
-            if (m_bRangedAttacking && m_fStartTime <= 0)
+            if (m_bRangedAttacking && m_fAttackTimer >= m_fCoolDownTime)
             {
-         //       m_bSwordColor = true;
-           //     Sword.GetComponent<Renderer>().material.color = Color.red;
-
-                // enemy takes damage 
-                RangedEnemyScript.TakeDamage(fDamage);
-                // one is added to attack time to reset timer
-                m_fStartTime = m_fAttackTime;
+				if (m_bDamage)
+				{
+					// enemy takes damage 
+					//RangedEnemyScript.TakeDamage(fDamage);
+					// reset timer
+					m_fAttackTimer = 0;
+					m_fAttackTimerDelay = 0;
+					m_bDamage = false;
+				}
+				// m_bSwordColor = true;
+				// Sword.GetComponent<Renderer>().material.color = Color.red;
             }
         }
+		else if(m_fAttackTimerDelay >= 1.0f)
+		{
+			m_bClicked = false;
+		}
+
+		if (m_fAttackTimerDelay >= m_fAttackDelay)
+		{
+			m_bDamage = true;
+		}
+
+			if (m_bClicked)
+		{
+			m_fAttackTimerDelay += Time.deltaTime;
+		}
+		if (!m_bClicked)
+		{
+			m_fAttackTimerDelay = 0.0f;
+		}
 
         //Sword.GetComponent<Renderer>().material.color = Color.gray;
         if (m_bSwordColor == true)
@@ -154,7 +180,7 @@ public class SwordTEST : MonoBehaviour
 
             m_fColorChange += 0.1f;
         }
-
+		
     }
     public void ColorChange()
     {
