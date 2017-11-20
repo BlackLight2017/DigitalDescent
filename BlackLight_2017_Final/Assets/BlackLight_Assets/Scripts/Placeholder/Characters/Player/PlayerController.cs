@@ -25,11 +25,11 @@ public class PlayerController : MonoBehaviour {
     public Animator Attackings; 
     public float DownForce;
 
-    public GameObject LegR;
-    public GameObject LegL;
-    public GameObject ArmR;
-    public GameObject ArmL;
-    public GameObject Neck; 
+  //  public GameObject LegR;
+  //  public GameObject LegL;
+  //  public GameObject ArmR;
+  //  public GameObject ArmL;
+  //  public GameObject Neck; 
                       
     Animator anim;
    
@@ -232,13 +232,13 @@ public class PlayerController : MonoBehaviour {
         {
             Dashing.Play();
             particles.Play();
-
-            GetComponent<Renderer>().material.color = Color.yellow;
-            LegL.GetComponent<Renderer>().material.color = Color.yellow;
-            LegR.GetComponent<Renderer>().material.color = Color.yellow;
-            ArmR.GetComponent<Renderer>().material.color = Color.yellow;
-            ArmL.GetComponent<Renderer>().material.color = Color.yellow;
-            Neck.GetComponent<Renderer>().material.color = Color.yellow;
+//
+//    GetComponent<Renderer>().material.color = Color.yellow;
+//    LegL.GetComponent<Renderer>().material.color = Color.yellow;
+//    LegR.GetComponent<Renderer>().material.color = Color.yellow;
+//    ArmR.GetComponent<Renderer>().material.color = Color.yellow;
+//    ArmL.GetComponent<Renderer>().material.color = Color.yellow;
+//    Neck.GetComponent<Renderer>().material.color = Color.yellow;
 
             m_bDashing = true;
             rb.AddForce(Vector3.right * 3200);
@@ -264,12 +264,12 @@ public class PlayerController : MonoBehaviour {
                     // dashing is false ending the dash 
                     m_bDashing = false;
 
-                GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-                LegL.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-                LegR.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-                ArmR.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-                ArmL.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-                Neck.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+           //    GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+           //    LegL.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+           //    LegR.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+           //    ArmR.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+           //    ArmL.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+           //    Neck.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
 
                 // returns players constraints back to normal
                 rb.constraints =  RigidbodyConstraints.FreezePositionZ |
