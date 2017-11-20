@@ -207,7 +207,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1474159468773194}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.55, z: -1.61}
+  m_LocalPosition: {x: 0, y: 0.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4298541722017436}
@@ -589,7 +589,7 @@ Animator:
   m_GameObject: {fileID: 1474159468773194}
   m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: a6a34b8448e84e34b8ff34327f457a11, type: 3}
-  m_Controller: {fileID: 9100000, guid: bd1f4fa84e6c6664ebcd0aaee014fb7d, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -633,7 +633,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 20
+  m_Speed: 0
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -704,7 +704,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2091401362
+  randomSeed: 592766866
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7235,7 +7235,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1ce6059397c454a4c9a655a08337dbb1, type: 2}
+  - {fileID: 2100000, guid: 491a021650d30a740814da823f31c840, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
