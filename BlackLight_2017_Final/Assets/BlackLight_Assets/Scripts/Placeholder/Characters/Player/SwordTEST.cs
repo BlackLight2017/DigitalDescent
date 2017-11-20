@@ -165,7 +165,7 @@ public class SwordTEST : MonoBehaviour
         if (m_bSwordColor == true)
         {
             ///    Sword.GetComponent<Renderer>().material.color = Color.red;
-            gameObject.GetComponentInChildren<GameObject>().SetActive(true);
+            gameObject.GetComponent<GameObject>().SetActive(true);
 
             rend.sharedMaterial = material[1];
             m_fColorChange -= Time.deltaTime;
@@ -174,7 +174,7 @@ public class SwordTEST : MonoBehaviour
         {
             m_bSwordColor = false;
             ///     Sword.GetComponent<Renderer>().material.color = Color.grey;
-            gameObject.GetComponentInChildren<GameObject>().SetActive(false);
+            gameObject.GetComponent<GameObject>().SetActive(false);
 
             rend.sharedMaterial = material[0];
 

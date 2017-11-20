@@ -73,9 +73,14 @@ public class PlayerController : MonoBehaviour {
 	public GameObject Quit;
 	public EventSystem ES;
 
+	Enemy EnemyScript;
+	RangedEnemy RangedEnemyScript;
+	private bool m_bAttacking;
+	private bool m_bRangedAttacking;
+
 	//---------------------------------------------------------------------------------------------------
 	// Use this for initialization
-    //* try to revert keyboard speed back to normal after ramp up 
+	//* try to revert keyboard speed back to normal after ramp up 
 	//----------------------------------------------------------------------------------------------------
 	void Start()
     {
@@ -336,18 +341,57 @@ public class PlayerController : MonoBehaviour {
         {
             m_bGrounded = true;
         }
+
     }
+
+	private void OnTriggerStay(Collider other)
+	{
+		// checks if colliding object has an enemy script or ranged enemyscript
+		EnemyScript = other.GetComponent<Enemy>();
+		if (EnemyScript != null)
+		{
+			// if the player hits the enemy is logged
+			Debug.Log("HitEnemy");
+			// if the enemies health is above 0 the player can still attack
+			if (EnemyScript.m_fHealth > 0)
+			{
+				m_bAttacking = true;
+			}
+			// else the player cannot attack the enemy
+			else
+				m_bAttacking = false;
+		}
+		else
+			m_bAttacking = false;
+
+		RangedEnemyScript = other.GetComponent<RangedEnemy>();
+		if (RangedEnemyScript != null)
+		{
+			// if the player hits the enemy is logged
+			Debug.Log("HitEnemy");
+			// if the enemies health is above 0 the player can still attack
+			if (RangedEnemyScript.m_fHealth > 0)
+			{
+				m_bRangedAttacking = true;
+			}
+			// else the player cannot attack the enemy
+			else
+				m_bRangedAttacking = false;
+		}
+		else
+			m_bRangedAttacking = false;
+	}
 
 	public void DoDamage()
 	{
 		Debug.Log("DAMAGE!");
-		if(sword.m_bAttacking == true)
+		if(EnemyScript && m_bAttacking)
 		{
-			sword.EnemyScript.TakeDamage(100);
+			EnemyScript.TakeDamage(100);
 		}
-		if (sword.m_bRangedAttacking == true)
+		if (RangedEnemyScript && m_bAttacking)
 		{
-			sword.RangedEnemyScript.TakeDamage(100);
+			RangedEnemyScript.TakeDamage(100);
 		}
 	}
   }
