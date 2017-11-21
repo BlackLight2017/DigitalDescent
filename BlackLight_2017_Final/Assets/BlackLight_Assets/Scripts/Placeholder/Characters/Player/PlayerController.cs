@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour {
     // Sets up references to other objects
     //----------------------------------------------------------------------------------------------------
     public XboxController controller;
-    public CameraFollow Cam; 
     public SwordTEST sword;
-    public ParticleSystem particles; 
+    public ParticleSystem particles;
+    public CameraFollow Camera; 
     // animations for the player that will be added later
     public Animation Idle;
     public Animation Walk;
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour {
         m_fJumpTime += Time.deltaTime; 
         m_fCurrentDashCount = m_fCurrentDashCount + 0;
 		if(DashDisplay)
-			DashDisplay.fillAmount = m_fCurrentDashCount;
+			    DashDisplay.fillAmount = m_fCurrentDashCount;
         // if the timer is on dash cooldown counts down 
         if (timer == true)
         {
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour {
           //         m_fRampUpSpeed += 0.00120f;
           //     }
           // }
-            if (transform.eulerAngles.y == 270)
+            if (transform.eulerAngles.y >= -90)
             {
                 transform.eulerAngles = new Vector3 (0, 90,0);
               
@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour {
 
                 }
             }
-                if (transform.eulerAngles.y == 90)
+                if (transform.eulerAngles.y <= 90)
                 {
 
                     transform.eulerAngles = new Vector3(0, -90, 0);
@@ -287,20 +287,20 @@ public class PlayerController : MonoBehaviour {
         {
             // when the 'A' button the xbox360 Control is pressed 
            
-                if (XCI.GetButton(XboxButton.A, controller))
+                if (XCI.GetButton(XboxButton.A, controller) && CoolDown >= 0.80f)
                 {  //|| Input.GetKey(KeyCode.Space))
-                    {
-                        // add jumpforce to players Y position 
-                        Vector3 Jump = new Vector3(0, m_fVerticalJumpForce, 0);
-                        // gives the player a more respoinsive jump with Forcemode.Impulse
-                        transform.GetComponent<Rigidbody>().AddForce(Jump, ForceMode.Impulse);
-                        // jump is disabled when in the air
-                        m_bGrounded = false;
-                        CoolDown = 0;
-                    }
-                }
-           
 
+                    // add jumpforce to players Y position 
+                    Vector3 Jump = new Vector3(0, m_fVerticalJumpForce, 0);
+                    // gives the player a more respoinsive jump with Forcemode.Impulse
+                    transform.GetComponent<Rigidbody>().AddForce(Jump, ForceMode.Impulse);
+                    // jump is disabled when in the air
+                    m_bGrounded = false;
+                    CoolDown = 0;
+
+                }
+
+           
 
         }
 
@@ -335,7 +335,7 @@ public class PlayerController : MonoBehaviour {
         m_fRampUpSpeed = m_fDefaultPlayerSpeed;
 
     }
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         // if the player is collided with an object with the tagged 'Ground' the player can jump  
         {

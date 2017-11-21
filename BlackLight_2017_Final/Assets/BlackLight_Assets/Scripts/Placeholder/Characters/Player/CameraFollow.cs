@@ -16,6 +16,7 @@ public class CameraFollow : MonoBehaviour {
     private float m_fTmier = 0;
     public float m_test;
 
+    public bool m_TestBool; 
     Vector3 vel = Vector3.zero;
     float targetPos;
     void Start()
@@ -33,7 +34,10 @@ public class CameraFollow : MonoBehaviour {
         PlayerY = 0.1f;
         // Jump is refrencing the PlayerController Script
         // PLayer Y is the sensitivity of player coordinates on the y axis 
-
+        if (m_TestBool == true)
+        {
+            m_test += Time.deltaTime;
+        }
         if (jump.m_bGrounded == true) // While on the ground 
         {
             PlayerY = 0.1f; //Camera follows Players y position 
@@ -41,7 +45,10 @@ public class CameraFollow : MonoBehaviour {
         if (jump.m_bGrounded == false) // while off the ground 
         {
             PlayerY = 0.0f; // Camera stops following Plays y position
+            m_TestBool = true; 
+          
         }
+
         Vector3 desiredPosition = target.position + offset ;
         // moves the camera with the position of the player and the offset of the camera giving it a smooth look 
         //Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, m_fsmoothSpeed);

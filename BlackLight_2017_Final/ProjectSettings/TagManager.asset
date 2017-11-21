@@ -17,6 +17,7 @@ TagManager:
   - Gun
   - Door
   - EndArea
+  - CameraSlow
   layers:
   - Default
   - TransparentFX
