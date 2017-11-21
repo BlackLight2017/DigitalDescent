@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     // Sets up references to other objects
     //----------------------------------------------------------------------------------------------------
     public XboxController controller;
+    public CameraFollow Cam; 
     public SwordTEST sword;
     public ParticleSystem particles; 
     // animations for the player that will be added later
@@ -24,14 +25,13 @@ public class PlayerController : MonoBehaviour {
     public AudioSource Dashing;
     public Animator Attackings; 
     public float DownForce;
-
+    public float CoolDown; 
   //  public GameObject LegR;
   //  public GameObject LegL;
   //  public GameObject ArmR;
   //  public GameObject ArmL;
   //  public GameObject Neck; 
                       
-    Animator anim;
    
     public Image DashDisplay; 
 
@@ -40,11 +40,8 @@ public class PlayerController : MonoBehaviour {
     // how fast the player can move 
     // THE DEFAULT SPEED OF KEYBOARD AND CONTROLLER
     public float m_fDefaultPlayerSpeed;
-    private float m_fDefaultControllerPlayerSpeed;
     // THE RESULTING RAMP UP SPEED 
     public float m_fRampUpSpeed;// = 10;
-    // ADDS THE AMOUNT OF TO THE CONTROLLER AND KEYBAORD SPEED 
-    private float m_fControllerRampUp; //0.00005f
     // ADDS TO RAMP UP SPEED 
     public float m_fAddingRampSpeed;   //0.00090f
 
@@ -106,7 +103,7 @@ public class PlayerController : MonoBehaviour {
             //  sword.StartAttack(0.5f);
 
         }
-
+        CoolDown += Time.deltaTime;
         m_fJumpTime += Time.deltaTime; 
         m_fCurrentDashCount = m_fCurrentDashCount + 0;
 		if(DashDisplay)
@@ -279,33 +276,36 @@ public class PlayerController : MonoBehaviour {
                 // returns players constraints back to normal
                 rb.constraints =  RigidbodyConstraints.FreezePositionZ |
               RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
-              RigidbodyConstraints.FreezeRotationZ; ;
+              RigidbodyConstraints.FreezeRotationZ; 
                     transform.Rotate(0, 0, 0);
                 }
-            }  
-    
+            }
+
         //JUMPING
+
         if (m_bGrounded == true)
         {
-            if (m_fJumpTime >= 0.50f)
-            {
-                // when the 'A' button the xbox360 Control is pressed 
-                if (XCI.GetButtonDown(XboxButton.A, controller)) //|| Input.GetKey(KeyCode.Space))
-                {
-                    // add jumpforce to players Y position 
-                    Vector3 Jump = new Vector3(0, m_fVerticalJumpForce, 0);
-                    // gives the player a more respoinsive jump with Forcemode.Impulse
-                    transform.GetComponent<Rigidbody>().AddForce(Jump, ForceMode.Impulse);
-                    m_fJumpTime = 0; 
-                    // jump is disabled when in the air
-                    m_bGrounded = false;
+            // when the 'A' button the xbox360 Control is pressed 
+           
+                if (XCI.GetButton(XboxButton.A, controller))
+                {  //|| Input.GetKey(KeyCode.Space))
+                    {
+                        // add jumpforce to players Y position 
+                        Vector3 Jump = new Vector3(0, m_fVerticalJumpForce, 0);
+                        // gives the player a more respoinsive jump with Forcemode.Impulse
+                        transform.GetComponent<Rigidbody>().AddForce(Jump, ForceMode.Impulse);
+                        // jump is disabled when in the air
+                        m_bGrounded = false;
+                        CoolDown = 0;
+                    }
                 }
-            }
-          
+           
+
+
         }
 
-		// Pause
-		if (XCI.GetButton(XboxButton.Start, controller) )
+        // Pause
+        if (XCI.GetButton(XboxButton.Start, controller) )
 		{
 			// Sets the pause menu true.
 			if(Time.timeScale == 1)
@@ -339,7 +339,9 @@ public class PlayerController : MonoBehaviour {
     {
         // if the player is collided with an object with the tagged 'Ground' the player can jump  
         {
+
             m_bGrounded = true;
+                      
         }
 
     }

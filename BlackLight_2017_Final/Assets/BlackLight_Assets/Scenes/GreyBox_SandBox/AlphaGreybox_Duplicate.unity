@@ -7753,6 +7753,12 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
+--- !u!114 &321513788 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114723121881611686, guid: 17d21e1724f9520468182e882b3100ab,
+    type: 2}
+  m_PrefabInternal: {fileID: 382754242}
+  m_Script: {fileID: 11500000, guid: 6b819b4a14e08024bb2f2bc029bf4368, type: 3}
 --- !u!1 &322040176
 GameObject:
   m_ObjectHideFlags: 0
@@ -9392,11 +9398,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4865431162552476, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4947893110750574, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114299494428698306, guid: 17d21e1724f9520468182e882b3100ab,
         type: 2}
@@ -9435,37 +9441,57 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4993366512489084, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 65282112814180002, guid: 17d21e1724f9520468182e882b3100ab,
         type: 2}
       propertyPath: m_Size.x
-      value: 1.21
+      value: 1.27
       objectReference: {fileID: 0}
     - target: {fileID: 65282112814180002, guid: 17d21e1724f9520468182e882b3100ab,
         type: 2}
       propertyPath: m_Center.x
-      value: 0.99
+      value: 0.91
       objectReference: {fileID: 0}
     - target: {fileID: 114639475598693428, guid: 17d21e1724f9520468182e882b3100ab,
         type: 2}
       propertyPath: m_fHealth
-      value: 696969
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 114723121881611686, guid: 17d21e1724f9520468182e882b3100ab,
         type: 2}
       propertyPath: m_fVerticalJumpForce
-      value: 90
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 65282112814180002, guid: 17d21e1724f9520468182e882b3100ab,
         type: 2}
       propertyPath: m_Size.y
-      value: 0.17
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 65282112814180002, guid: 17d21e1724f9520468182e882b3100ab,
         type: 2}
       propertyPath: m_Size.z
-      value: 0.59
+      value: 0.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 114548226670611834, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: ResetHighScore
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114548226670611834, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: m_fgameTimer
+      value: 2181
+      objectReference: {fileID: 0}
+    - target: {fileID: 65282112814180002, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65282112814180002, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: m_Center.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
@@ -10154,11 +10180,6 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
---- !u!1 &407288049 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1870962408475182, guid: 17d21e1724f9520468182e882b3100ab,
-    type: 2}
-  m_PrefabInternal: {fileID: 382754242}
 --- !u!1 &414326992 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1613984801631140, guid: 53b9f40d2a686c64b914c1c416b5edf7,
@@ -16258,6 +16279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 0
+  Cam: {fileID: 0}
   sword: {fileID: 0}
   particles: {fileID: 2036020586}
   Idle: {fileID: 0}
@@ -16269,11 +16291,7 @@ MonoBehaviour:
   Dashing: {fileID: 1887790649}
   Attackings: {fileID: 0}
   DownForce: 220
-  LegR: {fileID: 0}
-  LegL: {fileID: 0}
-  ArmR: {fileID: 0}
-  ArmL: {fileID: 0}
-  Neck: {fileID: 0}
+  CoolDown: 0
   DashDisplay: {fileID: 645213131}
   m_fVerticalJumpForce: 80
   m_fDefaultPlayerSpeed: 0
@@ -17578,11 +17596,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4960334843235232, guid: 4e100de841355754fbca7aed092d9bc4,
     type: 2}
   m_PrefabInternal: {fileID: 708451677}
---- !u!1 &709455142 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1497360918264858, guid: 17d21e1724f9520468182e882b3100ab,
-    type: 2}
-  m_PrefabInternal: {fileID: 382754242}
 --- !u!1001 &711122214
 Prefab:
   m_ObjectHideFlags: 0
@@ -19041,18 +19054,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trails: {fileID: 0}
+  EnemyScript: {fileID: 0}
+  RangedEnemyScript: {fileID: 0}
   swingsound: {fileID: 0}
   Sword: {fileID: 0}
   material: []
-  damageTime: 0
   rend: {fileID: 0}
   fDamage: 15
-  m_fStartTime: 0
+  m_fAttackTimer: 0
+  m_fCoolDownTime: 0
   m_fSwordColorTimer: 0
   m_fSwordColorCoolDown: 0
   m_fSwordDelay: 0
   m_fColorChange: 0.5
-  m_fAttackTime: 1
+  m_bAttacking: 0
+  m_bRangedAttacking: 0
+  m_fAttackDelay: 0
+  m_fAttackTimerDelay: 0
 --- !u!1001 &776610054
 Prefab:
   m_ObjectHideFlags: 0
@@ -20547,6 +20565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 0
+  Cam: {fileID: 0}
   sword: {fileID: 0}
   particles: {fileID: 2036020586}
   Idle: {fileID: 0}
@@ -20558,11 +20577,7 @@ MonoBehaviour:
   Dashing: {fileID: 183981335}
   Attackings: {fileID: 0}
   DownForce: 200
-  LegR: {fileID: 1047710456}
-  LegL: {fileID: 407288049}
-  ArmR: {fileID: 709455142}
-  ArmL: {fileID: 1491588063}
-  Neck: {fileID: 2040452105}
+  CoolDown: 0
   DashDisplay: {fileID: 645213131}
   m_fVerticalJumpForce: 80
   m_fDefaultPlayerSpeed: 0.25
@@ -23846,7 +23861,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 345248}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &997154352
 Prefab:
@@ -24522,11 +24537,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4542628761768876, guid: 246f12fb78411f94f9d0eec71b1ce314,
     type: 2}
   m_PrefabInternal: {fileID: 1045426128}
---- !u!1 &1047710456 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1964452582228558, guid: 17d21e1724f9520468182e882b3100ab,
-    type: 2}
-  m_PrefabInternal: {fileID: 382754242}
 --- !u!1001 &1048742392
 Prefab:
   m_ObjectHideFlags: 0
@@ -33437,11 +33447,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4651430135821994, guid: 4c423cd40eea36b4f87f358317976bb7,
     type: 2}
   m_PrefabInternal: {fileID: 1778566737}
---- !u!1 &1491588063 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1948031922128624, guid: 17d21e1724f9520468182e882b3100ab,
-    type: 2}
-  m_PrefabInternal: {fileID: 382754242}
 --- !u!1 &1493787555 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1767663491095040, guid: 53b9f40d2a686c64b914c1c416b5edf7,
@@ -46606,11 +46611,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2040452105 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1821780535454258, guid: 17d21e1724f9520468182e882b3100ab,
-    type: 2}
-  m_PrefabInternal: {fileID: 382754242}
 --- !u!4 &2043253335 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4719047467873152, guid: c62c6770a404ecd4f8fe991e2b02a59c,
@@ -49088,11 +49088,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84ea06174583f5b4696c95ca4e43c554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: 0
   target: {fileID: 345248}
   falling: {fileID: 2133638556}
-  jump: {fileID: 0}
+  jump: {fileID: 321513788}
   m_fsmoothSpeed: 0
   offset: {x: 4.5, y: 3.66, z: -8.8}
+  PlayerY: 0
   m_fSpeedChangeTime: 0
   m_test: 0
 --- !u!81 &2133638558
