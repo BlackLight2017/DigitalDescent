@@ -383,17 +383,25 @@ public class PlayerController : MonoBehaviour {
 		else
 			m_bRangedAttacking = false;
 	}
-
+	//private void OnTriggerExit()
+	//{
+	//	m_bAttacking = false;
+	//	m_bRangedAttacking = false;
+	//	EnemyScript = null;
+	//	RangedEnemyScript = null;
+	//}
+	public GameObject AttackCollider;
 	public void DoDamage()
 	{
+		AttackCollider AttackColliderScript = AttackCollider.GetComponent<AttackCollider>();
 		Debug.Log("DAMAGE!");
-		if(EnemyScript && m_bAttacking)
+		if(AttackColliderScript.EnemyScript && AttackColliderScript.m_bAttacking)
 		{
-			EnemyScript.TakeDamage(100);
+			AttackColliderScript.EnemyScript.TakeDamage(100);
 		}
-		if (RangedEnemyScript && m_bAttacking)
+		if (AttackColliderScript.RangedEnemyScript && AttackColliderScript.m_bRangedAttacking)
 		{
-			RangedEnemyScript.TakeDamage(100);
+			AttackColliderScript.RangedEnemyScript.TakeDamage(100);
 		}
 	}
   }
