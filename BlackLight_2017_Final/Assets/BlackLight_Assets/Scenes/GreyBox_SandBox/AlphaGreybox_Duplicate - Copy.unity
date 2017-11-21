@@ -9335,6 +9335,48 @@ Prefab:
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 900967444}
+    - target: {fileID: 224201621073408028, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4690152354754350, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947893110750574, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4380485454590814, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4969907387985964, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865431162552476, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4482909109213122, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246092172177940, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224680830925121118, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993366512489084, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
   m_IsPrefabParent: 0
@@ -16121,9 +16163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 0
-  Cam: {fileID: 0}
   sword: {fileID: 0}
   particles: {fileID: 2036020586}
+  Camera: {fileID: 0}
   Idle: {fileID: 0}
   Walk: {fileID: 0}
   Run: {fileID: 0}
@@ -20408,9 +20450,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 0
-  Cam: {fileID: 0}
   sword: {fileID: 0}
   particles: {fileID: 2036020586}
+  Camera: {fileID: 0}
   Idle: {fileID: 0}
   Walk: {fileID: 0}
   Run: {fileID: 0}
@@ -48841,6 +48883,7 @@ MonoBehaviour:
   PlayerY: 0
   m_fSpeedChangeTime: 0
   m_test: 0
+  m_TestBool: 0
 --- !u!81 &2133638558
 AudioListener:
   m_ObjectHideFlags: 0
