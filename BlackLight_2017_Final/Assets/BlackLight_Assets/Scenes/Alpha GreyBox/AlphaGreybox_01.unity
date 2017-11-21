@@ -8773,7 +8773,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: da78255aa7271bb47ac260ed67331a71, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8a91639e44ce72f488d7d84173e79600, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10224,7 +10224,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: da78255aa7271bb47ac260ed67331a71, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8a91639e44ce72f488d7d84173e79600, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13901,7 +13901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &701748949
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15194,7 +15194,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 8405d012180eb624c952480694909734,
+    m_HighlightedSprite: {fileID: 21300000, guid: 1bb809ab2dc4fae45ab3db4b812269c7,
       type: 3}
     m_PressedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -15240,7 +15240,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bc4a06b3f57cf7f4f8dfe0d413041a7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 64302d0646cb5094a857b649d30f0e30, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -24806,7 +24806,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 52769cf385ea80049a38ac64beb442d1,
+    m_HighlightedSprite: {fileID: 21300000, guid: b6f9475abdd585f49b09931e71a4aba4,
       type: 3}
     m_PressedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -26764,20 +26764,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114351892091504944, guid: 831dae48708b8774487ac03db2e5e904,
-        type: 2}
-      propertyPath: EventSystem
-      value: 
-      objectReference: {fileID: 10371150}
     - target: {fileID: 114584966953681502, guid: 831dae48708b8774487ac03db2e5e904,
         type: 2}
       propertyPath: ES
       value: 
       objectReference: {fileID: 10371150}
-    - target: {fileID: 1673624665716412, guid: 831dae48708b8774487ac03db2e5e904, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 114351892091504944, guid: 831dae48708b8774487ac03db2e5e904,
+        type: 2}
+      propertyPath: EventSystem
+      value: 
+      objectReference: {fileID: 10371150}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 831dae48708b8774487ac03db2e5e904, type: 2}
   m_IsPrefabParent: 0
@@ -27642,7 +27638,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: dd9b11f231df79946ade3a03cddb2961, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27306bccdb668a844bc816678a20e6b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -28355,7 +28351,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 0ad9a238800449c41a4653bffa3a7346,
+    m_HighlightedSprite: {fileID: 21300000, guid: 3a5a8132095527f42be4e677ba40d5bd,
       type: 3}
     m_PressedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -28401,7 +28397,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: dd9b11f231df79946ade3a03cddb2961, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27306bccdb668a844bc816678a20e6b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -29145,7 +29141,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a87a498b8dc2998499ca29a17c2a3d6a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f9811a5ee2173fb468fb52ab340d8623, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -33513,7 +33509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1591783430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37419,6 +37415,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1657218630941278, guid: 17d21e1724f9520468182e882b3100ab,
     type: 2}
   m_PrefabInternal: {fileID: 1003214953}
+--- !u!114 &1773859873 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114723121881611686, guid: 17d21e1724f9520468182e882b3100ab,
+    type: 2}
+  m_PrefabInternal: {fileID: 1003214953}
+  m_Script: {fileID: 11500000, guid: 6b819b4a14e08024bb2f2bc029bf4368, type: 3}
 --- !u!1 &1776143122
 GameObject:
   m_ObjectHideFlags: 0
@@ -40436,6 +40438,16 @@ Prefab:
         type: 2}
       propertyPath: offset.y
       value: 3.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000702409077434, guid: 6b1aeffa784410a498eeba4848af9d2b,
+        type: 2}
+      propertyPath: jump
+      value: 
+      objectReference: {fileID: 1773859873}
+    - target: {fileID: 114000702409077434, guid: 6b1aeffa784410a498eeba4848af9d2b,
+        type: 2}
+      propertyPath: controller
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b1aeffa784410a498eeba4848af9d2b, type: 2}
