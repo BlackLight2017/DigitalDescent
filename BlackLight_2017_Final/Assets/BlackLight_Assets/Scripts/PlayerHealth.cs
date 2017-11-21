@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlayerHealth : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
@@ -22,11 +23,12 @@ public class PlayerHealth : MonoBehaviour {
 	public Image LeftHealthBar;
     public Image RightHealthBar;
     private PlayerController playercon;
+    public EventSystem ES;
 
-	//----------------------------------------------------------------------------------------------------
-	// Use this for initialization.
-	//----------------------------------------------------------------------------------------------------
-	void Awake ()
+    //----------------------------------------------------------------------------------------------------
+    // Use this for initialization.
+    //----------------------------------------------------------------------------------------------------
+    void Awake ()
     {
         RangedEnemy = GameObject.FindGameObjectWithTag("RangedEnemy");
         if(RangedEnemy)
@@ -102,6 +104,7 @@ public class PlayerHealth : MonoBehaviour {
 		DeathCanvas.enabled = true;
 		Restart.SetActive(true);
 		Exit.SetActive(true);
-		Time.timeScale = 0;
+        ES.SetSelectedGameObject(Restart);
+        Time.timeScale = 0;
     }
 }

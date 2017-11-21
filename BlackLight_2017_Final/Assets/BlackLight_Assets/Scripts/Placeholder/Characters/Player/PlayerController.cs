@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour {
 
                 }
             }
-                if (transform.eulerAngles.y <= 90)
+                if (transform.eulerAngles.y <= 95)
                 {
 
                     transform.eulerAngles = new Vector3(0, -90, 0);

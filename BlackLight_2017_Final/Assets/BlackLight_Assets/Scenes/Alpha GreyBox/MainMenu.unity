@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 533093078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71392f0ef8f1fc94abe03c36151e092b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7205054d44accf7419b02e85df060372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &547835510
@@ -1972,7 +1972,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 52769cf385ea80049a38ac64beb442d1,
+    m_HighlightedSprite: {fileID: 21300000, guid: b6f9475abdd585f49b09931e71a4aba4,
       type: 3}
     m_PressedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}

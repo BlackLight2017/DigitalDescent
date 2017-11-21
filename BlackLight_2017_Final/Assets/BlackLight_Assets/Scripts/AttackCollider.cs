@@ -60,7 +60,7 @@ public class AttackCollider : MonoBehaviour {
 	{
 		m_bAttacking = false;
 		m_bRangedAttacking = false;
-		//EnemyScript = null;
-		//RangedEnemyScript = null;
+		EnemyScript = null;
+		RangedEnemyScript = null;
 	}
 }
