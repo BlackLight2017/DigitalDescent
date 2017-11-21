@@ -345,7 +345,14 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Ground")
+        {
+            m_bGrounded = true; 
+        }
 
+    }
 	private void OnTriggerStay(Collider other)
 	{
 		// checks if colliding object has an enemy script or ranged enemyscript
