@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
     // Sets up references to other objects
     //----------------------------------------------------------------------------------------------------
     public XboxController controller;
-    public SwordTEST sword;
+    public SwordScript sword;
     public ParticleSystem particles;
     public CameraFollow Camera; 
     // animations for the player that will be added later
@@ -26,13 +26,7 @@ public class PlayerController : MonoBehaviour {
     public Animator Attackings; 
     public float DownForce;
     public float CoolDown; 
-  //  public GameObject LegR;
-  //  public GameObject LegL;
-  //  public GameObject ArmR;
-  //  public GameObject ArmL;
-  //  public GameObject Neck; 
-                      
-   
+
     public Image DashDisplay; 
 
     // how high the player can jump 
@@ -69,8 +63,9 @@ public class PlayerController : MonoBehaviour {
 	public GameObject Restart;
 	public GameObject Quit;
 	public EventSystem ES;
+    public GameObject AttackCollider;
 
-	Enemy EnemyScript;
+    Enemy EnemyScript;
 	RangedEnemy RangedEnemyScript;
 	private bool m_bAttacking;
 	private bool m_bRangedAttacking;
@@ -150,27 +145,13 @@ public class PlayerController : MonoBehaviour {
         // when the left stick is tiled to the left it rotates the player 90 degrees (face playerto the left)
         if (XCI.GetAxis(XboxAxis.LeftStickX, controller) < 0)
         {
-            // RAMP UP WHEN RUNNING TO LEFT
-          // if (RampUp == true)
-          // {
-          //     RampUpTime += Time.deltaTime;
-          //     if (RampUpTime >= 1)
-          //     {
-          //         m_fRampUpMovementSpeed += 0.00015f;
-          //         m_fRampUpSpeed += 0.00120f;
-          //     }
-          // }
+    
             if (transform.eulerAngles.y >= -90)
             {
                 transform.eulerAngles = new Vector3 (0, 90,0);
               
             }
-         //  if (RampUpTime >= 3)
-         //  {
-         //      RampUp = false;
-         //
-         //
-         //  }
+     
         }
         // when the left stick is tiled to the right it rotates the player -90 degrees (faces player to the right) 
         if (XCI.GetAxis(XboxAxis.LeftStickX, controller) > 0)
@@ -203,8 +184,6 @@ public class PlayerController : MonoBehaviour {
 
             RampSpeed();
 
-           // m_fRampUpMovementSpeed = 0.005f;
-          //  m_fRampUpSpeed = 0.25f;
             RampUpTime = 0.0f;
             RampUp = true;
 
@@ -234,13 +213,6 @@ public class PlayerController : MonoBehaviour {
         {
             Dashing.Play();
             particles.Play();
-//
-//    GetComponent<Renderer>().material.color = Color.yellow;
-//    LegL.GetComponent<Renderer>().material.color = Color.yellow;
-//    LegR.GetComponent<Renderer>().material.color = Color.yellow;
-//    ArmR.GetComponent<Renderer>().material.color = Color.yellow;
-//    ArmL.GetComponent<Renderer>().material.color = Color.yellow;
-//    Neck.GetComponent<Renderer>().material.color = Color.yellow;
 
             m_bDashing = true;
             rb.AddForce(Vector3.right * 3200);
@@ -265,14 +237,7 @@ public class PlayerController : MonoBehaviour {
                     m_fDashTimer += 0.4f;
                     // dashing is false ending the dash 
                     m_bDashing = false;
-
-           //    GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-           //    LegL.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-           //    LegR.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-           //    ArmR.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-           //    ArmL.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-           //    Neck.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-
+                                     
                 // returns players constraints back to normal
                 rb.constraints =  RigidbodyConstraints.FreezePositionZ |
               RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
@@ -300,8 +265,6 @@ public class PlayerController : MonoBehaviour {
 
                 }
 
-           
-
         }
 
         // Pause
@@ -326,15 +289,16 @@ public class PlayerController : MonoBehaviour {
 			rb.velocity = new Vector3 (0,MaxVel,0);
 		}
 	}
-    //----------------------------------------------------------------------------------------------------
-    // OnCollisionStay is called when the player is colliding with an object, when this is called the player
-    // can jump 
-    //----------------------------------------------------------------------------------------------------
+
     public void RampSpeed()
     {
         m_fRampUpSpeed = m_fDefaultPlayerSpeed;
 
     }
+    //----------------------------------------------------------------------------------------------------
+    // OnCollisionEnter is called when the player is colliding with an object, when this is called the player
+    // can jump 
+    //----------------------------------------------------------------------------------------------------
     private void OnCollisionEnter(Collision collision)
     {
         // if the player is collided with an object with the tagged 'Ground' the player can jump  
@@ -345,6 +309,10 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
+    //----------------------------------------------------------------------------------------------------
+    // OnTriggerEnter is called when the player is colliding with a trigger collider, when this is called the player
+    // can jump 
+    //----------------------------------------------------------------------------------------------------
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Ground")
@@ -353,52 +321,13 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
-	//private void OnTriggerStay(Collider other)
-	//{
-	//	// checks if colliding object has an enemy script or ranged enemyscript
-	//	EnemyScript = other.GetComponent<Enemy>();
-	//	if (EnemyScript != null)
-	//	{
-	//		// if the player hits the enemy is logged
-	//		Debug.Log("HitEnemy");
-	//		// if the enemies health is above 0 the player can still attack
-	//		if (EnemyScript.m_fHealth > 0)
-	//		{
-	//			m_bAttacking = true;
-	//		}
-	//		// else the player cannot attack the enemy
-	//		else
-	//			m_bAttacking = false;
-	//	}
-	//	else
-	//		m_bAttacking = false;
 
-	//	RangedEnemyScript = other.GetComponent<RangedEnemy>();
-	//	if (RangedEnemyScript != null)
-	//	{
-	//		// if the player hits the enemy is logged
-	//		Debug.Log("HitEnemy");
-	//		// if the enemies health is above 0 the player can still attack
-	//		if (RangedEnemyScript.m_fHealth > 0)
-	//		{
-	//			m_bRangedAttacking = true;
-	//		}
-	//		// else the player cannot attack the enemy
-	//		else
-	//			m_bRangedAttacking = false;
-	//	}
-	//	else
-	//		m_bRangedAttacking = false;
-	//}
-	////private void OnTriggerExit()
-	////{
-	////	m_bAttacking = false;
-	////	m_bRangedAttacking = false;
-	////	EnemyScript = null;
-	////	RangedEnemyScript = null;
-	////}
-	public GameObject AttackCollider;
-	public void DoDamage()
+
+    //----------------------------------------------------------------------------------------------------
+    // DoDamage is called when  a specific point of the animation is reached                                                                           
+    //----------------------------------------------------------------------------------------------------
+
+    public void DoDamage()
 	{
 		AttackCollider AttackColliderScript = AttackCollider.GetComponent<AttackCollider>();
 		Debug.Log("DAMAGE!");

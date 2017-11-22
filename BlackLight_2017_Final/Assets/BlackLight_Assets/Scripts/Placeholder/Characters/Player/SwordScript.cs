@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
-public class SwordTEST : MonoBehaviour
+public class SwordScript : MonoBehaviour
 {
     //----------------------------------------------------------------------------------------------------
     // Sets up references to other objects and creates variables
@@ -88,16 +88,7 @@ public class SwordTEST : MonoBehaviour
 		m_fAttackTimer += Time.deltaTime;
         m_fSwordColorTimer += Time.deltaTime;
         
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    m_bSwordColor = true;
-
-        //}
-        //  if (XCI.GetButtonUp(XboxButton.X) || Input.GetKeyUp(KeyCode.Mouse0))
-        //  {
-        //      gameObject.GetComponentInChildren<TrailRenderer>().enabled = false;
-        //
-        //  }
+       
         if (XCI.GetButtonDown(XboxButton.X) || Input.GetKeyDown(KeyCode.Mouse0))
         {
 			m_bClicked = true;
