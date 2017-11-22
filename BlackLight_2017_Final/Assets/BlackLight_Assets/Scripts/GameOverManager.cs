@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class GameOverManager : MonoBehaviour {
-	//----------------------------------------------------------------------------------------------------
-	// Sets up references to other objects.
-	//----------------------------------------------------------------------------------------------------
-	public Canvas GameOver;
+    //----------------------------------------------------------------------------------------------------
+    // Sets up references to other objects.
+    //----------------------------------------------------------------------------------------------------
+   	public Canvas GameOver;
     public Canvas Win;
 	public GameObject EndArea;
 	public GameObject TimerGameObject;
@@ -35,9 +35,11 @@ public class GameOverManager : MonoBehaviour {
 	{
 		if(EndAreaScript.m_bEndReached == true)
 		{
+            Time.timeScale = 0;
             Win.enabled = true;
             WinButton.SetActive(true);
             ES.SetSelectedGameObject(WinButton);
+
 		}
 		if(GameTimerScript.m_bGameOver == true)
 		{
