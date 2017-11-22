@@ -9285,6 +9285,21 @@ Prefab:
       propertyPath: Exit
       value: 
       objectReference: {fileID: 2064980780}
+    - target: {fileID: 114548226670611834, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: gameTimerText
+      value: 
+      objectReference: {fileID: 561423576}
+    - target: {fileID: 114548226670611834, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: HighScore
+      value: 
+      objectReference: {fileID: 1616212635}
+    - target: {fileID: 114548226670611834, guid: 17d21e1724f9520468182e882b3100ab,
+        type: 2}
+      propertyPath: HighscoreSeconds
+      value: 
+      objectReference: {fileID: 600659612}
     - target: {fileID: 114723121881611686, guid: 17d21e1724f9520468182e882b3100ab,
         type: 2}
       propertyPath: DashDisplay
@@ -9315,68 +9330,11 @@ Prefab:
       propertyPath: ES
       value: 
       objectReference: {fileID: 10371150}
-    - target: {fileID: 114548226670611834, guid: 17d21e1724f9520468182e882b3100ab,
-        type: 2}
-      propertyPath: gameTimerText
-      value: 
-      objectReference: {fileID: 561423576}
-    - target: {fileID: 114548226670611834, guid: 17d21e1724f9520468182e882b3100ab,
-        type: 2}
-      propertyPath: HighScore
-      value: 
-      objectReference: {fileID: 1616212635}
-    - target: {fileID: 114548226670611834, guid: 17d21e1724f9520468182e882b3100ab,
-        type: 2}
-      propertyPath: HighscoreSeconds
-      value: 
-      objectReference: {fileID: 600659612}
     - target: {fileID: 198497690870360706, guid: 17d21e1724f9520468182e882b3100ab,
         type: 2}
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 900967444}
-    - target: {fileID: 224201621073408028, guid: 17d21e1724f9520468182e882b3100ab,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4690152354754350, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4947893110750574, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4380485454590814, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4969907387985964, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4865431162552476, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4482909109213122, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4246092172177940, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224680830925121118, guid: 17d21e1724f9520468182e882b3100ab,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4993366512489084, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 17d21e1724f9520468182e882b3100ab, type: 2}
   m_IsPrefabParent: 0
@@ -16151,6 +16109,7 @@ MonoBehaviour:
   Exit: {fileID: 0}
   LeftHealthBar: {fileID: 332612601}
   RightHealthBar: {fileID: 1818928543}
+  ES: {fileID: 0}
 --- !u!114 &650948888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20438,6 +20397,7 @@ MonoBehaviour:
   Exit: {fileID: 2064980780}
   LeftHealthBar: {fileID: 332612601}
   RightHealthBar: {fileID: 1818928543}
+  ES: {fileID: 0}
 --- !u!114 &867126775
 MonoBehaviour:
   m_ObjectHideFlags: 0

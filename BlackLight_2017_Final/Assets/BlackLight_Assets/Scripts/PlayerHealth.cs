@@ -99,12 +99,12 @@ public class PlayerHealth : MonoBehaviour {
 	private void Death()
     {
 		m_bIsDead = true;
+		Time.timeScale = 0;
 		Debug.Log("PlayerDead");
         gameObject.SetActive(false);
 		DeathCanvas.enabled = true;
 		Restart.SetActive(true);
 		Exit.SetActive(true);
         ES.SetSelectedGameObject(Restart);
-        Time.timeScale = 0;
     }
 }

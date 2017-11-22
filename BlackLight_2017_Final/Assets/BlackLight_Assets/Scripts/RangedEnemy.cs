@@ -90,7 +90,7 @@ public class RangedEnemy : MonoBehaviour {
                 f_Stunned += 3.0f;
             }
             // If to far from player or close then stops moving and looks towards the player.
-            if (dist < m_fShooting_Distance || dist > m_fOutOfRange)
+            if (dist < m_fShooting_Distance && !IsStunned || dist > m_fOutOfRange && !IsStunned)
             {
                 Vector3 LookPos = Target.position - transform.position;
                 LookPos.y = 0;
