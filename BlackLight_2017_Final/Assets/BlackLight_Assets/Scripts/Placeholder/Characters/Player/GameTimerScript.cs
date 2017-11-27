@@ -104,10 +104,11 @@ public class GameTimerScript : MonoBehaviour
                 PlayerPrefs.SetFloat("Minutes", minutes);
             }
             
-            if (seconds > PlayerPrefs.GetFloat("Seconds") && minutes > PlayerPrefs.GetFloat("Minutes"))
+            if (seconds > PlayerPrefs.GetFloat("Seconds") && minutes >= PlayerPrefs.GetFloat("Minutes"))
             {
                 PlayerPrefs.SetFloat("Seconds", seconds);
             }
+
         }
     }
 }
