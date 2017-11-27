@@ -278,8 +278,9 @@ AudioSource:
   m_GameObject: {fileID: 1037703902168410}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3c58a284e59509c4097e61463382aeea, type: 3}
+  OutputAudioMixerGroup: {fileID: 243897172746916834, guid: 01cfc083571c3aa42a3acb54ed5a8f25,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 92118c0ec452a564e8e914aba25c4142, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -287,7 +288,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 56
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -358,8 +359,9 @@ AudioSource:
   m_GameObject: {fileID: 1645173041331556}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fd4405989ffaeb04fa5928a33cda1fe5, type: 3}
+  OutputAudioMixerGroup: {fileID: 243897172746916834, guid: 01cfc083571c3aa42a3acb54ed5a8f25,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 1308c1f4a428a2942a1f1ed86831ab52, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -442,7 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fHealth: 1
-  m_fDamage: 10
+  m_fDamage: 5
   f_Speed: 0
   f_Stunned: 0
   IsStunned: 0
@@ -551,7 +553,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -706167154
+  randomSeed: 288138056
   InitialModule:
     serializedVersion: 3
     enabled: 1
