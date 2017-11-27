@@ -12,6 +12,7 @@ public class EnemyBulletTest : MonoBehaviour
     PlayerHealth PlayerScripts;
     Vector3 MoveDirection;
 
+
     // Use this for initialization
     void Start()
     {
@@ -30,7 +31,7 @@ public class EnemyBulletTest : MonoBehaviour
         {
             if (m_fspawn_timer >= 0 && m_fspawn_timer <= 0.1 && !PlayerScripts.m_bIsDead)
             {
-                MoveDirection += Player.transform.position - transform.position;
+                MoveDirection += (Player.transform.position + Vector3.up * 2.0f) - transform.position;
                 MoveDirection.Normalize();
             }
             if (m_fspawn_timer >= 2)
@@ -47,11 +48,11 @@ public class EnemyBulletTest : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-		if (other.gameObject.tag == "Player" && other.gameObject.tag == "Sword")
-        {
-            Destroy(gameObject);
-        }
-		if(other.gameObject.tag == "RangedEnemy" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Gun" || other.gameObject.tag == "EnemyStunGun")
+		//if (other.gameObject.tag == "Player" && other.gameObject.tag == "Sword")
+  //      {
+  //          //Destroy(gameObject);
+  //      }
+		if(other.gameObject.tag == "RangedEnemy" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Gun" || other.gameObject.tag == "EnemyStunGun" || other.gameObject.tag == "Sword")
 		{
 
 		}

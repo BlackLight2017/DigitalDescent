@@ -13,6 +13,7 @@ public class AttackCollider : MonoBehaviour {
 	public RangedEnemy RangedEnemyScript;
 	public bool m_bAttacking;
 	public bool m_bRangedAttacking;
+	public GameObject Player;
 
 	//----------------------------------------------------------------------------------------------------
 	// Use this for initialization

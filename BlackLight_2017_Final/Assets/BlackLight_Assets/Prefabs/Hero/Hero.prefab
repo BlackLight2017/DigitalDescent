@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4732259925151404}
   - component: {fileID: 65360301988412380}
   - component: {fileID: 23400778880397090}
-  - component: {fileID: 114342008359446496}
+  - component: {fileID: 114512509914801128}
   m_Layer: 0
   m_Name: AttackCollider
-  m_TagString: Sword
+  m_TagString: AttackCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,7 +168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1123364305289804
 GameObject:
   m_ObjectHideFlags: 1
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 65663148926480852}
   m_Layer: 0
   m_Name: TimerObject(DONT DELETE)
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1664,8 +1664,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000965350712860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 2.35, z: -1.102}
-  m_LocalScale: {x: 1, y: 4.468597, z: 1.539705}
+  m_LocalPosition: {x: -0, y: 1.267, z: -1.102}
+  m_LocalScale: {x: 1, y: 2.3501053, z: 1.539705}
   m_Children: []
   m_Father: {fileID: 4932825602360096}
   m_RootOrder: 11
@@ -2426,7 +2426,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 5dbd94062404a8643ba00c0654642079, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.504
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2879,21 +2879,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114342008359446496
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000965350712860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22b3dc6cdb116e847a9fa2364becd67c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyScript: {fileID: 0}
-  RangedEnemyScript: {fileID: 0}
-  m_bAttacking: 0
-  m_bRangedAttacking: 0
 --- !u!114 &114360829951821028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2962,6 +2947,21 @@ MonoBehaviour:
   m_bRangedAttacking: 0
   m_fAttackDelay: 0
   m_fAttackTimerDelay: 0
+--- !u!114 &114512509914801128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000965350712860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5764235563e4bc344b8df3d920c96dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyScript: {fileID: 0}
+  RangedEnemyScript: {fileID: 0}
+  m_bAttacking: 0
+  m_bRangedAttacking: 0
 --- !u!114 &114548226670611834
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9791,7 +9791,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2029178468
+  randomSeed: 21488531
   InitialModule:
     serializedVersion: 3
     enabled: 1

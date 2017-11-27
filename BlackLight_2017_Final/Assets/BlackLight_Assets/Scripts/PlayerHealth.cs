@@ -72,13 +72,14 @@ public class PlayerHealth : MonoBehaviour {
 	// Param: 
 	//      Other: Is the object that is being collided with.
 	//----------------------------------------------------------------------------------------------------
-	private void OnTriggerStay(Collider col)
+	private void OnCollisionEnter(Collision col)
     {
 		// checks if the bullet hits the player when they are not dashing and does damage.
         if (col.gameObject.tag == "EnemyBullet" && playercon.m_bDashing == false)
         {
             TakeDamage(RangedEnemyScript.m_fDamage);
-        }
+			Destroy(col.gameObject);
+		}
 		// checks if the player runs into the health box and healths them.
         if (col.gameObject.tag == "Regen" && m_fHealth < 90)
         {

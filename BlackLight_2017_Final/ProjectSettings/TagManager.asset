@@ -18,6 +18,7 @@ TagManager:
   - Door
   - EndArea
   - CameraSlow
+  - AttackCollider
   layers:
   - Default
   - TransparentFX
