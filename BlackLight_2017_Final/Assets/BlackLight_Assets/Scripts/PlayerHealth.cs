@@ -104,6 +104,7 @@ public class PlayerHealth : MonoBehaviour {
         m_fHealth -= fDamage;
         if (m_fHealth < currentHealth)
             Damage.Play();
+      
 		// if the health is lower then 0 then the player dies.
         if (m_fHealth <= 0) 
             Death();

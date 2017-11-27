@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour {
 	public Canvas PauseMenu;
     public GameObject Resume;
 	public GameObject Restart;
-	public GameObject Quit;
+    public GameObject Quit;
+    public GameObject Particle;
 	public EventSystem ES;
     private SelectOnInput Select;
   
@@ -109,6 +110,7 @@ public class PlayerController : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     void FixedUpdate()
     {
+        Particle.transform.rotation = transform.rotation;
         if (XCI.GetButton(XboxButton.X, controller))
         {
 
@@ -358,5 +360,5 @@ public class PlayerController : MonoBehaviour {
 		}
 
     }
-
+  
 }           
