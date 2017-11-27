@@ -97,7 +97,6 @@ public class EnemyStunGun : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	private void OnTriggerEnter(Collider other)
     {
-        if (PlayerController) { }
         if (other.gameObject.tag == "Player" && PlayerController.m_bDashing)
         {
             IsStunned = true;

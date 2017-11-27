@@ -3950,31 +3950,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4451980981814402, guid: fd29412935e22c24596ec1472993a296, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.0000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4451980981814402, guid: fd29412935e22c24596ec1472993a296, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.0000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4935884104535064, guid: fd29412935e22c24596ec1472993a296, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.84
-      objectReference: {fileID: 0}
-    - target: {fileID: 4935884104535064, guid: fd29412935e22c24596ec1472993a296, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 1.154
-      objectReference: {fileID: 0}
-    - target: {fileID: 1645173041331556, guid: fd29412935e22c24596ec1472993a296, type: 2}
-      propertyPath: m_Name
-      value: FlyingRanged_Enemy_Blockout
-      objectReference: {fileID: 0}
-    - target: {fileID: 82501215333385388, guid: fd29412935e22c24596ec1472993a296,
+    - target: {fileID: 114711430545845424, guid: fd29412935e22c24596ec1472993a296,
         type: 2}
-      propertyPath: spreadCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: PlayerController
+      value: 
+      objectReference: {fileID: 321513788}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd29412935e22c24596ec1472993a296, type: 2}
   m_IsPrefabParent: 0
