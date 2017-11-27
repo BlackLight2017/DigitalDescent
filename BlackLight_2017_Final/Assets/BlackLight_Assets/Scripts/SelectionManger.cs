@@ -1,11 +1,16 @@
-﻿using System.Collections;
+﻿//----------------------------------------------------------------------------------------------------
+// AUTHOR: Jeremy Zoitas.
+//----------------------------------------------------------------------------------------------------
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class SelectionManger : MonoBehaviour {
-
-    public EventSystem ES;
+	//----------------------------------------------------------------------------------------------------
+	// Sets up references to other objects.
+	//----------------------------------------------------------------------------------------------------
+	public EventSystem ES;
     private GameObject StoreSelected;
 
 	//----------------------------------------------------------------------------------------------------

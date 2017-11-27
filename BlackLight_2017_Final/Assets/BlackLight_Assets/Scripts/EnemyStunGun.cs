@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//----------------------------------------------------------------------------------------------------
+// AUTHOR: Jeremy Zoitas.
+// EDITED BY: Gabriel Pilakis.
+//----------------------------------------------------------------------------------------------------
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +21,6 @@ public class EnemyStunGun : MonoBehaviour {
 	public float m_fGunRange;
     public float m_fChargeDistance;
     public float time = 0;
-    private Rigidbody rb;
     // Timer for bullets being shot 
     private float spawn_timer;
     bool CanFire = false;
@@ -26,17 +29,23 @@ public class EnemyStunGun : MonoBehaviour {
     float m_fDist;
     private Transform Target;
     RangedEnemy RangedEnemy;
+	public PlayerController PlayerController;
     GameObject rangedEnemy;
 	AudioSource Audio;
 	//----------------------------------------------------------------------------------------------------
 	// Use this for initialization
 	//----------------------------------------------------------------------------------------------------
 	void Start () {
+		// stunned starts false.
         IsStunned = false;
-        rb = GetComponent<Rigidbody>();
+		// sets a target.
         Target = GameObject.FindGameObjectWithTag("Player").transform;
+		// gets ranged enemy and the script.
         rangedEnemy = GameObject.FindGameObjectWithTag("RangedEnemy");
         RangedEnemy = rangedEnemy.GetComponent<RangedEnemy>();
+		// gets player script
+		
+		// gets audio source.
 		Audio = GetComponent<AudioSource>();
 	}
 
@@ -45,49 +54,34 @@ public class EnemyStunGun : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	void Update () {
         m_fDist = Vector3.Distance(transform.position, Target.position);
-        // if canfire equals false the timer counts down and player cannot shoot 
+        // if canfire equals false the timer counts down and player cannot shoot.
         if (CanFire == false)
             spawn_timer -= Time.deltaTime;
-        // if the timer is below 0 player can shoot again 
-
-        if (spawn_timer <= 1.25f)
-        {
-           // Charge.Play();
-            // play particle 
-        }
-
+        // if the timer is below 0 player can shoot again.
         if (spawn_timer <= 0)
         {
-            //stop particle 
             CanFire = true;
         }
-   //   
-   //     if (spawn_timer <= 0.35f)
-   //     {
-   //         Charge.Stop();
-   //
-   //     }
-        // if canfire equals ture, distance is less then 5, and stunned is false then shoot,
-        if (CanFire == true)
+		// if canfire equals ture, distance is less then m_fChargeDistance, and stunned is false then shoot.
+		if (CanFire == true)
         {
             if (m_fDist < m_fChargeDistance)
             {
-                //Charge.Play();
                 if (m_fDist < m_fGunRange)
                 {
                     if (!IsStunned)
                     {
                         Fire();
-                        //Charge.Stop();
                     }
                 }
             }
         }
+		// starts stunned cooldown.
         if (IsStunned == true)
         {
             f_Stunned -= Time.deltaTime;
         }
-        // once the timer hits 0 speed is restored 
+        // once the timer hits 0 speed is restored .
         if (f_Stunned <= 0)
         {
             IsStunned = false;
@@ -103,7 +97,7 @@ public class EnemyStunGun : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && PlayerController.m_bDashing)
         {
             IsStunned = true;
         }

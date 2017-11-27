@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//----------------------------------------------------------------------------------------------------
+// AUTHOR: Jeremy Zoitas.
+//----------------------------------------------------------------------------------------------------
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -126,7 +129,6 @@ public class RangedEnemy : MonoBehaviour {
         }
 
     }
-	//public void DoDamage()
 
 	//----------------------------------------------------------------------------------------------------
 	// OnTriggerEnter is called every time it is colliding with another object, if the player is being
@@ -150,7 +152,7 @@ public class RangedEnemy : MonoBehaviour {
 	public void DoDamage()
 	{
 		// Prints out a message to see if it hits
-		Debug.Log("HitPlayer");
+		// Debug.Log("HitPlayer");
 		// If the player has health then attack.
 		if (PlayerHealth.m_fHealth > 0)
 		{
@@ -184,13 +186,12 @@ public class RangedEnemy : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	private void Death()
 	{
+		// Plays death sound.
         DeathSound.Play();
 		// Sets dead true.
 		m_bIsDead = true;
-        // Sets active false.
+        // Turns of the shoot component.
         EnemyStunGun Shoot = GetComponent<EnemyStunGun>();
         Shoot.enabled = false;
-		//gameObject.SetActive(false);
-        //Destroy(gameObject);
 	}
 }
