@@ -4947,12 +4947,8 @@ MonoBehaviour:
   m_fDamage: 10
   HealthRegen: 20
   m_bIsDead: 0
-  DeathCanvas: {fileID: 1591783432}
-  Restart: {fileID: 2064980780}
-  Exit: {fileID: 2064980780}
   LeftHealthBar: {fileID: 332612601}
   RightHealthBar: {fileID: 1818928543}
-  ES: {fileID: 0}
 --- !u!65 &196758058
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7616,7 +7612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameTimerText: {fileID: 561423576}
   player: {fileID: 196758055}
-  HighScore: {fileID: 1616212635}
+  HighScoreMinutes: {fileID: 0}
   HighscoreSeconds: {fileID: 600659612}
   ResetHighScore: 0
   m_fgameTimer: 120
@@ -12246,10 +12242,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameOver: {fileID: 1591783432}
   Win: {fileID: 948990077}
+  Death: {fileID: 0}
   EndArea: {fileID: 458783868}
   TimerGameObject: {fileID: 296102523}
+  Hero: {fileID: 0}
   Restart: {fileID: 414326992}
+  Quit: {fileID: 0}
   WinButton: {fileID: 892833394}
+  DeathRestart: {fileID: 0}
+  DeathQuit: {fileID: 0}
   ES: {fileID: 10371150}
 --- !u!4 &462499775
 Transform:
@@ -17063,12 +17064,8 @@ MonoBehaviour:
   m_fDamage: 0
   HealthRegen: 10
   m_bIsDead: 0
-  DeathCanvas: {fileID: 0}
-  Restart: {fileID: 0}
-  Exit: {fileID: 0}
   LeftHealthBar: {fileID: 332612601}
   RightHealthBar: {fileID: 1818928543}
-  ES: {fileID: 0}
 --- !u!114 &650948888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17084,36 +17081,35 @@ MonoBehaviour:
   sword: {fileID: 0}
   particles: {fileID: 2036020586}
   Camera: {fileID: 0}
-  Idle: {fileID: 0}
-  Walk: {fileID: 0}
-  Run: {fileID: 0}
-  Jump: {fileID: 0}
-  Dash: {fileID: 0}
-  SwingWeapon: {fileID: 0}
   Dashing: {fileID: 1887790649}
-  Attackings: {fileID: 0}
-  DownForce: 220
-  CoolDown: 0
-  DashDisplay: {fileID: 645213131}
-  m_fVerticalJumpForce: 80
-  m_fDefaultPlayerSpeed: 0
-  m_fRampUpSpeed: 0
-  m_fAddingRampSpeed: 0
-  MaxVel: 11
-  m_fJumpTime: 0
-  m_bGrounded: 1
-  m_bDashing: 0
-  timer: 1
-  RampUp: 1
-  m_fDashCooldown: 1
-  m_fCurrentDashCount: 1
-  RampUpTime: 0
   PauseMenu: {fileID: 0}
   Resume: {fileID: 0}
   Restart: {fileID: 0}
   Quit: {fileID: 0}
   ES: {fileID: 0}
   AttackCollider: {fileID: 0}
+  Idle: {fileID: 0}
+  Walk: {fileID: 0}
+  Run: {fileID: 0}
+  Jump: {fileID: 0}
+  Dash: {fileID: 0}
+  SwingWeapon: {fileID: 0}
+  Attackings: {fileID: 0}
+  DownForce: 220
+  m_fJumpCoolDown: 0
+  DashDisplay: {fileID: 645213131}
+  m_fVerticalJumpForce: 80
+  m_fDefaultPlayerSpeed: 0
+  m_fRampUpSpeed: 0
+  m_fAddingRampSpeed: 0
+  m_YMaxVel: 0
+  m_fDashCooldown: 1
+  m_fCurrentDashCount: 1
+  m_fRampUpTimer: 0
+  m_bGrounded: 1
+  m_bDashing: 0
+  m_bDashTimerCooldown: 1
+  RampUp: 1
 --- !u!1001 &653814163
 Prefab:
   m_ObjectHideFlags: 0
@@ -20008,19 +20004,11 @@ MonoBehaviour:
   RangedEnemyScript: {fileID: 0}
   swingsound: {fileID: 0}
   Sword: {fileID: 0}
-  material: []
-  rend: {fileID: 0}
   fDamage: 15
   m_fAttackTimer: 0
   m_fCoolDownTime: 0
-  m_fSwordColorTimer: 0
-  m_fSwordColorCoolDown: 0
-  m_fSwordDelay: 0
-  m_fColorChange: 0.5
   m_bAttacking: 0
   m_bRangedAttacking: 0
-  m_fAttackDelay: 0
-  m_fAttackTimerDelay: 0
 --- !u!1 &774847583
 GameObject:
   m_ObjectHideFlags: 0
@@ -24846,12 +24834,8 @@ MonoBehaviour:
   m_fDamage: 0
   HealthRegen: 20
   m_bIsDead: 0
-  DeathCanvas: {fileID: 1591783432}
-  Restart: {fileID: 2064980780}
-  Exit: {fileID: 2064980780}
   LeftHealthBar: {fileID: 332612601}
   RightHealthBar: {fileID: 1818928543}
-  ES: {fileID: 0}
 --- !u!114 &867126775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24867,36 +24851,35 @@ MonoBehaviour:
   sword: {fileID: 0}
   particles: {fileID: 2036020586}
   Camera: {fileID: 0}
-  Idle: {fileID: 0}
-  Walk: {fileID: 0}
-  Run: {fileID: 0}
-  Jump: {fileID: 0}
-  Dash: {fileID: 0}
-  SwingWeapon: {fileID: 0}
   Dashing: {fileID: 183981335}
-  Attackings: {fileID: 0}
-  DownForce: 200
-  CoolDown: 0
-  DashDisplay: {fileID: 645213131}
-  m_fVerticalJumpForce: 80
-  m_fDefaultPlayerSpeed: 0.25
-  m_fRampUpSpeed: 0
-  m_fAddingRampSpeed: 0
-  MaxVel: 11
-  m_fJumpTime: 0
-  m_bGrounded: 1
-  m_bDashing: 0
-  timer: 1
-  RampUp: 1
-  m_fDashCooldown: 1
-  m_fCurrentDashCount: 1
-  RampUpTime: 0
   PauseMenu: {fileID: 1747774984}
   Resume: {fileID: 649183110}
   Restart: {fileID: 414326992}
   Quit: {fileID: 1493787555}
   ES: {fileID: 10371150}
   AttackCollider: {fileID: 0}
+  Idle: {fileID: 0}
+  Walk: {fileID: 0}
+  Run: {fileID: 0}
+  Jump: {fileID: 0}
+  Dash: {fileID: 0}
+  SwingWeapon: {fileID: 0}
+  Attackings: {fileID: 0}
+  DownForce: 200
+  m_fJumpCoolDown: 0
+  DashDisplay: {fileID: 645213131}
+  m_fVerticalJumpForce: 80
+  m_fDefaultPlayerSpeed: 0.25
+  m_fRampUpSpeed: 0
+  m_fAddingRampSpeed: 0
+  m_YMaxVel: 0
+  m_fDashCooldown: 1
+  m_fCurrentDashCount: 1
+  m_fRampUpTimer: 0
+  m_bGrounded: 1
+  m_bDashing: 0
+  m_bDashTimerCooldown: 1
+  RampUp: 1
 --- !u!65 &867126776
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25364,6 +25347,10 @@ Prefab:
       propertyPath: EventSystem
       value: 
       objectReference: {fileID: 10371150}
+    - target: {fileID: 1611468326761966, guid: 53b9f40d2a686c64b914c1c416b5edf7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53b9f40d2a686c64b914c1c416b5edf7, type: 2}
   m_IsPrefabParent: 0
@@ -31619,21 +31606,11 @@ MonoBehaviour:
   RangedEnemyScript: {fileID: 0}
   swingsound: {fileID: 1199888124}
   Sword: {fileID: 988398197}
-  material:
-  - {fileID: 2100000, guid: 2910ff0388775e7409d2e3a96c28a707, type: 2}
-  - {fileID: 0}
-  rend: {fileID: 2047382722}
   fDamage: 100
   m_fAttackTimer: 0
   m_fCoolDownTime: 0
-  m_fSwordColorTimer: 0
-  m_fSwordColorCoolDown: 2
-  m_fSwordDelay: 0
-  m_fColorChange: 0.1
   m_bAttacking: 0
   m_bRangedAttacking: 0
-  m_fAttackDelay: 0
-  m_fAttackTimerDelay: 0
 --- !u!65 &988398200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31843,36 +31820,35 @@ MonoBehaviour:
   sword: {fileID: 988398199}
   particles: {fileID: 2036020586}
   Camera: {fileID: 0}
-  Idle: {fileID: 0}
-  Walk: {fileID: 0}
-  Run: {fileID: 0}
-  Jump: {fileID: 0}
-  Dash: {fileID: 0}
-  SwingWeapon: {fileID: 0}
   Dashing: {fileID: 183981335}
-  Attackings: {fileID: 196758056}
-  DownForce: 200
-  CoolDown: 0
-  DashDisplay: {fileID: 645213131}
-  m_fVerticalJumpForce: 80
-  m_fDefaultPlayerSpeed: 0.17
-  m_fRampUpSpeed: 0
-  m_fAddingRampSpeed: 0
-  MaxVel: 11
-  m_fJumpTime: 0
-  m_bGrounded: 1
-  m_bDashing: 0
-  timer: 1
-  RampUp: 1
-  m_fDashCooldown: 1
-  m_fCurrentDashCount: 1
-  RampUpTime: 0
   PauseMenu: {fileID: 1747774984}
   Resume: {fileID: 649183110}
   Restart: {fileID: 414326992}
   Quit: {fileID: 1493787555}
   ES: {fileID: 10371150}
   AttackCollider: {fileID: 1242268345}
+  Idle: {fileID: 0}
+  Walk: {fileID: 0}
+  Run: {fileID: 0}
+  Jump: {fileID: 0}
+  Dash: {fileID: 0}
+  SwingWeapon: {fileID: 0}
+  Attackings: {fileID: 196758056}
+  DownForce: 200
+  m_fJumpCoolDown: 0
+  DashDisplay: {fileID: 645213131}
+  m_fVerticalJumpForce: 80
+  m_fDefaultPlayerSpeed: 0.17
+  m_fRampUpSpeed: 0
+  m_fAddingRampSpeed: 0
+  m_YMaxVel: 0
+  m_fDashCooldown: 1
+  m_fCurrentDashCount: 1
+  m_fRampUpTimer: 0
+  m_bGrounded: 1
+  m_bDashing: 0
+  m_bDashTimerCooldown: 1
+  RampUp: 1
 --- !u!43 &1027837016
 Mesh:
   m_ObjectHideFlags: 0
@@ -45004,7 +44980,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1591783430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52430,12 +52406,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 368a8998579aace4ead4bbe098b79917, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1616212635 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114671312915422770, guid: 3989ed8acd32c314eab8133ec98ab46c,
-    type: 2}
-  m_PrefabInternal: {fileID: 418413680}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1618067129
 GameObject:
   m_ObjectHideFlags: 0
@@ -56066,8 +56036,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621aefc5ffbd2734db840f2a1469cae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fSpeed: 0
   Door: {fileID: 322040176}
+  m_fSpeed: 0
   m_bOpenDoor: 0
   m_fOpenTime: 0.65
   m_fCloseTime: 0.65
@@ -58217,6 +58187,10 @@ Prefab:
       propertyPath: EventSystem
       value: 
       objectReference: {fileID: 10371150}
+    - target: {fileID: 1673624665716412, guid: 831dae48708b8774487ac03db2e5e904, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 831dae48708b8774487ac03db2e5e904, type: 2}
   m_IsPrefabParent: 0
@@ -69907,21 +69881,11 @@ MonoBehaviour:
   RangedEnemyScript: {fileID: 0}
   swingsound: {fileID: 1199888124}
   Sword: {fileID: 2047382721}
-  material:
-  - {fileID: 2100000, guid: 2910ff0388775e7409d2e3a96c28a707, type: 2}
-  - {fileID: 0}
-  rend: {fileID: 2047382722}
   fDamage: 100
   m_fAttackTimer: 0
   m_fCoolDownTime: 0
-  m_fSwordColorTimer: 0
-  m_fSwordColorCoolDown: 0
-  m_fSwordDelay: 0
-  m_fColorChange: 0.1
   m_bAttacking: 0
   m_bRangedAttacking: 0
-  m_fAttackDelay: 0
-  m_fAttackTimerDelay: 0
 --- !u!65 &2047382726
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70294,6 +70258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5306c76ff1729bf439f6f47ce7d8b822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadSound: {fileID: 0}
 --- !u!114 &2064980783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72264,14 +72229,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: 0
   target: {fileID: 345248}
-  falling: {fileID: 2133638556}
   jump: {fileID: 1018506344}
-  m_fsmoothSpeed: 0
   offset: {x: 4.5, y: 3.66, z: -8.8}
+  m_fsmoothSpeed: 0
   PlayerY: 0
   m_fSpeedChangeTime: 0
-  m_test: 0
-  m_TestBool: 0
 --- !u!81 &2133638558
 AudioListener:
   m_ObjectHideFlags: 0

@@ -13,14 +13,19 @@ public class GameOverManager : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
    	public Canvas GameOver;
     public Canvas Win;
+	public Canvas Death;
 	public GameObject EndArea;
 	public GameObject TimerGameObject;
+	public GameObject Hero;
     private EndArea EndAreaScript;
 	private GameTimerScript GameTimerScript;
+	private PlayerHealth HeroScript;
 	//public GameObject ReturnButton;
     public GameObject Restart;
     public GameObject Quit;
     public GameObject WinButton;
+	public GameObject DeathRestart;
+	public GameObject DeathQuit;
 	public EventSystem ES;
 
 	//----------------------------------------------------------------------------------------------------
@@ -32,7 +37,9 @@ public class GameOverManager : MonoBehaviour {
 		EndAreaScript = EndArea.GetComponent<EndArea>();
 		// gets game timer script.
 		GameTimerScript = TimerGameObject.GetComponent<GameTimerScript>();
-    }
+		// gets playercontoller script
+		HeroScript = Hero.GetComponent<PlayerHealth>();
+	}
 
 	//----------------------------------------------------------------------------------------------------
 	// Update is called once per frame, Makes the end menu pop up and makes sure the player cant use the
@@ -56,17 +63,29 @@ public class GameOverManager : MonoBehaviour {
             GameOver.enabled = true;
 			Quit.SetActive(true);
             Restart.SetActive(true);
-            ES.SetSelectedGameObject(Restart);
-			
+			if (ES.currentSelectedGameObject == null)
+				ES.SetSelectedGameObject(Restart);
+		}
+		if (HeroScript.m_bIsDead == true)
+		{
+			Time.timeScale = 0;
+			Death.enabled = true;
+			DeathQuit.SetActive(true);
+			DeathRestart.SetActive(true);
+			if(ES.currentSelectedGameObject == null)
+				ES.SetSelectedGameObject(DeathRestart);
 		}
 		// if the player is still playing and the time has not ended or reached the end then the game continues.
-		if (GameTimerScript.m_bGameOver == false && EndAreaScript.m_bEndReached == false)
+		if (GameTimerScript.m_bGameOver == false && EndAreaScript.m_bEndReached == false && HeroScript.m_bIsDead == false)
 		{
+			Death.enabled = false;
 			GameOver.enabled = false;
             Win.enabled = false;
             Quit.SetActive(false);
             Restart.SetActive(false);
             WinButton.SetActive(false);
+			DeathQuit.SetActive(false);
+			DeathRestart.SetActive(false);
 		}
 	}
 }

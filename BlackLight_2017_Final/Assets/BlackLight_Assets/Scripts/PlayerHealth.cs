@@ -19,15 +19,15 @@ public class PlayerHealth : MonoBehaviour {
     public float m_fDamage;
     public float HealthRegen; 
     public bool m_bIsDead = false;
-	public Canvas DeathCanvas;
-	public GameObject Restart;
-	public GameObject Exit;
+	//public Canvas DeathCanvas;
+	//public GameObject Restart;
+	//public GameObject Exit;
 	GameObject RangedEnemy;
     RangedEnemy RangedEnemyScript;
 	public Image LeftHealthBar;
     public Image RightHealthBar;
     private PlayerController playercon;
-    public EventSystem ES;
+    //public EventSystem ES;
 
     //----------------------------------------------------------------------------------------------------
     // Use this for initialization.
@@ -41,11 +41,11 @@ public class PlayerHealth : MonoBehaviour {
 		// Gets the player controller script.
 		playercon = GetComponent<PlayerController> ();
 		// Sets DeathCanvas to false.
-		DeathCanvas.enabled = false;
-		// Sets Restart SetActive to false.
-		Restart.SetActive(false);
-		// Sets Exit SetActive to false.
-		Exit.SetActive(false);
+		//DeathCanvas.enabled = false;
+		//// Sets Restart SetActive to false.
+		//Restart.SetActive(false);
+		//// Sets Exit SetActive to false.
+		//Exit.SetActive(false);
 	}
 
 	//----------------------------------------------------------------------------------------------------
@@ -115,20 +115,22 @@ public class PlayerHealth : MonoBehaviour {
 	//----------------------------------------------------------------------------------------------------
 	private void Death()
     {
+		//// sets timeScale to 0.
+		//Time.timeScale = 0;
 		// sets dead to true.
 		m_bIsDead = true;
 		//Debug.Log("PlayerDead");
 		// sets gameObject SetActive to false.
 		gameObject.SetActive(false);
-		// sets DeathCanvas to true.
-		DeathCanvas.enabled = true;
-		// sets Restart SetActive to true.
-		Restart.SetActive(true);
-		// sets Exit SetActive to true.
-		Exit.SetActive(true);
-		// sets timeScale to 0.
-		Time.timeScale = 0;
-		// sets SetSelectedGameObject to Restart.
-		ES.SetSelectedGameObject(Restart);
-    }
+		//// sets DeathCanvas to true.
+		//DeathCanvas.enabled = true;
+		//// sets Restart SetActive to true.
+		//Restart.SetActive(true);
+		//// sets Exit SetActive to true.
+		//Exit.SetActive(true);
+		
+		//// sets SetSelectedGameObject to Restart.
+		//ES.SetSelectedGameObject(Restart);
+		
+	}
 }
