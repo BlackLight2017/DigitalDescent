@@ -19,6 +19,7 @@ public class GameOverManager : MonoBehaviour {
 	private GameTimerScript GameTimerScript;
 	//public GameObject ReturnButton;
     public GameObject Restart;
+    public GameObject Quit;
     public GameObject WinButton;
 	public EventSystem ES;
 
@@ -42,26 +43,28 @@ public class GameOverManager : MonoBehaviour {
 		// checks if the end has been reached and pauses the time when the win menu pops up.
 		if(EndAreaScript.m_bEndReached == true)
 		{
+            Time.timeScale = 0;
             Win.enabled = true;
             WinButton.SetActive(true);
             ES.SetSelectedGameObject(WinButton);
-			Time.timeScale = 0;
+			
 		}
 		// checks if the game timer has ended and pauses the time when the gameover menu pops up.
 		if (GameTimerScript.m_bGameOver == true)
 		{
-			GameOver.enabled = true;
-			//ReturnButton.SetActive(true);
+            Time.timeScale = 0;
+            GameOver.enabled = true;
+			Quit.SetActive(true);
             Restart.SetActive(true);
             ES.SetSelectedGameObject(Restart);
-			Time.timeScale = 0;
+			
 		}
 		// if the player is still playing and the time has not ended or reached the end then the game continues.
 		if (GameTimerScript.m_bGameOver == false && EndAreaScript.m_bEndReached == false)
 		{
 			GameOver.enabled = false;
             Win.enabled = false;
-            //ReturnButton.SetActive(false);
+            Quit.SetActive(false);
             Restart.SetActive(false);
             WinButton.SetActive(false);
 		}

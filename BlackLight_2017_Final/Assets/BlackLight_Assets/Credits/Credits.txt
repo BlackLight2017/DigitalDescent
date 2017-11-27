@@ -1,0 +1,39 @@
+Digital Descent Game Credits
+
+Design/ Production
+Jake Brown
+Owen O'Donoghue
+Phillip Traianon-Howatt
+
+Art
+Rachel Torpy
+William Nisbet
+
+Programming
+Jeremy Zoitas
+Gabriel Pilakis
+
+
+Special Thanks 
+Charlie Franzke
+Bruno Mitrov
+
+Software
+Unity
+Github / Tortoise SVN
+Visual Studio
+Maya
+Substance Painter.
+
+Third Party Assets
+ProBuilder Basic
+OBJ Export
+Post Processing Stack
+XInput
+
+Audio
+www.soundsnap.com
+www.epidemicsound.com
+
+Typefaces
+www.dafont.com
