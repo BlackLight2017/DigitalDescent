@@ -14,16 +14,15 @@ public class LoadSceneScript : MonoBehaviour {
 	//		SceneIndex: Is the Index/Number of the scene trying to be load.
 	//----------------------------------------------------------------------------------------------------
 	public AudioSource LoadSound;
+
 	public void LoadByIndex(int SceneIndex)
 	{
 		LoadSound.Play();
-		if (!LoadSound.isPlaying)
-		{
+
 			SceneManager.LoadScene(SceneIndex);
 			if (Time.timeScale == 0)
 			{
 				Time.timeScale = 1;
 			}
-		}
 	}
 }
