@@ -152,7 +152,6 @@ public class RangedEnemy : MonoBehaviour {
 	public void DoDamage()
 	{
 		// Prints out a message to see if it hits
-		// Debug.Log("HitPlayer");
 		// If the player has health then attack.
 		if (PlayerHealth.m_fHealth > 0)
 		{

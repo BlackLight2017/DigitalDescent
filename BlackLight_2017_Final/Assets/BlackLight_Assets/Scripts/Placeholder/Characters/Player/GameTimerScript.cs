@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿//----------------------------------------------------------------------------------------------------
+// AUTHOR: Gabriel Pilakis 
+// EDITED BY: Jeremy Zoitas
+//----------------------------------------------------------------------------------------------------
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,15 +14,21 @@ public class GameTimerScript : MonoBehaviour
     //----------------------------------------------------------------------------------------------------
     // Sets up references to other objects and creates variables
     //----------------------------------------------------------------------------------------------------
+    // Text used to display timer
     public Text gameTimerText;
     public GameObject player; 
-    public Text HighScore;
+    // Saves the Minute of the Highscore
+    public Text HighScoreMinutes;
+    // Saves the Seconds of the Highscore
     public Text HighscoreSeconds;
+    // Bool that resets Highscore
     public bool ResetHighScore = false;
     // timer is set for 30 minutes
     public float m_fgameTimer = 1800;
     public bool m_bGameOver;
+    // seconds of timer
     float seconds;
+    // minutes of timer
     float minutes;
     public string timerString; 
     //----------------------------------------------------------------------------------------------------
@@ -29,7 +40,7 @@ public class GameTimerScript : MonoBehaviour
         m_bGameOver = false;
         // HighScore.text = "Highscore : " + PlayerPrefs.GetString(timerString).ToString();
         // Gets the highscore 
-        HighScore.text = PlayerPrefs.GetFloat("HighScores").ToString();
+        HighScoreMinutes.text = PlayerPrefs.GetFloat("Minutes").ToString();
         HighscoreSeconds.text = PlayerPrefs.GetFloat("Seconds" ).ToString();
 
         //Select = gameOver.GetComponent<SelectOnInput>();
@@ -57,25 +68,25 @@ public class GameTimerScript : MonoBehaviour
         if (XCI.GetButton(XboxButton.A) && XCI.GetButton(XboxButton.RightBumper) && XCI.GetButton(XboxButton.LeftBumper)
             && XCI.GetButton(XboxButton.Back))
         {
+
             ResetHighScore = true;
-            m_bGameOver = true;
 
         }
 
         if (ResetHighScore == true)
         {
+            // Deletes previous highscore 
             PlayerPrefs.DeleteAll();
             ResetHighScore = false; 
         }
+
         if (m_fgameTimer <= 0)
         {
             m_bGameOver = true;
-            //Select.enabled = true;
-            //gameOver.enabled = true;
+ 
         }
         else
         {
-            //Select.enabled = false;
             m_bGameOver = false;
         }
     }
@@ -88,13 +99,12 @@ public class GameTimerScript : MonoBehaviour
         if (col.gameObject.tag == "EndArea")
         {
            
-            //displays the new time
-            if (minutes > PlayerPrefs.GetFloat("HighScores"))
+            if (minutes > PlayerPrefs.GetFloat("Minutes"))
             {
-                PlayerPrefs.SetFloat("HighScores", minutes);
+                PlayerPrefs.SetFloat("Minutes", minutes);
             }
-
-            if (seconds > PlayerPrefs.GetFloat("Seconds"))
+            
+            if (seconds > PlayerPrefs.GetFloat("Seconds") && minutes > PlayerPrefs.GetFloat("Minutes"))
             {
                 PlayerPrefs.SetFloat("Seconds", seconds);
             }

@@ -256,8 +256,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.2950094, y: 2.3517199, z: 2.3620892}
-  m_Center: {x: 0.07152768, y: -0.09966779, z: 0.24726368}
+  m_Size: {x: 2.2950094, y: 1.85, z: 2.3620892}
+  m_Center: {x: 0.07152768, y: -0.02, z: 0.1}
 --- !u!65 &65632129722583664
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -446,7 +446,7 @@ MonoBehaviour:
   f_Speed: 0
   f_Stunned: 0
   IsStunned: 0
-  m_fShooting_Distance: 20
+  m_fShooting_Distance: 10
   m_fOutOfRange: 40
   Gun: {fileID: 1441691193457518}
   DeathSound: {fileID: 82226972802651928}
@@ -470,6 +470,7 @@ MonoBehaviour:
   m_fGunRange: 20
   m_fChargeDistance: 100
   time: 0
+  PlayerController: {fileID: 0}
 --- !u!195 &195591313048211140
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -488,7 +489,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 4
+  m_BaseOffset: 3
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!198 &198691136036935612

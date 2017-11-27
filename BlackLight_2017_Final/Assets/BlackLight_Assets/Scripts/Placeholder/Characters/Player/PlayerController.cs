@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿//----------------------------------------------------------------------------------------------------
+// AUTHOR: Gabriel Pilakis 
+// EDITED BY: Jeremy Zoitas
+//----------------------------------------------------------------------------------------------------
+using System.Collections;
 using System.Collections.Generic;
 using XboxCtrlrInput;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 using UnityEngine;
-
 
 public class PlayerController : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
@@ -15,6 +18,19 @@ public class PlayerController : MonoBehaviour {
     public SwordScript sword;
     public ParticleSystem particles;
     public CameraFollow Camera; 
+    public AudioSource Dashing;
+   
+    // Menu Objects 
+	public Canvas PauseMenu;
+    public GameObject Resume;
+	public GameObject Restart;
+	public GameObject Quit;
+	public EventSystem ES;
+    private SelectOnInput Select;
+  
+    // The collider that delivers damage to the enemy
+    public GameObject AttackCollider;
+  
     // animations for the player that will be added later
     public Animation Idle;
     public Animation Walk;
@@ -22,53 +38,55 @@ public class PlayerController : MonoBehaviour {
     public Animation Jump;
     public Animation Dash;
     public Animation SwingWeapon;
-    public AudioSource Dashing;
+
+    // Attack Animation
     public Animator Attackings; 
+    // Pushes the player down to avoid floaty movement
     public float DownForce;
-    public float CoolDown; 
-
+    // Cooldown timer for jumping
+    public float m_fJumpCoolDown; 
+    // Dash UI 
     public Image DashDisplay; 
-
-    // how high the player can jump 
+    // How high the player can jump 
     public float m_fVerticalJumpForce;
-    // how fast the player can move 
+    
     // THE DEFAULT SPEED OF KEYBOARD AND CONTROLLER
     public float m_fDefaultPlayerSpeed;
     // THE RESULTING RAMP UP SPEED 
-    public float m_fRampUpSpeed;// = 10;
+    public float m_fRampUpSpeed;
     // ADDS TO RAMP UP SPEED 
-    public float m_fAddingRampSpeed;   //0.00090f
+    public float m_fAddingRampSpeed;
+    // The max distance the player can move on the Y axis
+    public float m_YMaxVel;
+    // How long it take for the player to get a dash
+    public float m_fDashCooldown = 1.35f;
+    // How many dashes the player has 
+    public float m_fCurrentDashCount = 0.0f;
+    // Counts down how many seconds the player can dash (Timer will count up)
+    public float m_fRampUpTimer = 0; 
 
-    public float MaxVel;
-    public float m_fJumpTime;
-
+    // Players RigidBody
     private Rigidbody rb;
-
     // how long the dash lasts 
-    float m_fDashTimer = 0.5f;
+    private float m_fDashTimer = 0.5f;
+
+    // Checks if the Player is colliding with the Ground
     public bool m_bGrounded = true;
+    // Checks if Player is Dashing
     public bool m_bDashing = false;
 
-    public bool timer = true;
+    // Bool to enable or disable the dashcooldown timer
+    public bool m_bDashTimerCooldown = true;
+    // Bool to enable or disable the rampup speed
     public bool RampUp = true;  
-    //cooldown for dash 
-    public float m_fDashCooldown = 1.35f;
-    // how many dashes the player has 
-    public float m_fCurrentDashCount = 0.0f;
-    public float RampUpTime = 0; 
 
-	public Canvas PauseMenu;
-	private SelectOnInput Select;
-	public GameObject Resume;
-	public GameObject Restart;
-	public GameObject Quit;
-	public EventSystem ES;
-    public GameObject AttackCollider;
-
+    // References other Enemy Scripts
     Enemy EnemyScript;
 	RangedEnemy RangedEnemyScript;
+    // Checks if the enemy is being attacked
 	private bool m_bAttacking;
 	private bool m_bRangedAttacking;
+
 
 	//---------------------------------------------------------------------------------------------------
 	// Use this for initialization
@@ -77,7 +95,6 @@ public class PlayerController : MonoBehaviour {
 	void Start()
     {
         rb = GetComponent<Rigidbody>();
-    //      anim = GetComponent<Animator>();
 		PauseMenu.enabled = false;
         Time.timeScale = 1;
 		Select = PauseMenu.GetComponent<SelectOnInput>();
@@ -87,7 +104,8 @@ public class PlayerController : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     // FixedUpdate is called once per frame, when the game load up the user wil be able to control the players 
     // movement, jump and dash abilities. The user can control the player using an xbox Controller.
-    // Particles are also called in the update when the player dashes                                            
+    // Particles are also called in the update when the player dashes. DashUi is also updated in this script when
+    // the dash is cooling down, th closer the dash gets to the end of the cooldown the more the UI will fill.                                         
     //----------------------------------------------------------------------------------------------------
     void FixedUpdate()
     {
@@ -95,16 +113,20 @@ public class PlayerController : MonoBehaviour {
         {
 
             Attackings.SetTrigger("isAttacking");
-            //  sword.StartAttack(0.5f);
 
         }
-        CoolDown += Time.deltaTime;
-        m_fJumpTime += Time.deltaTime; 
+        // Counts down how long until the player can jump
+        m_fJumpCoolDown += Time.deltaTime;
+        
+        // Displays the dash metre for the player
         m_fCurrentDashCount = m_fCurrentDashCount + 0;
-		if(DashDisplay)
-			    DashDisplay.fillAmount = m_fCurrentDashCount;
+        if (DashDisplay)
+        {
+            DashDisplay.fillAmount = m_fCurrentDashCount;
+        }
+
         // if the timer is on dash cooldown counts down 
-        if (timer == true)
+        if (m_bDashTimerCooldown == true)
         {
             m_fDashCooldown += Time.deltaTime;
             float DashFill = m_fDashCooldown;
@@ -113,32 +135,31 @@ public class PlayerController : MonoBehaviour {
 				DashDisplay.fillAmount = DashFill;
         }
  
-        // if the dashcooldown is less or equal to zero add 1 to CurrentDashCount 
+        // if the dashcooldown is greater or equal to 1.35 end filling the ui 
         if (m_fDashCooldown >= 1.35f)
       {
 			if(DashDisplay)
-				DashDisplay.fillAmount = m_fCurrentDashCount; 
+				DashDisplay.fillAmount = m_fCurrentDashCount;
+            // adds 1 into m_fCurrentDashCount making the player have a dash available 
             m_fCurrentDashCount = 1;          
             // if they're is more than one dash 
               if (m_fCurrentDashCount > 0)
               {
-                  //Adds 5 seconds to dashcooldown
-                  // Timer is turned off  
-                  m_fDashCooldown -= 1.35f;
-                   timer = false; 
+                // Take 1.35 from m_fDashCooldown
+                m_fDashCooldown -= 1.35f;
+                // make m_bDashTimerCooldown equal false
+                m_bDashTimerCooldown = false; 
               }      
              
       }
        // if they're no more dashes the timer resets
       else if (m_fCurrentDashCount == 0)
         {
-            timer = true; 
+            m_bDashTimerCooldown = true; 
         }
         
         // Movement is controled by the xbox360 controller 
-        // This input is for the left stick 
         float moveHorizontal = XCI.GetAxis(XboxAxis.LeftStickX, controller);
-        //float m_fKeyboardMoveHorizontal = Input.GetAxis("Horizontal");
         // movement of the player 
        transform.position = new Vector3(transform.position.x + (moveHorizontal * m_fRampUpSpeed), transform.position.y, transform.position.z);
 
@@ -149,7 +170,6 @@ public class PlayerController : MonoBehaviour {
             if (transform.eulerAngles.y >= -90)
             {
                 transform.eulerAngles = new Vector3 (0, 90,0);
-              
             }
      
         }
@@ -159,8 +179,8 @@ public class PlayerController : MonoBehaviour {
 
             if (RampUp == true)
             {
-                RampUpTime += Time.deltaTime;
-                if (RampUpTime >= 1)
+                m_fRampUpTimer += Time.deltaTime;
+                if (m_fRampUpTimer >= 1)
                 {
                     m_fRampUpSpeed += m_fAddingRampSpeed;//0.00120f
 
@@ -173,18 +193,18 @@ public class PlayerController : MonoBehaviour {
 
                 }        
              
-                if (RampUpTime >= 2.5f)
+                if (m_fRampUpTimer >= 2.5f)
                 {
                     RampUp = false;                                            
             }                
         }
-       
+       // If the control stick is neither tilted left or right the rampupTimer is reset
         if (XCI.GetAxis(XboxAxis.LeftStickX, controller) == 0 )
         {
 
             RampSpeed();
 
-            RampUpTime = 0.0f;
+            m_fRampUpTimer = 0.0f;
             RampUp = true;
 
         }
@@ -247,12 +267,11 @@ public class PlayerController : MonoBehaviour {
             }
 
         //JUMPING
-
         if (m_bGrounded == true)
         {
             // when the 'A' button the xbox360 Control is pressed 
            
-                if (XCI.GetButton(XboxButton.A, controller) && CoolDown >= 0.80f)
+                if (XCI.GetButton(XboxButton.A, controller) && m_fJumpCoolDown >= 0.80f)
                 {  //|| Input.GetKey(KeyCode.Space))
 
                     // add jumpforce to players Y position 
@@ -261,13 +280,13 @@ public class PlayerController : MonoBehaviour {
                     transform.GetComponent<Rigidbody>().AddForce(Jump, ForceMode.Impulse);
                     // jump is disabled when in the air
                     m_bGrounded = false;
-                    CoolDown = 0;
+                    m_fJumpCoolDown = 0;
 
                 }
 
         }
 
-        // Pause
+        // PAUSING
         if (XCI.GetButton(XboxButton.Start, controller) )
 		{
 			// Sets the pause menu true.
@@ -283,17 +302,17 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		// Stops the player from flying away of a ramp.
-		if (rb.velocity.y > MaxVel)
+		// Stops the player from flying away off a ramp.
+		if (rb.velocity.y > m_YMaxVel)
 		{
-			rb.velocity = new Vector3 (0,MaxVel,0);
+			rb.velocity = new Vector3 (0,m_YMaxVel,0);
 		}
 	}
 
+    // Rampspeed equals the starting Playerspeed 
     public void RampSpeed()
     {
         m_fRampUpSpeed = m_fDefaultPlayerSpeed;
-
     }
     //----------------------------------------------------------------------------------------------------
     // OnCollisionEnter is called when the player is colliding with an object, when this is called the player
@@ -309,6 +328,7 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
+
     //----------------------------------------------------------------------------------------------------
     // OnTriggerEnter is called when the player is colliding with a trigger collider, when this is called the player
     // can jump 
@@ -321,16 +341,13 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
-
-
+    
     //----------------------------------------------------------------------------------------------------
     // DoDamage is called when  a specific point of the animation is reached                                                                           
     //----------------------------------------------------------------------------------------------------
-
     public void DoDamage()
 	{
 		AttackCollider AttackColliderScript = AttackCollider.GetComponent<AttackCollider>();
-		Debug.Log("DAMAGE!");
 		if(AttackColliderScript.EnemyScript && AttackColliderScript.m_bAttacking)
 		{
 			AttackColliderScript.EnemyScript.TakeDamage(100);
@@ -339,15 +356,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			AttackColliderScript.RangedEnemyScript.TakeDamage(100);
 		}
-	}
-  }
-            
-        
 
+    }
 
-
-
-   
-
-
-
+}           

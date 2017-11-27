@@ -139,7 +139,6 @@ public class Enemy : MonoBehaviour {
                 {
                     if (m_fTimer >= 1)
                     {
-                        Debug.Log("Particle is playing");
                         if (!PunchParticle.isPlaying)
                             PunchParticle.Play();
                     }
@@ -219,7 +218,7 @@ public class Enemy : MonoBehaviour {
     private void DoDamage()
     {
         // Prints out a message to see if it hits
-		Debug.Log("HitPlayer");
+
         
         // If the player has health then attack.
         if(PlayerHealth.m_fHealth > 0)

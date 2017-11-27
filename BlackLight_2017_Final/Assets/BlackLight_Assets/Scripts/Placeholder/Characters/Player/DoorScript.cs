@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//----------------------------------------------------------------------------------------------------
+// AUTHOR: Gabriel Pilakis 
+//----------------------------------------------------------------------------------------------------
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,11 +10,15 @@ public class DoorScript : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     // Sets up references to other objects and creates variables
     //----------------------------------------------------------------------------------------------------
-
-    public float m_fSpeed;
+  
     public GameObject Door; 
+    // How fast the door moves
+    public float m_fSpeed;
+    // Checks if door is open
     public bool m_bOpenDoor;
+    // how long the door opens for
     public float m_fOpenTime = 1.0f;
+    // how long the door closes for
     public float m_fCloseTime = 1.0f;
 
     //----------------------------------------------------------------------------------------------------
