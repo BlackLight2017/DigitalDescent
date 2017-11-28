@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 33316059856840004}
   - component: {fileID: 23344336548334076}
   m_Layer: 0
-  m_Name: Big_Boi
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1358432296433726}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 563, y: -1122, z: 400}
+  m_LocalPosition: {x: 247, y: -1052, z: 255}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4252889785693248}
