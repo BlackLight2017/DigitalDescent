@@ -42,16 +42,12 @@ public class EnemyBulletTest : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
 		if (other.gameObject.tag == "Player")
 		{
-			Destroy(gameObject);
+		//	//Destroy(gameObject);
 		}
-		//if (other.gameObject.tag == "Player" && other.gameObject.tag == "Sword")
-  //      {
-  //          //Destroy(gameObject);
-  //      }
 		if(other.gameObject.tag == "RangedEnemy" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Gun" || other.gameObject.tag == "EnemyStunGun" || other.gameObject.tag == "Sword")
 		{
 

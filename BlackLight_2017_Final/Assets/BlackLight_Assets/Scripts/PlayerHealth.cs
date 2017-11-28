@@ -80,14 +80,16 @@ public class PlayerHealth : MonoBehaviour {
             TakeDamage(RangedEnemyScript.m_fDamage);
 			Destroy(col.gameObject);
 		}
-		// checks if the player runs into the health box and healths them.
-        if (col.gameObject.tag == "Regen" && m_fHealth < 90)
-        {
-            m_fHealth += HealthRegen / 2;
-            Destroy(col.gameObject); 
-        }
     }
-
+	private void OnTriggerEnter(Collider col)
+	{
+		// checks if the player runs into the health box and healths them.
+		if (col.gameObject.tag == "Regen" && m_fHealth < 99)
+		{
+			m_fHealth += HealthRegen;
+			Destroy(col.gameObject);
+		}
+	}
 	//----------------------------------------------------------------------------------------------------
 	// Does damage to the enemy if it is not dead.
 	// 
