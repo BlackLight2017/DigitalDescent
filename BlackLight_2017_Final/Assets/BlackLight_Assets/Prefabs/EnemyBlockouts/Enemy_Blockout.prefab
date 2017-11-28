@@ -1187,9 +1187,21 @@ MonoBehaviour:
   Run: {fileID: 0}
   Attack: {fileID: 0}
   Die: {fileID: 0}
-  Body: {fileID: 1355674904307474}
-  LeftArm: {fileID: 1937238325752996}
-  RightArm: {fileID: 1636319242756642}
+  material:
+  - {fileID: 2100000, guid: 3a7eb389f2c8c0f49ac48b7acb93ec9b, type: 2}
+  - {fileID: 2100000, guid: 91439f6749e320c45bf7119fa1785e5c, type: 2}
+  - {fileID: 2100000, guid: 2ec82251ace17c8479adbae797aa6658, type: 2}
+  RightArmMaterial:
+  - {fileID: 2100000, guid: 3a7eb389f2c8c0f49ac48b7acb93ec9b, type: 2}
+  - {fileID: 2100000, guid: 91439f6749e320c45bf7119fa1785e5c, type: 2}
+  - {fileID: 2100000, guid: 2ec82251ace17c8479adbae797aa6658, type: 2}
+  LeftArmMaterial:
+  - {fileID: 2100000, guid: 3a7eb389f2c8c0f49ac48b7acb93ec9b, type: 2}
+  - {fileID: 2100000, guid: 91439f6749e320c45bf7119fa1785e5c, type: 2}
+  - {fileID: 2100000, guid: 2ec82251ace17c8479adbae797aa6658, type: 2}
+  Body: {fileID: 1043252349247850}
+  LeftArm: {fileID: 1232628300909330}
+  RightArm: {fileID: 1985482214331572}
   AttackSound: {fileID: 82073153763765518}
   DeathSound: {fileID: 82873633706737260}
 --- !u!195 &195174615839555874

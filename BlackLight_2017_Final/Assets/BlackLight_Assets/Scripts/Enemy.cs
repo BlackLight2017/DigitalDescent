@@ -27,6 +27,16 @@ public class Enemy : MonoBehaviour {
     public Animation Run;
     public Animation Attack;
     public Animation Die;
+    public Material[] material;
+    public Material[] RightArmMaterial;
+    public Material[] LeftArmMaterial;
+
+    private MeshRenderer rend;
+    private MeshRenderer ArmRend;
+    private MeshRenderer LeftArmRend;
+
+   // public MeshRenderer RingRend;
+
     Animator anim; 
     private Transform Target;
     private NavMeshAgent nav;
@@ -64,7 +74,15 @@ public class Enemy : MonoBehaviour {
         m_fTimer = 0;
         anim = GetComponent<Animator>();
 
-	}
+        rend = Body.GetComponent<MeshRenderer>();
+        ArmRend = RightArm.GetComponent<MeshRenderer>();
+        LeftArmRend = LeftArm.GetComponent<MeshRenderer>();
+
+        ArmRend.sharedMaterial = RightArmMaterial[0];
+        rend.sharedMaterial = material[0];
+        LeftArmRend.sharedMaterial = LeftArmMaterial[0];
+
+    }
 
     //----------------------------------------------------------------------------------------------------
     // Update is called once per frame, Makes the enemy move to the players position. If they become 
@@ -85,12 +103,16 @@ public class Enemy : MonoBehaviour {
 				nav.enabled = false;
 				// Sets damage to 0.
 				m_fDamage = 0;
-				// Changes colour to it being stunned.
-				Body.GetComponent<Renderer>().material.color = Color.yellow;
-				LeftArm.GetComponent<Renderer>().material.color = Color.yellow;
-				RightArm.GetComponent<Renderer>().material.color = Color.yellow;
-				// Counts down the stun timer.
-				f_Stunned -= Time.deltaTime;
+                // Changes colour to it being stunned.
+                //Body.GetComponent<Renderer>().material.color = Color.yellow;
+                //LeftArm.GetComponent<Renderer>().material.color = Color.yellow;
+                //RightArm.GetComponent<Renderer>().material.color = Color.yellow;
+                rend.sharedMaterial = material[1];
+                ArmRend.sharedMaterial = RightArmMaterial[1];
+                LeftArmRend.sharedMaterial = LeftArmMaterial[1];
+
+                // Counts down the stun timer.
+                f_Stunned -= Time.deltaTime;
 			}
 			// once the timer hits 0 speed is restored 
 			if (f_Stunned <= 0)
@@ -101,14 +123,16 @@ public class Enemy : MonoBehaviour {
 				m_fDamage = 15;
 				// Starts moving.
 				nav.enabled = true;
-				// Changes colour again.
+                // Changes colour again.
 
-				Body.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-				LeftArm.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-				RightArm.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-
-				// Resets stun timer.
-				f_Stunned += 3.0f;
+                //Body.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+                //LeftArm.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+                //RightArm.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
+                rend.sharedMaterial = material[0];
+                ArmRend.sharedMaterial = RightArmMaterial[0];
+                LeftArmRend.sharedMaterial = LeftArmMaterial[0];
+                // Resets stun timer.
+                f_Stunned += 3.0f;
 			}
 			// If to far from player then stops moving and looks towards the player.
 			if (dist > m_fOutOfRange || dist < m_fStoppingDistance)
@@ -161,9 +185,12 @@ public class Enemy : MonoBehaviour {
 		}
 		if(m_bIsDead)
 		{
-            Body.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
-            LeftArm.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
-            RightArm.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
+            //  Body.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
+            //  LeftArm.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
+            //  RightArm.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
+            rend.sharedMaterial = material[2];
+            ArmRend.sharedMaterial = material[2];
+            LeftArmRend.sharedMaterial = material[2];
             //  if (!DeathSound.isPlaying)
             //{
             //	// Sets active false.
