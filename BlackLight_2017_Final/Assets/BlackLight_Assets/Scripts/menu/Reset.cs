@@ -17,7 +17,6 @@ public class Reset : MonoBehaviour {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         Time.timeScale = 1;
-        Debug.Log(Time.timeScale);
 
     }
 }
