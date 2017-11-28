@@ -25,6 +25,9 @@ public class GameTimerScript : MonoBehaviour
     public bool ResetHighScore = false;
     // timer is set for 30 minutes
     public float m_fgameTimer = 1800;
+
+    public float scoreTimer;
+
     public bool m_bGameOver;
     // seconds of timer
     float seconds;
@@ -41,7 +44,9 @@ public class GameTimerScript : MonoBehaviour
         // HighScore.text = "Highscore : " + PlayerPrefs.GetString(timerString).ToString();
         // Gets the highscore 
         HighScoreMinutes.text = PlayerPrefs.GetFloat("Minutes").ToString();
-        HighscoreSeconds.text = PlayerPrefs.GetFloat("Seconds" ).ToString();
+        HighscoreSeconds.text = PlayerPrefs.GetFloat("Seconds").ToString();
+        scoreTimer = PlayerPrefs.GetFloat("ScoreTimer");
+
 
         //Select = gameOver.GetComponent<SelectOnInput>();
     }
@@ -61,8 +66,10 @@ public class GameTimerScript : MonoBehaviour
         minutes = (int)(m_fgameTimer / 60) % 60;
         // format of timer
         timerString = string.Format("{0:00:}{1:00}", minutes, seconds);
-        // m_fgameTimertext is going to display the timer
+        //// m_fgameTimertext is going to display the timer
         gameTimerText.text = timerString;
+
+        //gameTimerText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
       
         // Hold LeftBumper,Rightbumper,A and back to Clear Highscore 
         if (XCI.GetButton(XboxButton.A) && XCI.GetButton(XboxButton.RightBumper) && XCI.GetButton(XboxButton.LeftBumper)
@@ -98,16 +105,29 @@ public class GameTimerScript : MonoBehaviour
     {
         if (col.gameObject.tag == "EndArea")
         {
-           
-            if (minutes > PlayerPrefs.GetFloat("Minutes"))
+            if (m_fgameTimer > PlayerPrefs.GetFloat("ScoreTimer"))
             {
+                PlayerPrefs.SetFloat("ScoreTimer", m_fgameTimer);
+
                 PlayerPrefs.SetFloat("Minutes", minutes);
-            }
-            
-            if (seconds > PlayerPrefs.GetFloat("Seconds") && minutes >= PlayerPrefs.GetFloat("Minutes"))
-            {
                 PlayerPrefs.SetFloat("Seconds", seconds);
             }
+            // updates minutes in timer 
+            //if (minutes > PlayerPrefs.GetFloat("Minutes"))
+            //{
+            //    PlayerPrefs.SetFloat("Minutes", minutes);
+            //}
+
+            //if (seconds > PlayerPrefs.GetFloat("Seconds"))
+            //{
+            //    PlayerPrefs.SetFloat("Seconds", seconds);
+            //}
+
+            //// updates seconds in timer 
+            //if (seconds > PlayerPrefs.GetFloat("Seconds") && minutes >= PlayerPrefs.GetFloat("Minutes"))
+            //{
+            //    PlayerPrefs.SetFloat("Seconds", seconds);
+            //}
 
         }
     }
