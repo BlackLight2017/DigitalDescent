@@ -629,10 +629,10 @@ RectTransform:
   m_Father: {fileID: 47724577}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -353, y: 323}
-  m_SizeDelta: {x: -816.7, y: -763.3}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 1, y: -67.600006}
+  m_SizeDelta: {x: 319.5, y: 79.399994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &22742458
 MonoBehaviour:
@@ -1379,7 +1379,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -17620,7 +17620,7 @@ GameObject:
   - component: {fileID: 802063017}
   - component: {fileID: 802063021}
   m_Layer: 5
-  m_Name: credits
+  m_Name: Credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17641,8 +17641,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 534, y: 0}
-  m_SizeDelta: {x: 792.3, y: 481.5}
+  m_AnchoredPosition: {x: 265.6, y: -15}
+  m_SizeDelta: {x: 330.3, y: 200.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &802063017
 MonoBehaviour:
@@ -21875,7 +21875,7 @@ GameObject:
   - component: {fileID: 950956350}
   - component: {fileID: 950956349}
   m_Layer: 5
-  m_Name: exit
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21896,8 +21896,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 534, y: -253}
-  m_SizeDelta: {x: 668.1, y: 413.5}
+  m_AnchoredPosition: {x: 265.6, y: -120.5}
+  m_SizeDelta: {x: 278.5, y: 172.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &950956347
 MonoBehaviour:
@@ -21999,7 +21999,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -42054,10 +42054,10 @@ RectTransform:
   m_Father: {fileID: 47724577}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -340, y: 290}
-  m_SizeDelta: {x: 764.5, y: 764.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 1, y: -81}
+  m_SizeDelta: {x: 319.5, y: 319.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1805800970
 MonoBehaviour:
@@ -47576,8 +47576,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 534, y: 273}
-  m_SizeDelta: {x: 920.6, y: 605.6}
+  m_AnchoredPosition: {x: 265.6, y: 98.79999}
+  m_SizeDelta: {x: 383.8, y: 252.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &2041236134
 AudioSource:
