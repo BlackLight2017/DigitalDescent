@@ -22,7 +22,7 @@ public class GameTimerScript : MonoBehaviour
     // Saves the Seconds of the Highscore
     public Text HighscoreSeconds;
     // Bool that resets Highscore
-    public bool ResetHighScore = false;
+    public bool m_bResetHighScore = false;
     // timer is set for 30 minutes
     public float m_fgameTimer = 1800;
 
@@ -76,15 +76,15 @@ public class GameTimerScript : MonoBehaviour
             && XCI.GetButton(XboxButton.Back))
         {
 
-            ResetHighScore = true;
+            m_bResetHighScore = true;
 
         }
 
-        if (ResetHighScore == true)
+        if (m_bResetHighScore == true)
         {
             // Deletes previous highscore 
             PlayerPrefs.DeleteAll();
-            ResetHighScore = false; 
+            m_bResetHighScore = false; 
         }
 
         if (m_fgameTimer <= 0)

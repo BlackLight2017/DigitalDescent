@@ -1357,7 +1357,31 @@ MonoBehaviour:
   IsStunned: 0
   m_fShooting_Distance: 10
   m_fOutOfRange: 40
-  Gun: {fileID: 1441691193457518}
+  BaseMaterial:
+  - {fileID: 2100000, guid: 3a7eb389f2c8c0f49ac48b7acb93ec9b, type: 2}
+  - {fileID: 2100000, guid: 91439f6749e320c45bf7119fa1785e5c, type: 2}
+  - {fileID: 2100000, guid: dacdea83f00a657428e9f15cd6ffef6a, type: 2}
+  TurbineRMaterial:
+  - {fileID: 2100000, guid: 3a7eb389f2c8c0f49ac48b7acb93ec9b, type: 2}
+  - {fileID: 2100000, guid: 91439f6749e320c45bf7119fa1785e5c, type: 2}
+  - {fileID: 2100000, guid: dacdea83f00a657428e9f15cd6ffef6a, type: 2}
+  TurbineLMaterial:
+  - {fileID: 2100000, guid: 3a7eb389f2c8c0f49ac48b7acb93ec9b, type: 2}
+  - {fileID: 2100000, guid: 91439f6749e320c45bf7119fa1785e5c, type: 2}
+  - {fileID: 2100000, guid: dacdea83f00a657428e9f15cd6ffef6a, type: 2}
+  BracketMaterial:
+  - {fileID: 2100000, guid: 3a7eb389f2c8c0f49ac48b7acb93ec9b, type: 2}
+  - {fileID: 2100000, guid: 91439f6749e320c45bf7119fa1785e5c, type: 2}
+  - {fileID: 2100000, guid: dacdea83f00a657428e9f15cd6ffef6a, type: 2}
+  GunMaterial:
+  - {fileID: 2100000, guid: 3a7eb389f2c8c0f49ac48b7acb93ec9b, type: 2}
+  - {fileID: 2100000, guid: 91439f6749e320c45bf7119fa1785e5c, type: 2}
+  - {fileID: 2100000, guid: dacdea83f00a657428e9f15cd6ffef6a, type: 2}
+  body: {fileID: 1315249397038962}
+  Lturbine: {fileID: 1830457009226048}
+  Rturbine: {fileID: 1208176183426356}
+  bracket: {fileID: 1309905537942518}
+  Gun: {fileID: 1250254100011336}
   DeathSound: {fileID: 82226972802651928}
 --- !u!114 &114711430545845424
 MonoBehaviour:

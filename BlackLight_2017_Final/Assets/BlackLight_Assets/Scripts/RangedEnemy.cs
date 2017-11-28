@@ -1,5 +1,6 @@
 ﻿//----------------------------------------------------------------------------------------------------
 // AUTHOR: Jeremy Zoitas.
+// EDITED BY: Gabriel Pilakis.
 //----------------------------------------------------------------------------------------------------
 using System.Collections;
 using System.Collections.Generic;
@@ -22,11 +23,27 @@ public class RangedEnemy : MonoBehaviour {
 	private NavMeshAgent nav;
 	private bool m_bIsDead;
 
+    public Material[] BaseMaterial;
+    public Material[] TurbineRMaterial;
+    public Material[] TurbineLMaterial;
+    public Material[] BracketMaterial;
+    public Material[] GunMaterial;
+
+    private MeshRenderer Baserend;
+    private MeshRenderer TurbineRendR;
+    private MeshRenderer TurbineRendL;
+    private MeshRenderer BracketRend;
+    private MeshRenderer GunRend;
+
+    public GameObject body;
+    public GameObject Lturbine;
+    public GameObject Rturbine;
+    public GameObject bracket;
+    public GameObject Gun;
 
     PlayerHealth PlayerHealth;
     PlayerController PlayerCon;
 	GameObject Player;
-    public GameObject Gun;
     public AudioSource DeathSound;
 
     float damping = 2;
@@ -39,9 +56,8 @@ public class RangedEnemy : MonoBehaviour {
 	{
         f_Stunned = 3.0f;
         IsStunned = false;
-
-		// Sets the target position to the players position.
-		Target = GameObject.FindGameObjectWithTag("Player").transform;
+        // Sets the target position to the players position.
+        Target = GameObject.FindGameObjectWithTag("Player").transform;
 		// Sets nav to NavMeshAgent.
 		nav = GetComponent<NavMeshAgent>();
 		// Sets the Player to Player.
@@ -50,6 +66,18 @@ public class RangedEnemy : MonoBehaviour {
 		PlayerHealth = Player.GetComponent<PlayerHealth>();
 		// Sets PlayerController script.
 		PlayerCon = Player.GetComponent<PlayerController>();
+
+        Baserend = body.GetComponent<MeshRenderer>();
+        TurbineRendR = Lturbine.GetComponent<MeshRenderer>();
+        TurbineRendL = Rturbine.GetComponent<MeshRenderer>();
+        BracketRend = bracket.GetComponent<MeshRenderer>();
+        GunRend = Gun.GetComponent<MeshRenderer>();
+
+        Baserend.sharedMaterial = BaseMaterial[0];
+        TurbineRendR.sharedMaterial = TurbineRMaterial[0];
+        TurbineRendL.sharedMaterial = TurbineLMaterial[0];
+        BracketRend.sharedMaterial = BracketMaterial[0];
+        GunRend.sharedMaterial = GunMaterial[0];
 
     }
 
@@ -71,8 +99,12 @@ public class RangedEnemy : MonoBehaviour {
                 // Sets damage to 0.
                 m_fDamage = 0;
                 // Changes colour to it being stunned.
-                GetComponent<Renderer>().material.color = Color.yellow;
-                Gun.GetComponent<Renderer>().material.color = Color.yellow;
+
+                Baserend.sharedMaterial = BaseMaterial[1];
+                TurbineRendR.sharedMaterial = TurbineRMaterial[1];
+                TurbineRendL.sharedMaterial = TurbineLMaterial[1];
+                BracketRend.sharedMaterial = BracketMaterial[1];
+                GunRend.sharedMaterial = GunMaterial[1];
 
                 // Counts down the stun timer.
                 f_Stunned -= Time.deltaTime;
@@ -87,8 +119,12 @@ public class RangedEnemy : MonoBehaviour {
                 // Starts moving.
                 nav.enabled = true;
                 // Changes colour again.
-                GetComponent<Renderer>().material.color = new Color(0.035f, 0.035f, 0.035f);
-                Gun.GetComponent<Renderer>().material.color = new Color(0.035f, 0.035f, 0.035f);
+                Baserend.sharedMaterial = BaseMaterial[0];
+                TurbineRendR.sharedMaterial = TurbineRMaterial[0];
+                TurbineRendL.sharedMaterial = TurbineLMaterial[0];
+                BracketRend.sharedMaterial = BracketMaterial[0];
+                GunRend.sharedMaterial = GunMaterial[0];
+
                 // Resets stun timer.
                 f_Stunned += 3.0f;
             }
@@ -119,10 +155,16 @@ public class RangedEnemy : MonoBehaviour {
         }
         if (m_bIsDead)
         {
-            GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
-            Gun.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
+
+            Baserend.sharedMaterial = BaseMaterial[2];
+            TurbineRendR.sharedMaterial = TurbineRMaterial[2];
+            TurbineRendL.sharedMaterial = TurbineLMaterial[2];
+            BracketRend.sharedMaterial = BracketMaterial[2];
+            GunRend.sharedMaterial = GunMaterial[2];
+
             if (!DeathSound.isPlaying)
             {
+
                 // Sets active false.
                 gameObject.SetActive(false);
             }

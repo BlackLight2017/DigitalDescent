@@ -104,9 +104,6 @@ public class Enemy : MonoBehaviour {
 				// Sets damage to 0.
 				m_fDamage = 0;
                 // Changes colour to it being stunned.
-                //Body.GetComponent<Renderer>().material.color = Color.yellow;
-                //LeftArm.GetComponent<Renderer>().material.color = Color.yellow;
-                //RightArm.GetComponent<Renderer>().material.color = Color.yellow;
                 rend.sharedMaterial = material[1];
                 ArmRend.sharedMaterial = RightArmMaterial[1];
                 LeftArmRend.sharedMaterial = LeftArmMaterial[1];
@@ -125,9 +122,6 @@ public class Enemy : MonoBehaviour {
 				nav.enabled = true;
                 // Changes colour again.
 
-                //Body.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-                //LeftArm.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
-                //RightArm.GetComponent<Renderer>().material.color = new Color(0.18f, 0.18f, 0.18f);
                 rend.sharedMaterial = material[0];
                 ArmRend.sharedMaterial = RightArmMaterial[0];
                 LeftArmRend.sharedMaterial = LeftArmMaterial[0];
@@ -185,18 +179,15 @@ public class Enemy : MonoBehaviour {
 		}
 		if(m_bIsDead)
 		{
-            //  Body.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
-            //  LeftArm.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
-            //  RightArm.GetComponent<Renderer>().material.color = new Color(1f, 0, 0);
+ 
             rend.sharedMaterial = material[2];
             ArmRend.sharedMaterial = material[2];
             LeftArmRend.sharedMaterial = material[2];
-            //  if (!DeathSound.isPlaying)
-            //{
-            //	// Sets active false.
-            //	gameObject.SetActive(false);
-            //}
-            gameObject.SetActive(false);
+             if (!DeathSound.isPlaying)
+           {
+           	// Sets active false.
+           	gameObject.SetActive(false);
+           }
 
         }
 
@@ -244,8 +235,6 @@ public class Enemy : MonoBehaviour {
     //----------------------------------------------------------------------------------------------------
     private void DoDamage()
     {
-        // Prints out a message to see if it hits
-
         
         // If the player has health then attack.
         if(PlayerHealth.m_fHealth > 0)

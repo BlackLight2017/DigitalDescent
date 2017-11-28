@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//----------------------------------------------------------------------------------------------------
+// AUTHOR: Gabriel Pilakis 
+// EDITED BY: Jeremy Zoitas
+//----------------------------------------------------------------------------------------------------
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
