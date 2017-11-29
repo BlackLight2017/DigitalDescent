@@ -84,7 +84,7 @@ public class PlayerHealth : MonoBehaviour {
 	private void OnTriggerEnter(Collider col)
 	{
 		// checks if the player runs into the health box and healths them.
-		if (col.gameObject.tag == "Regen" && m_fHealth < 99)
+		if (col.gameObject.tag == "Regen" && m_fHealth < 75)
 		{
 			m_fHealth += HealthRegen;
 			Destroy(col.gameObject);

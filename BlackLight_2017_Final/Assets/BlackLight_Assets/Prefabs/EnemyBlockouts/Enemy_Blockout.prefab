@@ -398,7 +398,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1474159468773194}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.55, z: 0}
+  m_LocalPosition: {x: 0.0013122559, y: -85.53, z: -448.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4711375796321860}
@@ -1188,15 +1188,15 @@ MonoBehaviour:
   Attack: {fileID: 0}
   Die: {fileID: 0}
   material:
-  - {fileID: 2100000, guid: 3a7eb389f2c8c0f49ac48b7acb93ec9b, type: 2}
+  - {fileID: 2100000, guid: d16d8647861f4834485b9aec5bc3ae2d, type: 2}
   - {fileID: 2100000, guid: 91439f6749e320c45bf7119fa1785e5c, type: 2}
   - {fileID: 2100000, guid: 2ec82251ace17c8479adbae797aa6658, type: 2}
   RightArmMaterial:
-  - {fileID: 2100000, guid: 3a7eb389f2c8c0f49ac48b7acb93ec9b, type: 2}
+  - {fileID: 2100000, guid: d16d8647861f4834485b9aec5bc3ae2d, type: 2}
   - {fileID: 2100000, guid: 91439f6749e320c45bf7119fa1785e5c, type: 2}
   - {fileID: 2100000, guid: 2ec82251ace17c8479adbae797aa6658, type: 2}
   LeftArmMaterial:
-  - {fileID: 2100000, guid: 3a7eb389f2c8c0f49ac48b7acb93ec9b, type: 2}
+  - {fileID: 2100000, guid: d16d8647861f4834485b9aec5bc3ae2d, type: 2}
   - {fileID: 2100000, guid: 91439f6749e320c45bf7119fa1785e5c, type: 2}
   - {fileID: 2100000, guid: 2ec82251ace17c8479adbae797aa6658, type: 2}
   Body: {fileID: 1043252349247850}
