@@ -326,7 +326,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 670, y: -329}
+  m_AnchoredPosition: {x: 670, y: -295}
   m_SizeDelta: {x: 536.15, y: 61.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &302406543
@@ -941,8 +941,6 @@ MonoBehaviour:
   m_Text: 'ProBuilder Basic
 
     OBJ Exporter
-
-    Post Processing Stack
 
     XInput'
 --- !u!222 &572473344
@@ -1800,7 +1798,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1347, y: 260}
+  m_AnchoredPosition: {x: 1308, y: 260}
   m_SizeDelta: {x: 665.2, y: 61.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1576473320
@@ -2135,7 +2133,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 670, y: -170}
+  m_AnchoredPosition: {x: 670, y: -136}
   m_SizeDelta: {x: 536.15, y: 61.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1804141220
@@ -2315,7 +2313,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 670, y: 10}
+  m_AnchoredPosition: {x: 670, y: 43.999977}
   m_SizeDelta: {x: 536.15, y: 61.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1971689432
